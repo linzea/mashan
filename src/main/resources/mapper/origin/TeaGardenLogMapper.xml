@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.panda.mapper.origin.TeaGardenLogMapper">
+  <resultMap id="BaseResultMap" type="com.panda.model.origin.TeaGardenLog">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="tea_garden_id" jdbcType="VARCHAR" property="teaGardenId" />
+    <result column="farm_type_id" jdbcType="VARCHAR" property="farmTypeId" />
+    <result column="farm_quantity" jdbcType="DOUBLE" property="farmQuantity" />
+    <result column="farm_time" jdbcType="TIMESTAMP" property="farmTime" />
+    <result column="farm_pattern" jdbcType="VARCHAR" property="farmPattern" />
+    <result column="fert_variety" jdbcType="VARCHAR" property="fertVariety" />
+    <result column="cultivar_id" jdbcType="VARCHAR" property="cultivarId" />
+    <result column="batch_num" jdbcType="VARCHAR" property="batchNum" />
+    <result column="operator_id" jdbcType="VARCHAR" property="operatorId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="principal" jdbcType="VARCHAR" property="principal" />
+    <result column="create_id" jdbcType="VARCHAR" property="createId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_id" jdbcType="VARCHAR" property="modifyId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, tea_garden_id, farm_type_id, farm_quantity, farm_time, farm_pattern, fert_variety, 
+    cultivar_id, batch_num, operator_id, status, description, end_time, principal, create_id, 
+    create_time, modify_id, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from e_tea_garden_log
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from e_tea_garden_log
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.panda.model.origin.TeaGardenLog">
+    insert into e_tea_garden_log (id, tea_garden_id, farm_type_id, 
+      farm_quantity, farm_time, farm_pattern, 
+      fert_variety, cultivar_id, batch_num, 
+      operator_id, status, description, 
+      end_time, principal, create_id, 
+      create_time, modify_id, modify_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{teaGardenId,jdbcType=VARCHAR}, #{farmTypeId,jdbcType=VARCHAR}, 
+      #{farmQuantity,jdbcType=DOUBLE}, #{farmTime,jdbcType=TIMESTAMP}, #{farmPattern,jdbcType=VARCHAR}, 
+      #{fertVariety,jdbcType=VARCHAR}, #{cultivarId,jdbcType=VARCHAR}, #{batchNum,jdbcType=VARCHAR}, 
+      #{operatorId,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{principal,jdbcType=VARCHAR}, #{createId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyId,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.panda.model.origin.TeaGardenLog">
+    insert into e_tea_garden_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="teaGardenId != null">
+        tea_garden_id,
+      </if>
+      <if test="farmTypeId != null">
+        farm_type_id,
+      </if>
+      <if test="farmQuantity != null">
+        farm_quantity,
+      </if>
+      <if test="farmTime != null">
+        farm_time,
+      </if>
+      <if test="farmPattern != null">
+        farm_pattern,
+      </if>
+      <if test="fertVariety != null">
+        fert_variety,
+      </if>
+      <if test="cultivarId != null">
+        cultivar_id,
+      </if>
+      <if test="batchNum != null">
+        batch_num,
+      </if>
+      <if test="operatorId != null">
+        operator_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="principal != null">
+        principal,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyId != null">
+        modify_id,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="teaGardenId != null">
+        #{teaGardenId,jdbcType=VARCHAR},
+      </if>
+      <if test="farmTypeId != null">
+        #{farmTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="farmQuantity != null">
+        #{farmQuantity,jdbcType=DOUBLE},
+      </if>
+      <if test="farmTime != null">
+        #{farmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="farmPattern != null">
+        #{farmPattern,jdbcType=VARCHAR},
+      </if>
+      <if test="fertVariety != null">
+        #{fertVariety,jdbcType=VARCHAR},
+      </if>
+      <if test="cultivarId != null">
+        #{cultivarId,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNum != null">
+        #{batchNum,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorId != null">
+        #{operatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="principal != null">
+        #{principal,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null">
+        #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.panda.model.origin.TeaGardenLog">
+    update e_tea_garden_log
+    <set>
+      <if test="teaGardenId != null">
+        tea_garden_id = #{teaGardenId,jdbcType=VARCHAR},
+      </if>
+      <if test="farmTypeId != null">
+        farm_type_id = #{farmTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="farmQuantity != null">
+        farm_quantity = #{farmQuantity,jdbcType=DOUBLE},
+      </if>
+      <if test="farmTime != null">
+        farm_time = #{farmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="farmPattern != null">
+        farm_pattern = #{farmPattern,jdbcType=VARCHAR},
+      </if>
+      <if test="fertVariety != null">
+        fert_variety = #{fertVariety,jdbcType=VARCHAR},
+      </if>
+      <if test="cultivarId != null">
+        cultivar_id = #{cultivarId,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNum != null">
+        batch_num = #{batchNum,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorId != null">
+        operator_id = #{operatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="principal != null">
+        principal = #{principal,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null">
+        modify_id = #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.panda.model.origin.TeaGardenLog">
+    update e_tea_garden_log
+    set tea_garden_id = #{teaGardenId,jdbcType=VARCHAR},
+      farm_type_id = #{farmTypeId,jdbcType=VARCHAR},
+      farm_quantity = #{farmQuantity,jdbcType=DOUBLE},
+      farm_time = #{farmTime,jdbcType=TIMESTAMP},
+      farm_pattern = #{farmPattern,jdbcType=VARCHAR},
+      fert_variety = #{fertVariety,jdbcType=VARCHAR},
+      cultivar_id = #{cultivarId,jdbcType=VARCHAR},
+      batch_num = #{batchNum,jdbcType=VARCHAR},
+      operator_id = #{operatorId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      principal = #{principal,jdbcType=VARCHAR},
+      create_id = #{createId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_id = #{modifyId,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <!-- 茶园日志列表数据 -->
+  <select id="selectTeaGardenLogList" parameterType="map" resultType="map">
+    SELECT (SELECT @rownum:='teaGardenLoglist') dataTypeName,tgl.principal,d1. value farmValue,
+    tgl.id, tgl.operator_id,tgl.create_time,tgl.batch_num batchNum, tgl.cultivar_id cultivarId, tgl.farm_type_id farmType, tgl.tea_garden_id gardenType,
+    tg.name_area teaGardenName, year(tgl.create_time) createYear, tgl.fert_variety,tgl.farm_quantity,d2.name d2Name,d3.name d3Name, d4.name d4Name,
+    tgl.status, d.name cultivarName, d1.name farmName, u.chinese_name createName
+    FROM e_tea_garden_log tgl
+    LEFT JOIN s_dictionary as d  ON tgl.cultivar_id = d.id
+    LEFT JOIN s_dictionary as d1 ON tgl.farm_type_id = d1.id
+    LEFT JOIN s_dictionary as d2 ON tgl.farm_pattern = d2.id
+    LEFT JOIN s_dictionary as d3 ON tgl.cultivar_id = d3.id
+    LEFT JOIN s_dictionary as d4 ON tgl.fert_variety = d4.id
+    LEFT JOIN s_users as u ON tgl.create_id = u.id
+    LEFT JOIN e_tea_garden tg ON tgl.tea_garden_id = tg.id
+    WHERE
+    1 = 1
+    <if test="cultivarId != null and cultivarId != ''">
+      AND tgl.cultivar_id = #{cultivarId}
+    </if>
+    <if test="gardenType != null and gardenType != ''">
+      AND tgl.tea_garden_id = #{gardenType}
+    </if>
+    <if test="farmType != null and farmType != ''">
+      AND tgl.farm_type_id = #{farmType}
+    </if>
+    <if test="status != null and status != ''">
+      AND tgl.status = #{status}
+    </if>
+    <if test="createYear != null and createYear != ''">
+      AND year(tgl.create_time) = #{createYear}
+    </if>
+    <if test="batchNum != null and batchNum != ''">
+      AND tgl.batch_num = #{batchNum}
+    </if>
+    GROUP BY tgl.id ORDER BY tgl.create_time DESC
+  </select>
+  <!-- 茶园日志列表数据 -->
+
+  <select id="selectTeaGardenLogItem" parameterType="java.lang.String" resultType="map">
+    SELECT
+        tgl.id,
+        tgl.description,
+        tgl.tea_garden_id teaGardenId,
+        tgl.end_time endTime,
+        tgl.fert_variety fertVariety,
+        tgl.cultivar_id cultivarId,
+        tgl.farm_pattern farmPattern,
+        tgl.farm_quantity farmQuantity,
+        tgl.farm_time farmTime,
+        tgl.farm_type_id farmTypeId,
+        tgl.operator_id operatorId,
+        tgl.principal tGlprincipal,
+        tgl.status,
+        tg.area_code,
+        tg.acreage,
+        tg.principal,
+        mg.batch_number batchNumber
+    FROM
+        e_tea_garden_log tgl
+    LEFT JOIN e_tea_garden tg ON tgl.tea_garden_id = tg.id
+    LEFT JOIN e_manage_batch mg ON tgl.batch_num = mg.id
+    WHERE
+        1 = 1
+        AND tgl.id = #{id}
+  </select>
+</mapper>

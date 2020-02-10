@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.panda.mapper.wechat.WechatCustomMessageMapper" >
+  <resultMap id="BaseResultMap" type="com.panda.model.wechat.WechatCustomMessage" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="msg" property="msg" jdbcType="VARCHAR" />
+    <result column="iswechat" property="iswechat" jdbcType="SMALLINT" />
+    <result column="send_time" property="sendTime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uid, msg, iswechat, send_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_wechat_custom_message
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_wechat_custom_message
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.panda.model.wechat.WechatCustomMessage" >
+    insert into t_wechat_custom_message (id, uid, msg, 
+      iswechat, send_time)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{msg,jdbcType=VARCHAR}, 
+      #{iswechat,jdbcType=SMALLINT}, #{sendTime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.panda.model.wechat.WechatCustomMessage" >
+    insert into t_wechat_custom_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="msg != null" >
+        msg,
+      </if>
+      <if test="iswechat != null" >
+        iswechat,
+      </if>
+      <if test="sendTime != null" >
+        send_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="msg != null" >
+        #{msg,jdbcType=VARCHAR},
+      </if>
+      <if test="iswechat != null" >
+        #{iswechat,jdbcType=SMALLINT},
+      </if>
+      <if test="sendTime != null" >
+        #{sendTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.panda.model.wechat.WechatCustomMessage" >
+    update t_wechat_custom_message
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="msg != null" >
+        msg = #{msg,jdbcType=VARCHAR},
+      </if>
+      <if test="iswechat != null" >
+        iswechat = #{iswechat,jdbcType=SMALLINT},
+      </if>
+      <if test="sendTime != null" >
+        send_time = #{sendTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.panda.model.wechat.WechatCustomMessage" >
+    update t_wechat_custom_message
+    set uid = #{uid,jdbcType=INTEGER},
+      msg = #{msg,jdbcType=VARCHAR},
+      iswechat = #{iswechat,jdbcType=SMALLINT},
+      send_time = #{sendTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.panda.mapper.wechat.WechatMapper" >
+  <resultMap id="BaseResultMap" type="com.panda.model.wechat.Wechat" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="orgid" property="orgid" jdbcType="VARCHAR" />
+    <result column="weixin" property="weixin" jdbcType="VARCHAR" />
+    <result column="token" property="token" jdbcType="VARCHAR" />
+    <result column="appid" property="appid" jdbcType="VARCHAR" />
+    <result column="appsecret" property="appsecret" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="oauth_status" property="oauthStatus" jdbcType="BIT" />
+    <result column="oauth_name" property="oauthName" jdbcType="VARCHAR" />
+    <result column="oauth_redirecturi" property="oauthRedirecturi" jdbcType="VARCHAR" />
+    <result column="oauth_count" property="oauthCount" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="default_wx" property="defaultWx" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, orgid, weixin, token, appid, appsecret, type, oauth_status, oauth_name, 
+    oauth_redirecturi, oauth_count, time, sort, status, default_wx
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_wechat
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_wechat
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.panda.model.wechat.Wechat" >
+    insert into t_wechat (id, name, orgid, 
+      weixin, token, appid, 
+      appsecret, type, oauth_status, 
+      oauth_name, oauth_redirecturi, oauth_count, 
+      time, sort, status, 
+      default_wx)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{orgid,jdbcType=VARCHAR}, 
+      #{weixin,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, 
+      #{appsecret,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{oauthStatus,jdbcType=BIT}, 
+      #{oauthName,jdbcType=VARCHAR}, #{oauthRedirecturi,jdbcType=VARCHAR}, #{oauthCount,jdbcType=INTEGER}, 
+      #{time,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{defaultWx,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.panda.model.wechat.Wechat" >
+    insert into t_wechat
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="orgid != null" >
+        orgid,
+      </if>
+      <if test="weixin != null" >
+        weixin,
+      </if>
+      <if test="token != null" >
+        token,
+      </if>
+      <if test="appid != null" >
+        appid,
+      </if>
+      <if test="appsecret != null" >
+        appsecret,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="oauthStatus != null" >
+        oauth_status,
+      </if>
+      <if test="oauthName != null" >
+        oauth_name,
+      </if>
+      <if test="oauthRedirecturi != null" >
+        oauth_redirecturi,
+      </if>
+      <if test="oauthCount != null" >
+        oauth_count,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="defaultWx != null" >
+        default_wx,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=VARCHAR},
+      </if>
+      <if test="weixin != null" >
+        #{weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null" >
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="appsecret != null" >
+        #{appsecret,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="oauthStatus != null" >
+        #{oauthStatus,jdbcType=BIT},
+      </if>
+      <if test="oauthName != null" >
+        #{oauthName,jdbcType=VARCHAR},
+      </if>
+      <if test="oauthRedirecturi != null" >
+        #{oauthRedirecturi,jdbcType=VARCHAR},
+      </if>
+      <if test="oauthCount != null" >
+        #{oauthCount,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="defaultWx != null" >
+        #{defaultWx,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.panda.model.wechat.Wechat" >
+    update t_wechat
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        orgid = #{orgid,jdbcType=VARCHAR},
+      </if>
+      <if test="weixin != null" >
+        weixin = #{weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null" >
+        appid = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="appsecret != null" >
+        appsecret = #{appsecret,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="oauthStatus != null" >
+        oauth_status = #{oauthStatus,jdbcType=BIT},
+      </if>
+      <if test="oauthName != null" >
+        oauth_name = #{oauthName,jdbcType=VARCHAR},
+      </if>
+      <if test="oauthRedirecturi != null" >
+        oauth_redirecturi = #{oauthRedirecturi,jdbcType=VARCHAR},
+      </if>
+      <if test="oauthCount != null" >
+        oauth_count = #{oauthCount,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="defaultWx != null" >
+        default_wx = #{defaultWx,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.panda.model.wechat.Wechat" >
+    update t_wechat
+    set name = #{name,jdbcType=VARCHAR},
+      orgid = #{orgid,jdbcType=VARCHAR},
+      weixin = #{weixin,jdbcType=VARCHAR},
+      token = #{token,jdbcType=VARCHAR},
+      appid = #{appid,jdbcType=VARCHAR},
+      appsecret = #{appsecret,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      oauth_status = #{oauthStatus,jdbcType=BIT},
+      oauth_name = #{oauthName,jdbcType=VARCHAR},
+      oauth_redirecturi = #{oauthRedirecturi,jdbcType=VARCHAR},
+      oauth_count = #{oauthCount,jdbcType=INTEGER},
+      time = #{time,jdbcType=INTEGER},
+      sort = #{sort,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      default_wx = #{defaultWx,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html  lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="m-form__content" th:fragment="alert_msg">
+        <!-- alert-success 成功-->
+        <div id="success_msg"  class="m-alert m-alert--icon m-alert--icon-solid m--hide m-alert--outline alert alert-success alert-dismissible fade show" role="alert">
+            <div class="m-alert__icon"><i class="la la-warning"></i><span></span></div>
+            <div class="m-alert__text">
+                <strong> 做得好 ! </strong>
+                <span id="success_content"></span>
+            </div>
+            <div class="m-alert__close">
+                <button type="button" class="close" data-close="alert" aria-label="Close"></button>
+            </div>
+        </div>
+        <!-- alert-success 成功-->
+
+        <!-- alert-danger 失败-->
+        <div id="danger_msg" class="m-alert m-alert--icon m-alert--icon-solid m--hide m-alert--outline alert alert-danger " role="alert">
+            <div class="m-alert__icon"><i class="flaticon-exclamation-1"></i><span></span></div>
+            <div class="m-alert__text">
+                <strong> 注意 ! </strong>
+                <span id="danger_content"></span>
+            </div>
+            <div class="m-alert__close">
+                <button type="button" class="close" data-close="alert" aria-label="Close"></button>
+            </div>
+        </div>
+        <!-- alert-danger 失败-->
+
+        <!-- alert-warning 警告-->
+        <div id="warning_msg" class="m-alert m-alert--icon m-alert--icon-solid m--hide m-alert--outline alert alert-warning " role="alert">
+            <div class="m-alert__icon"><i class="flaticon-exclamation-1" style="color: #fff"></i><span></span></div>
+            <div class="m-alert__text">
+                <strong> 注意 ! </strong>
+                <span id="warning_content"></span>
+            </div>
+            <div class="m-alert__close">
+                <button type="button" class="close" data-close="alert" aria-label="Close"></button>
+            </div>
+        </div>
+        <!-- alert-warning 警告-->
+    </div>
+</body>
+</html>

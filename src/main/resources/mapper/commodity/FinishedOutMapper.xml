@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.panda.mapper.commodity.FinishedOutMapper" >
+  <resultMap id="BaseResultMap" type="com.panda.model.commodity.FinishedOut" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="harvest_batch_id" property="harvestBatchId" jdbcType="VARCHAR" />
+    <result column="finished_id" property="finishedId" jdbcType="VARCHAR" />
+    <result column="out_quantity" property="outQuantity" jdbcType="INTEGER" />
+    <result column="out_user" property="outUser" jdbcType="VARCHAR" />
+    <result column="dic_tea_attr" property="dicTeaAttr" jdbcType="VARCHAR" />
+    <result column="dic_tea_type" property="dicTeaType" jdbcType="VARCHAR" />
+    <result column="principal" property="principal" jdbcType="VARCHAR" />
+    <result column="quality_report" property="qualityReport" jdbcType="INTEGER" />
+    <result column="create_id" property="createId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_id" property="modifyId" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, harvest_batch_id, finished_id, out_quantity, out_user, dic_tea_attr, dic_tea_type, 
+    principal, quality_report, create_id, create_time, modify_id, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from c_finished_out
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from c_finished_out
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.panda.model.commodity.FinishedOut" >
+    insert into c_finished_out (id, harvest_batch_id, finished_id, 
+      out_quantity, out_user, dic_tea_attr, 
+      dic_tea_type, principal, quality_report, 
+      create_id, create_time, modify_id, 
+      modify_time)
+    values (#{id,jdbcType=VARCHAR}, #{harvestBatchId,jdbcType=VARCHAR}, #{finishedId,jdbcType=VARCHAR}, 
+      #{outQuantity,jdbcType=INTEGER}, #{outUser,jdbcType=VARCHAR}, #{dicTeaAttr,jdbcType=VARCHAR}, 
+      #{dicTeaType,jdbcType=VARCHAR}, #{principal,jdbcType=VARCHAR}, #{qualityReport,jdbcType=INTEGER}, 
+      #{createId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyId,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.panda.model.commodity.FinishedOut" >
+    insert into c_finished_out
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="harvestBatchId != null" >
+        harvest_batch_id,
+      </if>
+      <if test="finishedId != null" >
+        finished_id,
+      </if>
+      <if test="outQuantity != null" >
+        out_quantity,
+      </if>
+      <if test="outUser != null" >
+        out_user,
+      </if>
+      <if test="dicTeaAttr != null" >
+        dic_tea_attr,
+      </if>
+      <if test="dicTeaType != null" >
+        dic_tea_type,
+      </if>
+      <if test="principal != null" >
+        principal,
+      </if>
+      <if test="qualityReport != null" >
+        quality_report,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyId != null" >
+        modify_id,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="harvestBatchId != null" >
+        #{harvestBatchId,jdbcType=VARCHAR},
+      </if>
+      <if test="finishedId != null" >
+        #{finishedId,jdbcType=VARCHAR},
+      </if>
+      <if test="outQuantity != null" >
+        #{outQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="outUser != null" >
+        #{outUser,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTeaAttr != null" >
+        #{dicTeaAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTeaType != null" >
+        #{dicTeaType,jdbcType=VARCHAR},
+      </if>
+      <if test="principal != null" >
+        #{principal,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityReport != null" >
+        #{qualityReport,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null" >
+        #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.panda.model.commodity.FinishedOut" >
+    update c_finished_out
+    <set >
+      <if test="harvestBatchId != null" >
+        harvest_batch_id = #{harvestBatchId,jdbcType=VARCHAR},
+      </if>
+      <if test="finishedId != null" >
+        finished_id = #{finishedId,jdbcType=VARCHAR},
+      </if>
+      <if test="outQuantity != null" >
+        out_quantity = #{outQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="outUser != null" >
+        out_user = #{outUser,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTeaAttr != null" >
+        dic_tea_attr = #{dicTeaAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTeaType != null" >
+        dic_tea_type = #{dicTeaType,jdbcType=VARCHAR},
+      </if>
+      <if test="principal != null" >
+        principal = #{principal,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityReport != null" >
+        quality_report = #{qualityReport,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null" >
+        modify_id = #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.panda.model.commodity.FinishedOut" >
+    update c_finished_out
+    set harvest_batch_id = #{harvestBatchId,jdbcType=VARCHAR},
+      finished_id = #{finishedId,jdbcType=VARCHAR},
+      out_quantity = #{outQuantity,jdbcType=INTEGER},
+      out_user = #{outUser,jdbcType=VARCHAR},
+      dic_tea_attr = #{dicTeaAttr,jdbcType=VARCHAR},
+      dic_tea_type = #{dicTeaType,jdbcType=VARCHAR},
+      principal = #{principal,jdbcType=VARCHAR},
+      quality_report = #{qualityReport,jdbcType=INTEGER},
+      create_id = #{createId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_id = #{modifyId,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectFinishedOutList" resultType="map" parameterType="map">
+  SELECT a.*,u1.chinese_name createUser,u.chinese_name storeManager,si.name storeName FROM (
+      SELECT
+        fo.id oid,
+        fo.out_quantity,
+        fo.finished_id oFinishedId,
+        fo.out_user,
+        fo.principal,
+        fo.create_id,
+        fo.create_time,
+        f.id,
+        f.harvest_batch_id harvestBatchId,
+        f.finished_name finishedName,
+        f.finished_quantity finishedQuantity,
+        f.finished_low finishedLow,
+        f.finished_out finishedOut,
+        f.dic_tea_attr dicTeaAttr,
+        f.dic_tea_type dicTeaType,
+        f.packaing_id,
+        p.id pid,
+        p.product_name productName,
+        p.package_id packageId,
+        p.tags_id tagsId,
+        p.licence_id licenceId,
+        p.standard_id standardId,
+        p.descriptin descriptin,
+        pg.spe_one speOneP,
+        pg.spe_two speTwoP,
+        pg.spe_there speThereP,
+        pg.spe_four speFourP,
+        pg.package_quantity packageQuantity,
+        pg.package_use packageUse,
+        d. name attrName,
+        d1.name typeName
+      FROM
+        c_finished_out fo,
+        c_finished f
+        LEFT JOIN c_products p ON f.priduct_id = p.id
+        LEFT JOIN s_dictionary d ON f.dic_tea_attr = d.id
+        LEFT JOIN s_dictionary d1 ON f.dic_tea_type = d1.id
+        LEFT JOIN c_package pg ON f.packaing_id = pg.id
+      WHERE
+        1 = 1
+        AND fo.finished_id = f.id
+      <if test="harvestBatchId != null and harvestBatchId != ''">
+        AND fo.harvest_batch_id = #{harvestBatchId}
+      </if>
+      <if test="dicTeaAttr != null and dicTeaAttr != ''">
+        AND fo.dic_tea_attr = #{dicTeaAttr}
+      </if>
+      <if test="dicTeaType != null and dicTeaType != ''">
+        AND fo.dic_tea_attr = #{dicTeaType}
+      </if>
+      <if test="id != null and id != ''">
+        AND fo.id = #{id}
+      </if>
+  )a
+  LEFT JOIN s_store_info si ON a.out_user = si.id
+  LEFT JOIN s_users u ON  a.principal = u.id
+  LEFT JOIN s_users u1 ON  a.create_id = u1.id
+  </select>
+
+  <select id="selectFinishedOutItem" resultType="map" parameterType="java.lang.String">
+    SELECT a.*,u1.chinese_name createUser,u.chinese_name storeManager,si.name storeName FROM (
+    SELECT
+    fo.id oid,
+    fo.out_quantity,
+    fo.out_user,
+    fo.principal,
+    fo.create_id,
+    fo.create_time,
+    f.id,
+    f.harvest_batch_id harvestBatchId,
+    f.finished_name finishedName,
+    f.finished_quantity finishedQuantity,
+    f.finished_low finishedLow,
+    f.finished_out finishedOut,
+    f.dic_tea_attr dicTeaAttr,
+    f.dic_tea_type dicTeaType,
+    f.packaing_id,
+    f.create_time finishedInTime,
+    p.id pid,
+    p.product_name productName,
+    p.package_id packageId,
+    p.tags_id tagsId,
+    p.tea_grade,
+    p.licence_id licenceId,
+    p.standard_id standardId,
+    p.descriptin descriptin,
+    pg.spe_one speOneP,
+    pg.spe_two speTwoP,
+    pg.spe_there speThereP,
+    pg.spe_four speFourP,
+    pg.package_quantity packageQuantity,
+    pg.package_use packageUse,
+    d. name attrName,
+    d1.name typeName,
+    d2.name gradeName
+    FROM
+    c_finished_out fo,
+    c_finished f
+    LEFT JOIN c_products p ON f.priduct_id = p.id
+    LEFT JOIN s_dictionary d ON f.dic_tea_attr = d.id
+    LEFT JOIN s_dictionary d1 ON f.dic_tea_type = d1.id
+    LEFT JOIN c_package pg ON f.packaing_id = pg.id
+    LEFT JOIN s_dictionary d2 ON p.tea_grade = d2.id
+    WHERE
+    1 = 1
+    AND fo.finished_id = f.id
+    AND fo.id = #{id}
+    )a
+    LEFT JOIN s_store_info si ON a.out_user = si.id
+    LEFT JOIN s_users u ON  a.principal = u.id
+    LEFT JOIN s_users u1 ON  a.create_id = u1.id
+  </select>
+
+  <select id="getFinishedOutGroupByStore" resultType="map" parameterType="map">
+    SELECT
+    s.dateTime,
+    GROUP_CONCAT(s.out_user)storeId,
+    GROUP_CONCAT(s.userOutForDay) uOutForDay,
+    GROUP_CONCAT(s.account) Account,
+    GROUP_CONCAT(s.name) storeName,
+    COUNT(s.account) storeNum FROM (
+      SELECT
+      d.dateTime,fo.out_user,SUM(fo.out_quantity) userOutForDay,fo.dic_tea_attr,s.name,f.finished_name,u.account,u.login_type
+      FROM
+      (
+      SELECT @rownum :=@rownum + 1 AS NO,
+      DATE_SUB( date_format(#{endTime},'%y-%m-%d'), INTERVAL @rownum DAY ) AS dateTime
+      FROM
+      (SELECT @rownum := -1) r_init,
+      s_dictionary
+      ) d
+      LEFT JOIN c_finished_out fo ON (d.dateTime = DATE(date_format(fo.create_time,'%y-%m-%d')))
+      LEFT JOIN s_store_info s ON fo.out_user = s.id
+      LEFT JOIN s_users u ON s.id = u.store_id AND u.login_type = 'storeUser'
+      LEFT JOIN c_finished f ON fo.finished_id = f.id
+      WHERE 1 = 1
+      AND d.dateTime &gt;= DATE_SUB(#{beginTime},interval 0 day)
+      AND d.dateTime &lt;= #{endTime}
+      GROUP BY d.dateTime,fo.out_user
+      )s
+    GROUP BY s.dateTime
+    ORDER BY storeNum DESC
+  </select>
+  
+  <select id="selectStoreFinishedOutTeaType" parameterType="map" resultType="java.lang.String">
+    SELECT
+	GROUP_CONCAT(d.name, f.out_quantity,concat("件")) allTea
+    FROM
+        c_finished_out f
+        LEFT JOIN s_dictionary d ON f.dic_tea_attr = d.id
+    WHERE
+    1 = 1
+    <if test="outUser != '' and outUser != null">
+      AND f.out_user = #{outUser}
+    </if>
+    <if test="dateTime != '' and dateTime != null">
+      AND date_format(f.create_time,'%y-%m-%d') = date_format(#{dateTime},'%y-%m-%d')
+    </if>
+  </select>
+</mapper>

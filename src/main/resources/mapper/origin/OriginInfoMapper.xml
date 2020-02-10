@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.panda.mapper.origin.OriginInfoMapper">
+  <resultMap id="BaseResultMap" type="com.panda.model.origin.OriginInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="dic_origin_type" jdbcType="VARCHAR" property="dicOriginType" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="sort_id" jdbcType="INTEGER" property="sortId" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="origin_batch" jdbcType="VARCHAR" property="originBatch" />
+    <result column="create_id" jdbcType="VARCHAR" property="createId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_id" jdbcType="VARCHAR" property="modifyId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, dic_origin_type, content, img_url, status, sort_id, description, origin_batch, 
+    create_id, create_time, modify_id, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from e_origin_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from e_origin_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.panda.model.origin.OriginInfo">
+    insert into e_origin_info (id, title, dic_origin_type, 
+      content, img_url, status, 
+      sort_id, description, origin_batch, 
+      create_id, create_time, modify_id, 
+      modify_time)
+    values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{dicOriginType,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{sortId,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, #{originBatch,jdbcType=VARCHAR}, 
+      #{createId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyId,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.panda.model.origin.OriginInfo">
+    insert into e_origin_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="dicOriginType != null">
+        dic_origin_type,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="sortId != null">
+        sort_id,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="originBatch != null">
+        origin_batch,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyId != null">
+        modify_id,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="dicOriginType != null">
+        #{dicOriginType,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sortId != null">
+        #{sortId,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="originBatch != null">
+        #{originBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null">
+        #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.panda.model.origin.OriginInfo">
+    update e_origin_info
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="dicOriginType != null">
+        dic_origin_type = #{dicOriginType,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sortId != null">
+        sort_id = #{sortId,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="originBatch != null">
+        origin_batch = #{originBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null">
+        modify_id = #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.panda.model.origin.OriginInfo">
+    update e_origin_info
+    set title = #{title,jdbcType=VARCHAR},
+      dic_origin_type = #{dicOriginType,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      sort_id = #{sortId,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      origin_batch = #{originBatch,jdbcType=VARCHAR},
+      create_id = #{createId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_id = #{modifyId,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <!-- 查询溯源信息 -->
+  <select id="selectOriginInfoDataList" parameterType="map" resultType="map">
+    SELECT a.*,d.name dicOriginName FROM (
+        select
+        oi.id, oi.title,oi.description,oi.sort_id sortId,oi.origin_batch originBatch,
+        oi.create_time createTime,oi.status,oi.dic_origin_type dicOriginType,
+        ob.batch_num batchNum
+        from e_origin_info oi,e_origin_batch ob
+        where
+          1 = 1
+          AND oi.origin_batch = ob.id
+          <if test="originBatchId != null and originBatchId != ''">
+            AND oi.origin_batch = #{originBatchId}
+          </if>
+          <if test="dicOriginType != null and dicOriginType != ''">
+            AND oi.dic_origin_type = #{dicOriginType}
+          </if>
+          <if test="status != null and status != ''">
+            AND oi.status = #{status}
+          </if>
+        ORDER BY oi.sort_id DESC
+    )a
+    LEFT JOIN s_dictionary d ON a.dicOriginType = d.id
+  </select>
+  <!-- 查询溯源信息 -->
+</mapper>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑权限信息</title>
+</head>
+<body>
+<!--begin::Modal-->
+<div class="modal fade assemblySetEditParentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true" th:fragment="assemblySetEditParent">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">新增生产线</h5>
+                <button type="button" class="close close-parent" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                </button>
+            </div>
+            <form class="m-form m-form--state m-form--fit m-form--label-align-right" id="assembly_parent_form"
+                  novalidate="novalidate">
+                <div class="modal-body">
+                    <input type="hidden" name="save" value="add">
+                    <input type="hidden" name="parentId" value="10000000-0000-0000-0000-000000000000">
+                    <div class="form-group m-form__group row add_parent">
+                        <label class="col-form-label col-lg-3 col-sm-12">
+                            生产线 <span style="color: red">*</span>
+                        </label>
+                        <div class="col-lg-8 col-md-9 col-sm-12">
+                            <input type="text" class="form-control m-input" name="name" placeholder="生产线">
+                            <span class="m-form__help"></span>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <label class="col-form-label col-lg-3 col-sm-12">
+                            生产产品  <span style="color: red">*</span>
+                        </label>
+                        <div class="col-lg-8 col-md-9 col-sm-12">
+                            <select class="form-control dicTeaAttr" name="dicTeaAttr" id="dicTeaAttr" >
+                                <option value=""> 选择 </option>
+                                <option th:each="item:${teaArrt}" th:value="${item.id}" th:text="${item.name+'产品'}"></option>
+                            </select>
+                            <span class="m-form__help"></span>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row add_parent">
+                        <label class="col-form-label col-lg-3 col-sm-12">
+                            保养周期 <span style="color: red">*</span>
+                        </label>
+                        <div class="col-lg-8 col-md-9 col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon" style="cursor: pointer;">
+                                    运行
+                                </span>
+                                <input type="text" class="form-control m-input maintainCycle" name="maintainCycle" placeholder="保养周期">
+                                <span class="input-group-addon" style="cursor: pointer;">
+                                    次
+                                </span>
+                            </div>
+                            <span class="m-form__help"></span>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row add_parent">
+                        <label class="col-form-label col-lg-3 col-sm-12">
+                            清洁周期 <span style="color: red">*</span>
+                        </label>
+                        <div class="col-lg-8 col-md-9 col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon" style="cursor: pointer;">
+                                    运行
+                                </span>
+                                <input type="text" class="form-control m-input maintainClear" name="maintainClear" placeholder="清洁周期">
+                                <span class="input-group-addon" style="cursor: pointer;">
+                                    次
+                                </span>
+                            </div>
+                            <span class="m-form__help"></span>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <label class="col-form-label col-lg-3 col-sm-12">
+                            排序 <span style="color: red">*</span>
+                        </label>
+                        <div class="col-lg-8 col-md-9 col-sm-12">
+                            <div class="input-group">
+                                <input type="text" class="form-control m-input" name="sortId" placeholder="字典排序">
+                            </div>
+                            <span class="m-form__help"></span>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row status_switch_parent">
+                        <label class="col-form-label col-lg-3 col-sm-12">
+                            状态 <span style="color: red">*</span>
+                        </label>
+                        <div class="col-lg-8 col-md-9 col-sm-12">
+                            <input data-switch="true" type="checkbox" class="status_switch" data-on-color="success" data-off-color="warning">
+                            <br>
+                            <span class="m-form__help"></span>
+                        </div>
+                        <input type="hidden" name="status" value="">
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <label class="col-form-label col-lg-3 col-sm-12">
+                            备注 <span style="color: red"> </span>
+                        </label>
+                        <div class="col-lg-8 col-md-9 col-sm-12">
+                            <textarea class="form-control m-input" name="description" placeholder="介绍用途等"></textarea>
+                            <span class="m-form__help"></span>
+                        </div>
+                    </div>
+                    <!--<div class="m-form__seperator m-form__seperator&#45;&#45;dashed m-form__seperator&#45;&#45;space"></div>-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary close-parent" data-dismiss="modal">
+                            关闭
+                        </button>
+                        <button type="submit" shiro:hasPermission="assembly:submit" class="btn btn-accent assembly_parent_save">
+                            确定
+                        </button>
+                        <button type="reset" class="btn btn-warning reset-btn">
+                            重置
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--end::Modal-->
+</body>
+</html>

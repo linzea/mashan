@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<!-- begin: head -->
+<div th:replace="system/public/head :: head"></div>
+<!-- end: head -->
+<body>
+    <div class="rmp-span">
+        <label class="rmp-control-label">部门归属</label>
+        <div class="rmp-control-text">
+            <div id="department" class="bui-cncselectfilter bui-suggest bui-combox bui-select" aria-disabled="false" tabindex="0" hidefocus="true" aria-pressed="false">
+                <input type="text" class="bui-select-input" /><span class="icon-delelte-input"><i class="icon-remove-sign-select"></i></span><span class="x-icon x-icon-normal"><span class="x-caret x-caret-down"></span></span>
+            </div>
+        </div>
+    </div>
+
+    <input name="department" id="rdepartment" type="hidden"/>
+
+    <div id='jstree_around' class="m--hide">
+        <div class="apm-treeselect-header">
+            <div class="apm-treeselect-filter">
+                <input id="search_input" class="filter" type="hidden"/>
+            </div>
+        </div>
+        <div id="jstree_div"></div>
+    </div>
+    <script th:src="@{/assets/js/base/jquery.min.js}" type="text/javascript"></script>
+    <script th:src="@{/assets/js/base/vendors.bundle.js}" type="text/javascript"></script>
+    <script th:src="@{/assets/js/base/scripts.bundle.js}" type="text/javascript"></script>
+    <script th:src="@{/assets/js/base/jsTree.js}" type="text/javascript"></script>
+    <script th:src="@{/assets/js/jquery/jquery.scrollbar.min.js}" type="text/javascript"></script>
+    <script th:src="@{/assets/js/jquery/jquery.slimscroll.js}" type="text/javascript"></script>
+    <script th:src="@{/assets/js/system/base.js}" type="text/javascript"></script>
+    <script th:src="@{home/base/jsTree-select.js}" type="text/javascript"></script>
+</body>
+</html>

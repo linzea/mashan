@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<div th:replace="home/public/head :: head"></div>
+<style>
+    /*.m-body{*/
+        /*background:url(/index/base/img/proTe/1-1.jpg) no-repeat;*/
+        /*background-size: auto;*/
+    /*}*/
+</style>
+<body class="m-page--wide m-header--fixed m-header--fixed-mobile m-footer--push m-aside--offcanvas-default"  >
+<div class="m-grid m-grid--hor m-grid--root m-page">
+    <div th:replace="~{home/public/header_nav :: header_nav}"></div>
+    <div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor-desktop m-grid--desktop m-body"  >
+        <!--<img th:src="@{/index/base/img/proTe/1-1.jpg}" >-->
+        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver m-container m-container--responsive m-container--xxl m-page__container">
+            <div class="m-grid__item m-grid__item--fluid m-wrapper" >
+                <div  class="m-content" >
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="m-portlet m-portlet--mobile" >
+                                <div class="m-portlet__head">
+                                    <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+                                            <h3 class="m-portlet__head-text">
+                                                马山茶产品溯源
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <!-- 内容 -->
+                                    <div class="row m-row--no-padding m-row--col-separator-xl">
+                                        <div class="col-xl-4">
+                                            <img th:src="@{/index/base/img/proTe/banner_2_l.jpg}" width="100%">
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <div class="m-widget1">
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">
+                                                                请在右侧输入框内输入您购买产品的生产编号,您将可以产看到产品的先关信息
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <img alt="" th:src="@{/index/base/img/proTe/tea.png}" style="height: 60px;"/>
+                                                        </div>
+                                                        <div class="col m--align-right" style="border-left: 0.07rem dashed #ebedf2;">
+                                                            <span class="m-widget1__desc">
+                                                                种植基地信息
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <img alt="" th:src="@{/index/base/img/proTe/machining.png}" style="height: 60px;"/>
+                                                        </div>
+                                                        <div class="col m--align-right" style="border-left: 0.07rem dashed #ebedf2;">
+                                                            <span class="m-widget1__desc">
+                                                                产品加工信息
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <img alt="" th:src="@{/index/base/img/proTe/check.png}" style="height: 60px;"/>
+                                                        </div>
+                                                        <div class="col m--align-right" style="border-left: 0.07rem dashed #ebedf2;">
+                                                            <span class="m-widget1__desc">
+                                                                产品质检报告
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <img alt="" th:src="@{/index/base/img/proTe/pro.png}" style="height: 60px;"/>
+                                                        </div>
+                                                        <div class="col m--align-right" style="border-left: 0.07rem dashed #ebedf2;">
+                                                            <span class="m-widget1__desc">
+                                                                产品销售信息
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <div class="m-widget1">
+                                                <form class="m-form m-form--state m-form--fit m-form--label-align-right" action="/index/traceQuery/proTrace" method="post" id="origin_form" novalidate="novalidate">
+                                                    <div class="modal-body">
+                                                        <div class="form-group m-form__group ">
+                                                            <div class="ccol-sm-10">
+                                                                <input  class="form-control" id="originCode" name="originCode" placeholder="请输入溯源档案编号">
+                                                                <span class="m-form__help"></span>
+                                                            </div>
+                                                            <div class=" col-sm-2">
+                                                                <button type="submit"  class="btn btn-accent">查询</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="~{home/public/footer :: footer}"></div>
+</div>
+<div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500" data-scroll-speed="300">
+    <i class="la la-arrow-up"></i>
+</div>
+<script th:src="@{/index/base/js/jquery.min.js}" type="text/javascript"></script>
+<script th:src="@{/index/base/js/base.js}" type="text/javascript"></script>
+<script th:src="@{/index/base/js/scripts.bundle.js}" type="text/javascript"></script>
+<script th:src="@{/index/base/js/jquery.slimscroll.js}" type="text/javascript"></script>
+<script th:src="@{/index/base/js/jquery-validation.js}" type="text/javascript"></script>
+<script th:src="@{/index/base/js/main.js}" type="text/javascript"></script>
+<script th:src="@{/index/base/js/traceQuery.js}" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.panda.mapper.origin.AssemblySetMapper">
+  <resultMap id="BaseResultMap" type="com.panda.model.origin.AssemblySet">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+    <result column="machine_id" jdbcType="VARCHAR" property="machineId" />
+    <result column="maintain_cycle" jdbcType="INTEGER" property="maintainCycle" />
+    <result column="maintain_clear" jdbcType="INTEGER" property="maintainClear" />
+    <result column="run_num" jdbcType="INTEGER" property="runNum" />
+    <result column="all_run_num" jdbcType="INTEGER" property="allRunNum" />
+    <result column="sort_id" jdbcType="INTEGER" property="sortId" />
+    <result column="dic_tea_attr" jdbcType="VARCHAR" property="dicTeaAttr" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="create_id" jdbcType="VARCHAR" property="createId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_id" jdbcType="VARCHAR" property="modifyId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, parent_id, machine_id, maintain_cycle, maintain_clear, run_num, all_run_num, 
+    sort_id, dic_tea_attr, status, description, create_id, create_time, modify_id, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from e_assembly_set
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from e_assembly_set
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.panda.model.origin.AssemblySet">
+    insert into e_assembly_set (id, name, parent_id, 
+      machine_id, maintain_cycle, maintain_clear, 
+      run_num, all_run_num, sort_id, 
+      dic_tea_attr, status, description, 
+      create_id, create_time, modify_id, 
+      modify_time)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, 
+      #{machineId,jdbcType=VARCHAR}, #{maintainCycle,jdbcType=INTEGER}, #{maintainClear,jdbcType=INTEGER}, 
+      #{runNum,jdbcType=INTEGER}, #{allRunNum,jdbcType=INTEGER}, #{sortId,jdbcType=INTEGER}, 
+      #{dicTeaAttr,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, 
+      #{createId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyId,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.panda.model.origin.AssemblySet">
+    insert into e_assembly_set
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="machineId != null">
+        machine_id,
+      </if>
+      <if test="maintainCycle != null">
+        maintain_cycle,
+      </if>
+      <if test="maintainClear != null">
+        maintain_clear,
+      </if>
+      <if test="runNum != null">
+        run_num,
+      </if>
+      <if test="allRunNum != null">
+        all_run_num,
+      </if>
+      <if test="sortId != null">
+        sort_id,
+      </if>
+      <if test="dicTeaAttr != null">
+        dic_tea_attr,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyId != null">
+        modify_id,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="machineId != null">
+        #{machineId,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainCycle != null">
+        #{maintainCycle,jdbcType=INTEGER},
+      </if>
+      <if test="maintainClear != null">
+        #{maintainClear,jdbcType=INTEGER},
+      </if>
+      <if test="runNum != null">
+        #{runNum,jdbcType=INTEGER},
+      </if>
+      <if test="allRunNum != null">
+        #{allRunNum,jdbcType=INTEGER},
+      </if>
+      <if test="sortId != null">
+        #{sortId,jdbcType=INTEGER},
+      </if>
+      <if test="dicTeaAttr != null">
+        #{dicTeaAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null">
+        #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.panda.model.origin.AssemblySet">
+    update e_assembly_set
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="machineId != null">
+        machine_id = #{machineId,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainCycle != null">
+        maintain_cycle = #{maintainCycle,jdbcType=INTEGER},
+      </if>
+      <if test="maintainClear != null">
+        maintain_clear = #{maintainClear,jdbcType=INTEGER},
+      </if>
+      <if test="runNum != null">
+        run_num = #{runNum,jdbcType=INTEGER},
+      </if>
+      <if test="allRunNum != null">
+        all_run_num = #{allRunNum,jdbcType=INTEGER},
+      </if>
+      <if test="sortId != null">
+        sort_id = #{sortId,jdbcType=INTEGER},
+      </if>
+      <if test="dicTeaAttr != null">
+        dic_tea_attr = #{dicTeaAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null">
+        modify_id = #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.panda.model.origin.AssemblySet">
+    update e_assembly_set
+    set name = #{name,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=VARCHAR},
+      machine_id = #{machineId,jdbcType=VARCHAR},
+      maintain_cycle = #{maintainCycle,jdbcType=INTEGER},
+      maintain_clear = #{maintainClear,jdbcType=INTEGER},
+      run_num = #{runNum,jdbcType=INTEGER},
+      all_run_num = #{allRunNum,jdbcType=INTEGER},
+      sort_id = #{sortId,jdbcType=INTEGER},
+      dic_tea_attr = #{dicTeaAttr,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      create_id = #{createId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_id = #{modifyId,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectAssemblySetDataList" parameterType="map" resultType="map">
+    SELECT
+      a.id, a.name, a.status,a.maintain_cycle maintainCycle,
+      a.sort_id sortId,a.description,a.run_num runNum,
+      e.unit_name unitName,e.id unitId,a.all_run_num allRunNum,
+      e.unit_no unitNo,a.maintain_clear maintainClear,
+      e.unit_usage unitUsage,a.dic_tea_attr,
+      e.unit_type unitType,
+      e.unit_cycle unitCycle,
+      e.status euStatus,
+      e.unit_status unitStatus,
+      e.unit_clear unitClear,
+      d.name attrName
+    FROM e_assembly_set a
+    LEFT JOIN e_equipment e ON a.machine_id = e.id
+    LEFT JOIN s_dictionary d ON a.dic_tea_attr = d.id
+    <choose>
+      <when test="parentId != null and parentId != ''">
+        WHERE a.id in(
+          select id from (
+            select id from e_assembly_set where id = #{parentId}
+            union
+            select id from e_assembly_set where parent_id  = #{parentId}
+          ) a where 1 =1
+        )
+      </when>
+      <otherwise>
+        WHERE
+        1 = 1
+      </otherwise>
+    </choose>
+    <if test="status != null and status != ''">
+      AND a.status = #{status}
+    </if>
+
+    <if test="unitStatus != null and unitStatus != ''">
+      AND e.unit_status = #{unitStatus}
+    </if>
+    <if test="euStatus != null and euStatus != ''">
+      AND e.status = #{euStatus}
+    </if>
+    <if test="dicTeaAttr != null and dicTeaAttr != ''">
+      AND a.dic_tea_attr = #{dicTeaAttr}
+    </if>
+    order by a.create_time desc
+  </select>
+
+  <select id="selectAssemblyData" parameterType="java.lang.String" resultType="map">
+    SELECT
+        a.*, e.unit_name
+    FROM
+        e_assembly_set a, e_equipment e
+    where a.id = #{id,jdbcType=VARCHAR}
+    AND a.machine_id = e.id
+  </select>
+
+  <update id="updateRunNumAndAllRunNum" parameterType="com.panda.model.origin.AssemblySet">
+    update e_assembly_set
+    set
+    run_num = run_num+1,
+    all_run_num = all_run_num+1,
+    modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="createQrCodeGetEquipment" parameterType="map" resultType="map">
+    SELECT
+        e.*,d.name attrName,u.chinese_name createUser
+    FROM
+        e_assembly_set a, e_equipment e
+    LEFT JOIN s_dictionary d ON e.unit_usage = d.id
+    LEFT JOIN s_users u ON e.create_id = u.id
+    where 1 = 1
+    AND a.machine_id = e.id
+    <if test="id != null and id != ''">
+      AND a.parent_id = #{id}
+    </if>
+    <if test="dicTeaAttr != null and dicTeaAttr != ''">
+      AND a.dic_tea_attr = #{dicTeaAttr}
+      AND e.dic_tea_attr = #{dicTeaAttr}
+    </if>
+    <if test="unitUsage != null and unitUsage != ''">
+      AND e.unit_usage = #{unitUsage}
+    </if>
+  </select>
+</mapper>

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.panda.mapper.origin.EquipmentMaintainMapper">
+  <resultMap id="BaseResultMap" type="com.panda.model.origin.EquipmentMaintain">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="assembly_id" jdbcType="VARCHAR" property="assemblyId" />
+    <result column="equipment_id" jdbcType="VARCHAR" property="equipmentId" />
+    <result column="maintain_type" jdbcType="VARCHAR" property="maintainType" />
+    <result column="maintain_time" jdbcType="TIMESTAMP" property="maintainTime" />
+    <result column="maintain_status" jdbcType="INTEGER" property="maintainStatus" />
+    <result column="repair_content" jdbcType="VARCHAR" property="repairContent" />
+    <result column="replace_parts" jdbcType="VARCHAR" property="replaceParts" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_id" jdbcType="VARCHAR" property="createId" />
+    <result column="modify_id" jdbcType="VARCHAR" property="modifyId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, assembly_id, equipment_id, maintain_type, maintain_time, maintain_status, repair_content, 
+    replace_parts, operator, img_url, description, create_time, create_id, modify_id, 
+    modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from e_equipment_maintain
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from e_equipment_maintain
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.panda.model.origin.EquipmentMaintain">
+    insert into e_equipment_maintain (id, assembly_id, equipment_id, 
+      maintain_type, maintain_time, maintain_status, 
+      repair_content, replace_parts, operator, 
+      img_url, description, create_time, 
+      create_id, modify_id, modify_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{assemblyId,jdbcType=VARCHAR}, #{equipmentId,jdbcType=VARCHAR}, 
+      #{maintainType,jdbcType=VARCHAR}, #{maintainTime,jdbcType=TIMESTAMP}, #{maintainStatus,jdbcType=INTEGER}, 
+      #{repairContent,jdbcType=VARCHAR}, #{replaceParts,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, 
+      #{imgUrl,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createId,jdbcType=VARCHAR}, #{modifyId,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.panda.model.origin.EquipmentMaintain">
+    insert into e_equipment_maintain
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="assemblyId != null">
+        assembly_id,
+      </if>
+      <if test="equipmentId != null">
+        equipment_id,
+      </if>
+      <if test="maintainType != null">
+        maintain_type,
+      </if>
+      <if test="maintainTime != null">
+        maintain_time,
+      </if>
+      <if test="maintainStatus != null">
+        maintain_status,
+      </if>
+      <if test="repairContent != null">
+        repair_content,
+      </if>
+      <if test="replaceParts != null">
+        replace_parts,
+      </if>
+      <if test="operator != null">
+        operator,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="modifyId != null">
+        modify_id,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="assemblyId != null">
+        #{assemblyId,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentId != null">
+        #{equipmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainType != null">
+        #{maintainType,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainTime != null">
+        #{maintainTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maintainStatus != null">
+        #{maintainStatus,jdbcType=INTEGER},
+      </if>
+      <if test="repairContent != null">
+        #{repairContent,jdbcType=VARCHAR},
+      </if>
+      <if test="replaceParts != null">
+        #{replaceParts,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyId != null">
+        #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.panda.model.origin.EquipmentMaintain">
+    update e_equipment_maintain
+    <set>
+      <if test="assemblyId != null">
+        assembly_id = #{assemblyId,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentId != null">
+        equipment_id = #{equipmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainType != null">
+        maintain_type = #{maintainType,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainTime != null">
+        maintain_time = #{maintainTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maintainStatus != null">
+        maintain_status = #{maintainStatus,jdbcType=INTEGER},
+      </if>
+      <if test="repairContent != null">
+        repair_content = #{repairContent,jdbcType=VARCHAR},
+      </if>
+      <if test="replaceParts != null">
+        replace_parts = #{replaceParts,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyId != null">
+        modify_id = #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.panda.model.origin.EquipmentMaintain">
+    update e_equipment_maintain
+    set assembly_id = #{assemblyId,jdbcType=VARCHAR},
+      equipment_id = #{equipmentId,jdbcType=VARCHAR},
+      maintain_type = #{maintainType,jdbcType=VARCHAR},
+      maintain_time = #{maintainTime,jdbcType=TIMESTAMP},
+      maintain_status = #{maintainStatus,jdbcType=INTEGER},
+      repair_content = #{repairContent,jdbcType=VARCHAR},
+      replace_parts = #{replaceParts,jdbcType=VARCHAR},
+      operator = #{operator,jdbcType=VARCHAR},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=VARCHAR},
+      modify_id = #{modifyId,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from e_equipment_maintain
+    where  1 = 1
+  </select>
+
+  <select id="selectEquipmentMaintainDataList" parameterType="map" resultType="map">
+    SELECT
+    m.id,
+    m.assembly_id assemblyId,
+    m.maintain_type maintainType,
+    m.maintain_status maintainStatus,
+    a.parent_id parentId,
+    e.unit_name unitName,
+    e.unit_clear unitClear,
+    e.unit_cycle unitCycle,
+    e.unit_no unitNo,
+    e.unit_type unitType,
+    d.name dicMaintainTypeName,
+    s.name assemblyName,
+    s.run_num runNum,
+    m.create_time maintainCreateTime,
+    m.maintain_time maintainTime,
+    u.chinese_name createName
+    FROM
+    e_equipment_maintain m
+    LEFT JOIN s_dictionary d ON m.maintain_type = d.id
+    LEFT JOIN e_equipment e ON m.equipment_id = e.id
+    LEFT JOIN e_assembly_set a ON e.id = a.machine_id
+    LEFT JOIN e_assembly_set s ON a.parent_id = s.id
+    LEFT JOIN s_users u ON m.create_id = u.id
+    WHERE
+    1 = 1
+	<if test="maintainType != null and maintainType != ''">
+      AND m.maintain_type = #{maintainType}
+    </if>
+    <if test="parentId != null and parentId != ''">
+      AND a.parent_id = #{parentId}
+    </if>
+  </select>
+
+  <select id="selectEquipmentMaintainDataItem" parameterType="java.lang.String" resultType="map">
+    SELECT
+        m.id,
+        m.maintain_status maintainStatus,
+        m.maintain_type maintainType,
+        m.assembly_id assemblyId,
+        m.description,
+        m.repair_content repairContent,
+        m.replace_parts replaceParts,
+        m.operator,
+        e.unit_clear unitClear,
+        e.unit_cycle unitCycle,
+        e.unit_name unitName,
+        e.unit_no unitNo,
+        u.chinese_name createName,
+        s.name,
+        s.id sid,
+        s.run_num runNum,
+        m.img_url imgUrl
+    FROM e_equipment_maintain m
+      LEFT JOIN e_equipment e ON m.equipment_id = e.id
+      LEFT JOIN s_users u ON m.create_id = u.id
+      LEFT JOIN e_assembly_set a ON e.id = a.machine_id
+      LEFT JOIN e_assembly_set s ON a.parent_id = s.id
+      AND s.name IS NOT NULL
+    WHERE
+	  1 = 1
+	  AND m.id = #{id}
+	  LIMIT 1
+  </select>
+</mapper>

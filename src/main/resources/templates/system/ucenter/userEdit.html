@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>用户</title>
+</head>
+<body>
+<!--begin::Modal-->
+<div class="modal fade userEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" th:fragment="userEdit">
+    <div class="modal-dialog modal-xbg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    用户编辑
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="m-form m-form--state m-form--fit m-form--label-align-right" id="user_edit_form" novalidate="novalidate">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="m-portlet m-portlet--full-height ">
+                                <div class="m-portlet__body">
+                                    <div class="m-card-profile">
+                                        <div class="m-card-profile__pic col-lg-9 col-md-9 col-sm-12">
+                                            <div class="m-card-profile__pic-wrapper" id="upload_image" data-toggle="modal" data-target=".upload_image">
+                                                <img th:src="@{/assets/img/users/_img.png}" alt="">
+                                            </div>
+                                        </div>
+                                        <input type="hidden" value="" name="headImgurl" id="headImgurl">
+                                        <div class="m-card-profile__details">
+												<span class="m-card-profile__name user_nick_name">
+													Jion Landry
+												</span>
+                                            <a href="" class="m-card-profile__email m-link user_email">
+                                                jionlandry@gmail.com
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space"></div>
+
+                                    <div class="m-card-profile">
+                                        <div class="col-lg-9 col-md-9 col-sm-12">
+                                            <input data-switch="true" type="checkbox" class="status_switch" data-on-color="success" data-off-color="warning">
+                                            <br>
+                                            <span class="m-form__help"></span>
+                                            <input type="hidden" name="status" id="status" value="2">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <input type="hidden" name="id" value="">
+                            <input type="hidden" name="infoId" value="">
+                            <input type="hidden" name="save" value="edit">
+                            <input type="hidden" name="loginType" id="loginType" value="" >
+                            <div class="form-group m-form__group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    账号 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <input type="text" class="form-control m-input" name="account" placeholder="登录账号">
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    密码 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group">
+                                        <input type="password" class="form-control m-input" name="password" placeholder="登录密码">
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    角色 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <select class="form-control" name="roleId">
+                                        <option value=""> 角色类型 </option>
+                                        <option th:each="item:${roleList}" th:value="${item.id}" th:text="${item.name}"></option>
+                                    </select>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    邮箱 <span style="color: red">&nbsp;&nbsp;</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control m-input" name="email" placeholder="联系邮箱">
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    姓名 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <input  type="text" class="form-control m-input" name="chineseName" placeholder="中文/英文名">
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    电话 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <input type="text" class="form-control m-input" name="mobile" placeholder="电话号码">
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    类型 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <select class="form-control" name="userType" id="userType">
+                                        <option value=""> 用户类型 </option>
+                                        <option th:each="item:${userType}" th:attrappend="loginType=${item.value}" th:value="${item.id}" th:text="${item.name}"></option>
+                                    </select>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group m-form__group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    地区 <span style="color: red">&nbsp;&nbsp;</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12" id="distpicker">
+                                    <select class="distpicker_rss form-control" name="province"></select>
+                                    <select class="distpicker_rss form-control" name="city"></select>
+                                    <select class="distpicker_rss form-control" name="country"></select>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    详细 <span style="color: red">&nbsp;&nbsp;</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <input type="text" class="form-control m-input" name="address" placeholder="所在位置">
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    签名 <span style="color: red">&nbsp;&nbsp;</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <textarea class="form-control m-input" name="signature" placeholder="介绍" style="height: 82px;resize: none;"></textarea>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-parent" data-dismiss="modal">
+                        关闭
+                    </button>
+                    <button type="submit" shiro:hasPermission="user:submit" class="btn btn-accent user_save">
+                        确定
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--end::Modal-->
+</body>
+</html>

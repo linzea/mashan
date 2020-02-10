@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑管理记录</title>
+</head>
+<body>
+<!--begin::Modal-->
+<div class="modal fade semiFinishedEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true" th:fragment="semiFinishedEdit">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    新增设备
+                </h5>
+                <button type="button" class="close close-parent" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                </button>
+            </div>
+            <form class="m-form m-form--state m-form--fit m-form--label-align-right" id="semi_in_edit_form"
+                  novalidate="novalidate">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input type="hidden" name="id" value="">
+                            <input type="hidden" name="save" value="edit">
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    设备名称 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group m-input-group ">
+                                        <input type="text" class="form-control m-input unitName" value="" name="unitName" placeholder="设备名称">
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm" >
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    设备用途 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group m-input-group ">
+                                        <input type="text" class="form-control m-input unitUsage" value="" name="unitUsage" placeholder="设备用途">
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    设备型号 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group m-input-group ">
+                                        <input type="text" class="form-control m-input unitType" value="" name="unitType" placeholder="设备型号">
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    资产编号 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group m-input-group ">
+                                        <input type="text" class="form-control m-input unitNo" value="" name="unitNo" placeholder="资产编号">
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    保养周期 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control m-input unitCycle" name="unitCycle" id="unitCycle" placeholder="维护周期">
+                                        <span class="input-group-addon" style="cursor: pointer;">
+                                            次
+                                        </span>
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    清洁周期 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control m-input unitClear" name="unitClear" id="unitClear" placeholder="清洁周期">
+                                        <span class="input-group-addon" style="cursor: pointer;">
+                                            次
+                                        </span>
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm status_switch_parent">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    状态  <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <input data-switch="true" type="checkbox" class="status_switch" data-on-color="success" data-off-color="warning">
+                                    <br>
+                                    <span class="m-form__help"></span>
+                                </div>
+                                <input type="hidden" name="status" value="2">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    记录人 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control m-input" id="createUser" disabled th:value="${user.chineseName}">
+                                        <span id="chineseName" class="m--hide" th:text="${user.chineseName}"></span>
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    备注
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <textarea class="form-control m-input" name="description"
+                                              placeholder="备注"></textarea>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm" id="uploadDropzone" shiro:hasPermission="semiIn:upload">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    设备图片 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12" style="height: 141px">
+                                    <div class="m-dropzone dropzone" action="/system/image/ajaxImageUpload" id="mDropzoneOne">
+                                        <div class="m-dropzone__msg dz-message needsclick">
+                                            <span class="m-dropzone__msg-desc">
+                                                 <img th:src="@{/assets/img/bg/upload.png}"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="imgUrl">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="m-form__seperator m-form__seperator&#45;&#45;dashed m-form__seperator&#45;&#45;space"></div>-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary close-parent" data-dismiss="modal">
+                            关闭
+                        </button>
+                        <button type="submit" shiro:hasPermission="semiFinished:submit" class="btn btn-accent">
+                            确定
+                        </button>
+                        <button type="reset" class="btn btn-warning reset-btn">
+                            重置
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--end::Modal-->
+</body>
+</html>

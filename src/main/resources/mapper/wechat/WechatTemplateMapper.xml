@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.panda.mapper.wechat.WechatTemplateMapper" >
+  <resultMap id="BaseResultMap" type="com.panda.model.wechat.WechatTemplate" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="template_id" property="templateId" jdbcType="VARCHAR" />
+    <result column="contents" property="contents" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="switch" property="switch" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.panda.model.wechat.WechatTemplate" extends="BaseResultMap" >
+    <result column="template" property="template" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, open_id, template_id, contents, title, add_time, switch
+  </sql>
+  <sql id="Blob_Column_List" >
+    template
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_wechat_template
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_wechat_template
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.panda.model.wechat.WechatTemplate" >
+    insert into t_wechat_template (id, open_id, template_id, 
+      contents, title, add_time, 
+      switch, template)
+    values (#{id,jdbcType=INTEGER}, #{openId,jdbcType=VARCHAR}, #{templateId,jdbcType=VARCHAR}, 
+      #{contents,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{addTime,jdbcType=INTEGER}, 
+      #{switch,jdbcType=TINYINT}, #{template,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.panda.model.wechat.WechatTemplate" >
+    insert into t_wechat_template
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+      <if test="templateId != null" >
+        template_id,
+      </if>
+      <if test="contents != null" >
+        contents,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="switch != null" >
+        switch,
+      </if>
+      <if test="template != null" >
+        template,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="templateId != null" >
+        #{templateId,jdbcType=VARCHAR},
+      </if>
+      <if test="contents != null" >
+        #{contents,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="switch != null" >
+        #{switch,jdbcType=TINYINT},
+      </if>
+      <if test="template != null" >
+        #{template,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.panda.model.wechat.WechatTemplate" >
+    update t_wechat_template
+    <set >
+      <if test="openId != null" >
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="templateId != null" >
+        template_id = #{templateId,jdbcType=VARCHAR},
+      </if>
+      <if test="contents != null" >
+        contents = #{contents,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="switch != null" >
+        switch = #{switch,jdbcType=TINYINT},
+      </if>
+      <if test="template != null" >
+        template = #{template,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.panda.model.wechat.WechatTemplate" >
+    update t_wechat_template
+    set open_id = #{openId,jdbcType=VARCHAR},
+      template_id = #{templateId,jdbcType=VARCHAR},
+      contents = #{contents,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=INTEGER},
+      switch = #{switch,jdbcType=TINYINT},
+      template = #{template,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.panda.model.wechat.WechatTemplate" >
+    update t_wechat_template
+    set open_id = #{openId,jdbcType=VARCHAR},
+      template_id = #{templateId,jdbcType=VARCHAR},
+      contents = #{contents,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=INTEGER},
+      switch = #{switch,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

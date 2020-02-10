@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑权限信息</title>
+</head>
+<body>
+<!--begin::Modal-->
+<div class="modal fade rolesEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" th:fragment="rolesEdit">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    角色新增
+                </h5>
+                <button type="button" class="close close-parent" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                </button>
+            </div>
+            <form class="m-form m-form--state m-form--fit m-form--label-align-right" id="role_edit_form" novalidate="novalidate">
+                <div class="modal-body">
+                    <input type="hidden" name="id" value="">
+                    <input type="hidden" name="save" value="add">
+                    <div class="form-group">
+                        <label for="name" class="form-control-label">
+                            名称:
+                        </label>
+                        <input type="text" class="form-control m-input" id="name" name="name" placeholder="角色名称">
+                        <span class="m-form__help"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="form-control-label">
+                            描述:
+                        </label>
+                        <textarea class="form-control m-input" id="description" name="description" placeholder="介绍用途等"></textarea>
+                        <span class="m-form__help"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-parent" data-dismiss="modal">
+                        关闭
+                    </button>
+                    <button type="submit" shiro:hasPermission="roles:add" class="btn btn-accent role_save">
+                        确定
+                    </button>
+                    <button type="reset" class="btn btn-warning reset-btn">
+                        重置
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--end::Modal-->
+</body>
+</html>

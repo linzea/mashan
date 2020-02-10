@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.panda.mapper.origin.HarvestRecordsMapper">
+  <resultMap id="BaseResultMap" type="com.panda.model.origin.HarvestRecords">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="tea_garden_id" jdbcType="VARCHAR" property="teaGardenId" />
+    <result column="dic_standard" jdbcType="VARCHAR" property="dicStandard" />
+    <result column="rec_quantity" jdbcType="DOUBLE" property="recQuantity" />
+    <result column="pick_number" jdbcType="VARCHAR" property="pickNumber" />
+    <result column="pick_batch_no" jdbcType="VARCHAR" property="pickBatchNo" />
+    <result column="pick_area" jdbcType="VARCHAR" property="pickArea" />
+    <result column="pick_time" jdbcType="INTEGER" property="pickTime" />
+    <result column="operator_id" jdbcType="VARCHAR" property="operatorId" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="principal" jdbcType="VARCHAR" property="principal" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_id" jdbcType="VARCHAR" property="createId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, tea_garden_id, dic_standard, rec_quantity, pick_number, pick_batch_no, pick_area, 
+    pick_time, operator_id, description, principal, status, create_id, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from e_harvest_records
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from e_harvest_records
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.panda.model.origin.HarvestRecords">
+    insert into e_harvest_records (id, tea_garden_id, dic_standard, 
+      rec_quantity, pick_number, pick_batch_no, 
+      pick_area, pick_time, operator_id, 
+      description, principal, status, 
+      create_id, create_time)
+    values (#{id,jdbcType=VARCHAR}, #{teaGardenId,jdbcType=VARCHAR}, #{dicStandard,jdbcType=VARCHAR}, 
+      #{recQuantity,jdbcType=DOUBLE}, #{pickNumber,jdbcType=VARCHAR}, #{pickBatchNo,jdbcType=VARCHAR}, 
+      #{pickArea,jdbcType=VARCHAR}, #{pickTime,jdbcType=INTEGER}, #{operatorId,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{principal,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.panda.model.origin.HarvestRecords">
+    insert into e_harvest_records
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="teaGardenId != null">
+        tea_garden_id,
+      </if>
+      <if test="dicStandard != null">
+        dic_standard,
+      </if>
+      <if test="recQuantity != null">
+        rec_quantity,
+      </if>
+      <if test="pickNumber != null">
+        pick_number,
+      </if>
+      <if test="pickBatchNo != null">
+        pick_batch_no,
+      </if>
+      <if test="pickArea != null">
+        pick_area,
+      </if>
+      <if test="pickTime != null">
+        pick_time,
+      </if>
+      <if test="operatorId != null">
+        operator_id,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="principal != null">
+        principal,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="teaGardenId != null">
+        #{teaGardenId,jdbcType=VARCHAR},
+      </if>
+      <if test="dicStandard != null">
+        #{dicStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="recQuantity != null">
+        #{recQuantity,jdbcType=DOUBLE},
+      </if>
+      <if test="pickNumber != null">
+        #{pickNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="pickBatchNo != null">
+        #{pickBatchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="pickArea != null">
+        #{pickArea,jdbcType=VARCHAR},
+      </if>
+      <if test="pickTime != null">
+        #{pickTime,jdbcType=INTEGER},
+      </if>
+      <if test="operatorId != null">
+        #{operatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="principal != null">
+        #{principal,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.panda.model.origin.HarvestRecords">
+    update e_harvest_records
+    <set>
+      <if test="teaGardenId != null">
+        tea_garden_id = #{teaGardenId,jdbcType=VARCHAR},
+      </if>
+      <if test="dicStandard != null">
+        dic_standard = #{dicStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="recQuantity != null">
+        rec_quantity = #{recQuantity,jdbcType=DOUBLE},
+      </if>
+      <if test="pickNumber != null">
+        pick_number = #{pickNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="pickBatchNo != null">
+        pick_batch_no = #{pickBatchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="pickArea != null">
+        pick_area = #{pickArea,jdbcType=VARCHAR},
+      </if>
+      <if test="pickTime != null">
+        pick_time = #{pickTime,jdbcType=INTEGER},
+      </if>
+      <if test="operatorId != null">
+        operator_id = #{operatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="principal != null">
+        principal = #{principal,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.panda.model.origin.HarvestRecords">
+    update e_harvest_records
+    set tea_garden_id = #{teaGardenId,jdbcType=VARCHAR},
+      dic_standard = #{dicStandard,jdbcType=VARCHAR},
+      rec_quantity = #{recQuantity,jdbcType=DOUBLE},
+      pick_number = #{pickNumber,jdbcType=VARCHAR},
+      pick_batch_no = #{pickBatchNo,jdbcType=VARCHAR},
+      pick_area = #{pickArea,jdbcType=VARCHAR},
+      pick_time = #{pickTime,jdbcType=INTEGER},
+      operator_id = #{operatorId,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      principal = #{principal,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_id = #{createId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+    <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from e_harvest_records
+  </select>
+
+  <select id="selectHarvestRecordsList" parameterType="map" resultType="map">
+    SELECT a.*,d.name dicCultiName
+      FROM (
+        SELECT
+          hr.id,
+          hr.dic_standard dicStandard,
+          hr.tea_garden_id teaGardenId,
+          hr.rec_quantity recQuantity,
+          hr.pick_number pickNumber,
+          hr.pick_area pickArea,
+          hr.pick_time pickTime,
+          hr.pick_batch_no pickBatchNo,
+          hr.operator_id operatorId,
+          hr.create_id createId,
+          hr.status,
+          tg.area_code areaCode,
+          tg.name_area nameArea,
+          tg.dic_cultivar_id dicCultivarId,
+          d. name dicName,
+          u.chinese_name createName
+        FROM
+          e_harvest_records hr,
+          e_tea_garden tg,
+          s_dictionary d,
+          s_users u
+        WHERE 1 = 1
+          AND hr.tea_garden_id = tg.id
+          AND hr.dic_standard =  d.id
+          AND hr.create_id = u.id
+          <if test="teaGardenId != null and teaGardenId != ''">
+            AND hr.tea_garden_id = #{teaGardenId}
+          </if>
+          <if test="recQuantity != null and recQuantity != ''">
+            AND hr.rec_quantity = #{recQuantity}
+          </if>
+          <if test="pickTime != null and pickTime != ''">
+            AND hr.pick_time = #{pickTime}
+          </if>
+          <if test="status != null and status != ''">
+            AND hr.status = #{status}
+          </if>
+      )a
+    LEFT JOIN s_dictionary d ON a.dicCultivarId = d.id
+  </select>
+
+  <select id="selectHarvestRecordsListPickNum" parameterType="map" resultType="map">
+  select
+    <include refid="Base_Column_List" />
+  from e_harvest_records hr
+    WHERE 1 = 1
+    <if test="status != null and status != ''">
+      AND hr.status = #{status};
+    </if>
+    <if test="statusNot != null and statusNot != ''">
+      AND hr.status != 2;
+    </if>
+  </select>
+
+  <select id="selectHarvestRecordsItem" parameterType="java.lang.String" resultType="map">
+    SELECT
+        hr.*, mb.batch_number, u.chinese_name
+    FROM
+        e_harvest_records hr,
+        e_manage_batch mb,
+        s_users u
+    WHERE
+        hr.id = #{id}
+    AND hr.pick_number = mb.id
+    AND hr.create_id = u.id
+  </select>
+
+  <select id="selectHarvestCultivarName" parameterType="java.lang.String" resultType="map">
+    SELECT
+        hr.pick_batch_no,
+        tg.name_area,
+        d.id dicCultivarId,
+        d.name dicCultivarName
+    FROM
+        e_harvest_records hr,
+        e_tea_garden tg
+    LEFT JOIN s_dictionary d ON tg.dic_cultivar_id = d.id
+    WHERE
+        1 = 1
+    AND hr.tea_garden_id = tg.id
+    AND hr.id = #{id}
+  </select>
+
+  <select id="selectTeaGardenAndManagerBatch" parameterType="map" resultType="map">
+    SELECT
+    (SELECT @rownum:='teaGardenManagerlist') dataTypeName,
+    a.*,
+    m.id mBatchId,
+    year(m.create_time) mCreateYear,
+    m.create_time mBarchCreateTime,
+    m.batch_number mBarchNumber,
+    u.chinese_name mCreateUser FROM (
+        SELECT
+            hr.pick_number hrPickNumber, -- 管理批次
+            hr.pick_batch_no hrPickBatchNo,
+            hr.rec_quantity hrRecQuantity,
+            hr.operator_id hrOperator,
+            hr.status hrStatus,
+            hr.pick_time hrPickTime,
+            hr.principal hrPrincipal,
+            tg.name_area teaGnameArea,
+            tg.area_code teaGareaCode,
+            tg.plant_year teaGplantYear,
+            (year(NOW())-tg.plant_year) teaGageLimit,
+            tg.acreage teaGacreage,
+            d.name dicCultivarName,
+            tg.principal teaGprincipal
+        FROM
+            e_harvest_records hr,
+            e_tea_garden tg
+        LEFT JOIN s_dictionary d ON tg.dic_cultivar_id = d.id
+        WHERE
+            1 = 1
+        AND hr.tea_garden_id = tg.id
+        AND hr.id = #{id}
+    )a
+     LEFT JOIN e_manage_batch m ON a.hrPickNumber = m.id
+     LEFT JOIN s_users u ON m.create_id = u.id
+  </select>
+  
+  <select id="getHarvestQuality" resultType="map" parameterType="map">
+    SELECT a.dateTime,GROUP_CONCAT(a.nameArea) nameAreaArr,GROUP_CONCAT(a.areaCode) areaCodeArr ,
+    GROUP_CONCAT(a.recQuantity) recQuantityArr,COUNT(a.areaCode) areaCodeNum FROM (
+    SELECT
+    d.dateTime,tg.name_area nameArea,tg.area_code areaCode,SUM(hr.rec_quantity) recQuantity
+    FROM
+    (
+    SELECT @rownum :=@rownum + 1 AS no,
+    DATE_SUB( date_format(#{endTime},'%y-%m-%d'), INTERVAL @rownum DAY ) AS dateTime
+    FROM
+    (SELECT @rownum := -1) r_init,
+    s_dictionary
+    ) d
+    LEFT JOIN e_harvest_records hr ON (d.dateTime = DATE(date_format(hr.create_time,'%y-%m-%d')))
+    LEFT JOIN e_tea_garden tg ON hr.tea_garden_id = tg.id
+    WHERE 1 = 1
+   AND d.dateTime &gt;= DATE_SUB(#{beginTime},interval 0 day)
+   AND d.dateTime &lt;= #{endTime}
+    GROUP BY d.dateTime,tg.id
+    )a
+    GROUP BY a.dateTime
+    ORDER BY areaCodeNum DESC
+  </select>
+
+  <select id="getHarvestMachin" resultType="map" parameterType="map">
+    SELECT a.*,COUNT(q1.id) quaNum FROM (
+    SELECT
+    hr.id hId,hr.pick_batch_no pickBatchNo,hr.status,COUNT(mt.id) machinNum,mt.harvest_batch_id,mt.dic_tea_attr,d.name,d1.name teaTypeName
+    FROM
+    e_harvest_records hr
+    LEFT JOIN e_machin_tea mt ON hr.id = mt.harvest_batch_id
+    LEFT JOIN s_dictionary d ON mt.dic_tea_attr = d.id
+    LEFT JOIN s_dictionary d1 ON mt.dic_tea_type = d1.id
+    WHERE
+    1 = 1
+    AND hr.create_time &lt;= #{endTime}
+    AND hr.create_time &gt;= #{beginTime}
+    GROUP BY hr.id,mt.harvest_batch_id
+    )a
+    LEFT JOIN e_quality q1 ON q1.harvest_batch_id = a.harvest_batch_id
+    GROUP BY a.hId,a.pickBatchNo
+  </select>
+</mapper>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>门店</title>
+</head>
+<body>
+<!--begin::Modal-->
+<div class="modal fade storeInfoEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+     th:fragment="storeInfoEdit">
+    <div class="modal-dialog modal-xbg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    门店编辑
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="m-portlet__body storeInfo_data_list">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#storeInfo_value_list"
+                           aria-expanded="true">
+                            门店信息
+                        </a>
+                    </li>
+                    <li class="nav-item" id="store_user_list_id">
+                        <a class="nav-link" data-toggle="tab" href="#storeInfo_info"
+                           aria-expanded="false">
+                            店员列表
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="storeInfo_value_list" role="tabpanel" aria-expanded="true">
+                        <form class="m-form m-form--state m-form--fit m-form--label-align-right"
+                              id="store_info_edit_form" novalidate="novalidate">
+                            <div class="">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <input type="hidden" name="id" value="">
+                                        <input type="hidden" name="infoId" value="">
+                                        <input type="hidden" name="save" value="edit">
+                                        <div class="form-group m-form__group row r-pm">
+                                            <label class="col-form-label col-lg-2 col-sm-12">
+                                                名称 <span style="color: red">*</span>
+                                            </label>
+                                            <div class="col-lg-10 col-md-10 col-sm-12" >
+                                                <input type="text" class="form-control m-input" name="name"
+                                                       placeholder="门店名称">
+                                                <span class="m-form__help"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-form__group row r-pm">
+                                            <label class="col-form-label col-lg-2 col-sm-12">
+                                                店长 <span style="color: red">*</span>
+                                            </label>
+                                            <div class="col-lg-10 col-md-10 col-sm-12" >
+                                                <select class="form-control" name="storeId">
+                                                    <option value=""> 门店管理员</option>
+                                                    <option th:each="item:${storeList}" th:value="${item.id}"
+                                                            th:text="${item.chineseName}"></option>
+                                                </select>
+                                                <select class="form-control m--hide" id="storeId" >
+                                                    <option value=""> 门店管理员</option>
+                                                </select>
+                                                <span class="m-form__help"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-form__group row r-pm">
+                                            <label class="col-form-label col-lg-2 col-sm-12">
+                                                规模 <span style="color: red">*</span>
+                                            </label>
+                                            <div class="col-lg-10 col-md-10 col-sm-12" >
+                                                <input type="text" class="form-control m-input" name="storeScale"
+                                                       placeholder="人数规模">
+                                                <span class="m-form__help"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-form__group row r-pm">
+                                            <label class="col-form-label col-lg-2 col-sm-12">
+                                                面积 <span style="color: red">*</span>
+                                            </label>
+                                            <div class="col-lg-10 col-md-10 col-sm-12" >
+                                                <input type="text" class="form-control m-input" name="floorSpace"
+                                                       placeholder="占地面积">
+                                                <span class="m-form__help"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-form__group row r-pm">
+                                            <label class="col-form-label col-lg-2 col-sm-12">
+                                                地区 <span style="color: red">*</span>
+                                            </label>
+                                            <div class="col-lg-10 col-md-10 col-sm-12 r-pm" id="distpicker">
+                                                <select class="distpicker_rss form-control" name="province"></select>
+                                                <select class="distpicker_rss form-control" name="city"></select>
+                                                <select class="distpicker_rss form-control" name="country"></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-form__group row r-pm">
+                                            <label class="col-form-label col-lg-2 col-sm-12">
+                                                详细 <span style="color: red">*</span>
+                                            </label>
+                                            <div class="col-lg-10 col-md-10 col-sm-12" >
+                                                <input type="text" class="form-control m-input" name="address"
+                                                       placeholder="所在位置">
+                                                <span class="m-form__help"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group m-form__group row r-pm">
+                                            <label class="col-form-label col-lg-3 col-sm-12">
+                                                备注 <span style="color: red">&nbsp;&nbsp;</span>
+                                            </label>
+                                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                                <textarea class="form-control m-input" name="signature" placeholder="介绍"
+                                                          style="height: 82px;resize: none;"></textarea>
+                                                <span class="m-form__help"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-form__group row r-pm">
+                                            <label class="col-form-label col-lg-3 col-sm-12">
+                                                状态 <span style="color: red">*</span>
+                                            </label>
+                                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                                <input data-switch="true" type="checkbox" class="status_switch" data-on-color="success" data-off-color="warning">
+                                                <br>
+                                                <span class="m-form__help"></span>
+                                                <input type="hidden" name="status" id="status" value="2">
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-form__group row r-pm" id="uploadDropzone"
+                                             shiro:hasPermission="store:upload">
+                                            <label class="col-form-label col-lg-3 col-sm-12">
+                                                图片 <span style="color: red">*</span>
+                                            </label>
+                                            <div class="col-lg-8 col-md-9 col-sm-12" style="height: 141px">
+                                                <div class="m-dropzone dropzone" action="/system/image/ajaxImageUpload"
+                                                     id="mDropzoneOne">
+                                                    <div class="m-dropzone__msg dz-message needsclick">
+                                            <span class="m-dropzone__msg-desc">
+                                                 <img th:src="@{/assets/img/bg/upload.png}"/>
+                                            </span>
+                                                    </div>
+                                                </div>
+                                                <input type="hidden" name="imgUrl">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary close-parent" data-dismiss="modal">
+                                    关闭
+                                </button>
+                                <button type="submit" shiro:hasPermission="store:submit"
+                                        class="btn btn-accent storeInfo_save">
+                                    确定
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane" id="storeInfo_info" role="tabpanel" aria-expanded="false">
+                        <table class="table m-table m-table--head-bg-success ">
+                            <thead>
+                            <tr>
+                                <th>用户名</th>
+                                <th>中文名</th>
+                                <th>邮箱</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody class="store_user_list">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end::Modal-->
+</body>
+</html>

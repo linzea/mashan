@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark " th:fragment="left_aside">
+    <!-- BEGIN: Aside Menu -->
+    <div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark "
+         data-menu-vertical="true" data-menu-scrollable="false" data-menu-dropdown-timeout="500">
+        <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
+            <li class="m-menu__item  m-menu__item--active" aria-haspopup="true">
+                <a href="/system/index/main" class="m-menu__link ">
+                    <i class="m-menu__link-icon flaticon-line-graph"></i>
+                    <span class="m-menu__link-title">
+                        <span class="m-menu__link-wrap">
+                            <span class="m-menu__link-text">
+                                Dashboard
+                            </span>
+                            <span class="m-menu__link-badge">
+                                <span class="m-badge m-badge--danger">
+                                    2
+                                </span>
+                            </span>
+                        </span>
+                    </span>
+                </a>
+            </li>
+            <li class="m-menu__section">
+                <h4 class="m-menu__section-text">
+                </h4>
+                <i class="m-menu__section-icon flaticon-more-v3"></i>
+            </li>
+            <li class="m-menu__item " aria-haspopup="true" th:each="menu:${menuList}" data-menu-submenu-toggle="hover">
+                <a th:href="${menu.childMenuList == null}?${menu.url}"  class="m-menu__link m-menu__toggle">
+                    <i class="m-menu__link-icon " th:classappend="${menu.iconClass}"></i>
+                    <span class="m-menu__link-text" th:text="${menu.name}"></span>
+                    <i class="m-menu__ver-arrow la la-angle-right" th:if="${menu.childMenuList != null}"></i>
+                </a>
+                <!-- child -->
+                <div class="m-menu__submenu">
+                    <span class="m-menu__arrow"></span>
+                    <ul class="m-menu__subnav">
+                        <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true">
+                            <a href="#" class="m-menu__link ">
+                                <span class="m-menu__link-text" th:text="${menu.name}"></span>
+                            </a>
+                        </li>
+                        <li class="m-menu__item" th:each="child:${menu.childMenuList}" aria-haspopup="true"
+                            data-menu-submenu-toggle="hover">
+                            <a th:href="${child.url}" class="m-menu__link m-menu__toggle">
+                                <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                    <span></span>
+                                </i>
+                                <span class="m-menu__link-text" th:text="${child.name}"></span>
+                                <i class="m-menu__ver-arrow la la-angle-right" th:if="${child.childMenuList != null}"></i>
+                            </a>
+                            <!-- lastChild -->
+                            <div class="m-menu__submenu" style="display: block;" th:if="${child.childMenuList != null}">
+                                <span class="m-menu__arrow"></span>
+                                <ul class="m-menu__subnav" th:each="lastChild:${child.childMenuList}">
+                                    <li class="m-menu__item " aria-haspopup="true">
+                                        <a th:href="${lastChild.url}" class="m-menu__link">
+                                            <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                                <span></span>
+                                            </i>
+                                            <span class="m-menu__link-text" th:text="${lastChild.name}"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- lastChild -->
+                        </li>
+                    </ul>
+                </div>
+                <!-- child -->
+            </li>
+        </ul>
+    </div>
+    <!-- END: Aside Menu -->
+</div>
+</body>
+</html>

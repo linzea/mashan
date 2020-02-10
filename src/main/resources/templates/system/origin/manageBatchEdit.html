@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑管理批次信息</title>
+</head>
+<body>
+<!--begin::Modal-->
+<div class="modal fade manageBatchEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true" th:fragment="manageBatchEdit">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="close close-parent" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                </button>
+            </div>
+            <form class="m-form m-form--state m-form--fit m-form--label-align-right" id="manage_batch_edit_form"
+                  novalidate="novalidate">
+                <div class="modal-body">
+                    <input type="hidden" name="id" value="">
+                    <input type="hidden" name="save" value="edit">
+                    <input type="hidden" name="parentId" value="">
+                    <div class="form-group m-form__group row">
+                        <label class="col-form-label col-lg-3 col-sm-12">
+                            茶园信息  <span style="color: red">*</span>
+                        </label>
+                        <div class="col-lg-8 col-md-9 col-sm-12">
+                            <select class="form-control teaGardenId" name="teaGardenId">
+                                <option value=""> 选择 </option>
+                                <option th:each="item:${teaGardens}" th:value="${item.id}" th:text="${item.name_area}" th:attrappend="tree_attr=${item.treeAttr},area_code=${item.area_code}"></option>
+                            </select>
+                            <span class="m-form__help"></span>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <label class="col-form-label col-lg-3 col-sm-12">
+                            批次号 <span style="color: red">*</span>
+                        </label>
+                        <div class="col-lg-8 col-md-9 col-sm-12">
+                            <div class="input-group">
+                                <input type="text" class="form-control m-input" name="batchNumber" id="batchNumber" placeholder="管理批次号">
+                                <span class="input-group-addon" style="cursor: pointer;">
+                                    <i class="la la-hand-o-up glyphicon-th"></i>
+                                </span>
+                            </div>
+                            <span class="m-form__help"></span>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row status_switch_parent">
+                        <label class="col-form-label col-lg-3 col-sm-12">
+                            状态  <span style="color: red">*</span>
+                        </label>
+                        <div class="col-lg-8 col-md-9 col-sm-12">
+                            <input data-switch="true" type="checkbox" class="status_switch" data-on-color="success" data-off-color="warning">
+                            <br>
+                            <span class="m-form__help"></span>
+                        </div>
+                        <input type="hidden" name="status" value="2">
+                    </div>
+                    <!--<div class="m-form__seperator m-form__seperator&#45;&#45;dashed m-form__seperator&#45;&#45;space"></div>-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary close-parent" data-dismiss="modal">
+                            关闭
+                        </button>
+                        <button type="submit" shiro:hasPermission="dictionary:submit" class="btn btn-accent">
+                            确定
+                        </button>
+                        <button type="reset" class="btn btn-warning reset-btn">
+                            重置
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--end::Modal-->
+</body>
+</html>

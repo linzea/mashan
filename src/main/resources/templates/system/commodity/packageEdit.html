@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑权限信息</title>
+</head>
+<body>
+<!--begin::Modal-->
+<div class="modal fade packageEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" th:fragment="packageEdit">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    新增包材
+                </h5>
+                <button type="button" class="close close-parent" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                </button>
+            </div>
+            <form class="m-form m-form--state m-form--fit m-form--label-align-right" id="package_set_edit_form" novalidate="novalidate">
+                <div class="modal-body">
+                    <div class="row">
+                    <div class="col-lg-6">
+                        <input type="hidden" name="id" value="">
+                        <input type="hidden" name="save" value="edit">
+                        <input type="hidden" name="parentId" value="">
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                包材名称  <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <div class="input-group">
+                                    <input type="text" class="form-control m-input" name="packageName" placeholder="包材名称">
+                                </div>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                茶系  <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <select class="form-control" name="dicTeaAttr">
+                                    <option value=""> 茶系</option>
+                                    <option th:each="item:${teaArrt}" th:value="${item.id}" th:text="${item.name}"></option>
+                                </select>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                品种 <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <select class="form-control" name="dicTeaType">
+                                    <option value=""> 品种</option>
+                                    <option th:each="item:${treeType}" th:value="${item.id}" th:text="${item.name}"></option>
+                                </select>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                规格一  <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <div class='input-group '>
+                                    <div class="input-group m-input-group">
+                                        <span class="input-group-btn">
+                                            <input type="text" class="form-control" name="speOne" placeholder="320.00">
+                                        </span>
+                                        <span class="input-group-addon">
+                                            /g
+                                        </span>
+                                        <span class="input-group-btn">
+                                            <input type="text" class="form-control" name="speTwo" placeholder="1">
+                                        </span>
+                                        <span class="input-group-addon">
+                                            罐/包
+                                        </span>
+                                    </div>
+                                </div>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                规格二  <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <div class='input-group '>
+                                    <div class="input-group m-input-group">
+                                        <span class="input-group-btn">
+                                            <input type="text" class="form-control" name="speThere" value="1" placeholder="2">
+                                        </span>
+                                        <span class="input-group-addon">
+                                            盒
+                                        </span>
+                                        <span class="input-group-btn">
+                                            <input type="text" class="form-control" name="speFour" value="1" placeholder="1">
+                                        </span>
+                                        <span class="input-group-addon">
+                                            件/组
+                                        </span>
+                                    </div>
+                                </div>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                包材低于 <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <div class="input-group">
+                                    <input type="text" class="form-control m-input" name="packageLow" placeholder="200">
+                                    <span class="input-group-addon">
+                                        通知
+                                    </span>
+                                </div>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                包材数量 <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <div class="input-group">
+                                    <input type="text" class="form-control m-input" name="packageQuantity" placeholder="包材数">
+                                    <span class="input-group-addon">
+                                        件
+                                    </span>
+                                </div>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                负责人 <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <div class="input-group">
+                                    <input type="text" class="form-control m-input" name="principal" placeholder="负责人">
+                                </div>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                记录人 <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <div class="input-group">
+                                    <input type="text" class="form-control m-input" placeholder="记录人" th:value="${user.chineseName}" disabled id="createUser">
+                                </div>
+                                <span class="m--hide createUser">[[${user.chineseName}]]</span>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row status_switch_parent">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                状态  <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <input data-switch="true" type="checkbox" class="status_switch" data-on-color="success" data-off-color="warning">
+                                <br>
+                                <span class="m-form__help"></span>
+                            </div>
+                            <input type="hidden" name="status" value="2">
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                备注
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <textarea class="form-control m-input" name="description" style="height: 90px; resize: none" placeholder="备注"></textarea>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm" id="uploadDropzone" shiro:hasPermission="package:upload">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                包材图片 <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12" style="height: 141px">
+                                <div class="m-dropzone dropzone" action="/system/image/ajaxImageUpload" id="mDropzoneOne">
+                                    <div class="m-dropzone__msg dz-message needsclick">
+                                        <span class="m-dropzone__msg-desc">
+                                             <img th:src="@{/assets/img/bg/upload.png}"/>
+                                        </span>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="imgUrl">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-parent" data-dismiss="modal">
+                        关闭
+                    </button>
+                    <button type="submit" shiro:hasPermission="package:submit" class="btn btn-accent">
+                        确定
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--end::Modal-->
+</body>
+</html>

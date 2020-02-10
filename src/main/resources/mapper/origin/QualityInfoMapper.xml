@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.panda.mapper.origin.QualityInfoMapper">
+  <resultMap id="BaseResultMap" type="com.panda.model.origin.QualityInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="quality_id" jdbcType="VARCHAR" property="qualityId" />
+    <result column="net_content" jdbcType="DOUBLE" property="netContent" />
+    <result column="tea_crumble" jdbcType="DOUBLE" property="teaCrumble" />
+    <result column="water_content" jdbcType="DOUBLE" property="waterContent" />
+    <result column="set_tea_soup" jdbcType="VARCHAR" property="setTeaSoup" />
+    <result column="set_tenderness" jdbcType="VARCHAR" property="setTenderness" />
+    <result column="set_balance_degree" jdbcType="VARCHAR" property="setBalanceDegree" />
+    <result column="set_incense" jdbcType="VARCHAR" property="setIncense" />
+    <result column="set_sweetness" jdbcType="VARCHAR" property="setSweetness" />
+    <result column="set_concentration" jdbcType="VARCHAR" property="setConcentration" />
+    <result column="set_depth" jdbcType="VARCHAR" property="setDepth" />
+    <result column="set_purity" jdbcType="VARCHAR" property="setPurity" />
+    <result column="set_the_fresh" jdbcType="VARCHAR" property="setTheFresh" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="create_id" jdbcType="VARCHAR" property="createId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_id" jdbcType="VARCHAR" property="modifyId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, quality_id, net_content, tea_crumble, water_content, set_tea_soup, set_tenderness, 
+    set_balance_degree, set_incense, set_sweetness, set_concentration, set_depth, set_purity, 
+    set_the_fresh, img_url, description, create_id, create_time, modify_id, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from e_quality_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from e_quality_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.panda.model.origin.QualityInfo">
+    insert into e_quality_info (id, quality_id, net_content, 
+      tea_crumble, water_content, set_tea_soup, 
+      set_tenderness, set_balance_degree, set_incense, 
+      set_sweetness, set_concentration, set_depth, 
+      set_purity, set_the_fresh, img_url, 
+      description, create_id, create_time, 
+      modify_id, modify_time)
+    values (#{id,jdbcType=VARCHAR}, #{qualityId,jdbcType=VARCHAR}, #{netContent,jdbcType=DOUBLE}, 
+      #{teaCrumble,jdbcType=DOUBLE}, #{waterContent,jdbcType=DOUBLE}, #{setTeaSoup,jdbcType=VARCHAR}, 
+      #{setTenderness,jdbcType=VARCHAR}, #{setBalanceDegree,jdbcType=VARCHAR}, #{setIncense,jdbcType=VARCHAR}, 
+      #{setSweetness,jdbcType=VARCHAR}, #{setConcentration,jdbcType=VARCHAR}, #{setDepth,jdbcType=VARCHAR}, 
+      #{setPurity,jdbcType=VARCHAR}, #{setTheFresh,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{createId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyId,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.panda.model.origin.QualityInfo">
+    insert into e_quality_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="qualityId != null">
+        quality_id,
+      </if>
+      <if test="netContent != null">
+        net_content,
+      </if>
+      <if test="teaCrumble != null">
+        tea_crumble,
+      </if>
+      <if test="waterContent != null">
+        water_content,
+      </if>
+      <if test="setTeaSoup != null">
+        set_tea_soup,
+      </if>
+      <if test="setTenderness != null">
+        set_tenderness,
+      </if>
+      <if test="setBalanceDegree != null">
+        set_balance_degree,
+      </if>
+      <if test="setIncense != null">
+        set_incense,
+      </if>
+      <if test="setSweetness != null">
+        set_sweetness,
+      </if>
+      <if test="setConcentration != null">
+        set_concentration,
+      </if>
+      <if test="setDepth != null">
+        set_depth,
+      </if>
+      <if test="setPurity != null">
+        set_purity,
+      </if>
+      <if test="setTheFresh != null">
+        set_the_fresh,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyId != null">
+        modify_id,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityId != null">
+        #{qualityId,jdbcType=VARCHAR},
+      </if>
+      <if test="netContent != null">
+        #{netContent,jdbcType=DOUBLE},
+      </if>
+      <if test="teaCrumble != null">
+        #{teaCrumble,jdbcType=DOUBLE},
+      </if>
+      <if test="waterContent != null">
+        #{waterContent,jdbcType=DOUBLE},
+      </if>
+      <if test="setTeaSoup != null">
+        #{setTeaSoup,jdbcType=VARCHAR},
+      </if>
+      <if test="setTenderness != null">
+        #{setTenderness,jdbcType=VARCHAR},
+      </if>
+      <if test="setBalanceDegree != null">
+        #{setBalanceDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="setIncense != null">
+        #{setIncense,jdbcType=VARCHAR},
+      </if>
+      <if test="setSweetness != null">
+        #{setSweetness,jdbcType=VARCHAR},
+      </if>
+      <if test="setConcentration != null">
+        #{setConcentration,jdbcType=VARCHAR},
+      </if>
+      <if test="setDepth != null">
+        #{setDepth,jdbcType=VARCHAR},
+      </if>
+      <if test="setPurity != null">
+        #{setPurity,jdbcType=VARCHAR},
+      </if>
+      <if test="setTheFresh != null">
+        #{setTheFresh,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null">
+        #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.panda.model.origin.QualityInfo">
+    update e_quality_info
+    <set>
+      <if test="qualityId != null">
+        quality_id = #{qualityId,jdbcType=VARCHAR},
+      </if>
+      <if test="netContent != null">
+        net_content = #{netContent,jdbcType=DOUBLE},
+      </if>
+      <if test="teaCrumble != null">
+        tea_crumble = #{teaCrumble,jdbcType=DOUBLE},
+      </if>
+      <if test="waterContent != null">
+        water_content = #{waterContent,jdbcType=DOUBLE},
+      </if>
+      <if test="setTeaSoup != null">
+        set_tea_soup = #{setTeaSoup,jdbcType=VARCHAR},
+      </if>
+      <if test="setTenderness != null">
+        set_tenderness = #{setTenderness,jdbcType=VARCHAR},
+      </if>
+      <if test="setBalanceDegree != null">
+        set_balance_degree = #{setBalanceDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="setIncense != null">
+        set_incense = #{setIncense,jdbcType=VARCHAR},
+      </if>
+      <if test="setSweetness != null">
+        set_sweetness = #{setSweetness,jdbcType=VARCHAR},
+      </if>
+      <if test="setConcentration != null">
+        set_concentration = #{setConcentration,jdbcType=VARCHAR},
+      </if>
+      <if test="setDepth != null">
+        set_depth = #{setDepth,jdbcType=VARCHAR},
+      </if>
+      <if test="setPurity != null">
+        set_purity = #{setPurity,jdbcType=VARCHAR},
+      </if>
+      <if test="setTheFresh != null">
+        set_the_fresh = #{setTheFresh,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null">
+        modify_id = #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.panda.model.origin.QualityInfo">
+    update e_quality_info
+    set quality_id = #{qualityId,jdbcType=VARCHAR},
+      net_content = #{netContent,jdbcType=DOUBLE},
+      tea_crumble = #{teaCrumble,jdbcType=DOUBLE},
+      water_content = #{waterContent,jdbcType=DOUBLE},
+      set_tea_soup = #{setTeaSoup,jdbcType=VARCHAR},
+      set_tenderness = #{setTenderness,jdbcType=VARCHAR},
+      set_balance_degree = #{setBalanceDegree,jdbcType=VARCHAR},
+      set_incense = #{setIncense,jdbcType=VARCHAR},
+      set_sweetness = #{setSweetness,jdbcType=VARCHAR},
+      set_concentration = #{setConcentration,jdbcType=VARCHAR},
+      set_depth = #{setDepth,jdbcType=VARCHAR},
+      set_purity = #{setPurity,jdbcType=VARCHAR},
+      set_the_fresh = #{setTheFresh,jdbcType=VARCHAR},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      create_id = #{createId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_id = #{modifyId,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

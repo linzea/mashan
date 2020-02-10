@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.panda.mapper.commodity.TagsMapper">
+  <resultMap id="BaseResultMap" type="com.panda.model.commodity.Tags">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="tag_name" jdbcType="VARCHAR" property="tagName" />
+    <result column="tag_number" jdbcType="VARCHAR" property="tagNumber" />
+    <result column="tag_quantity" jdbcType="INTEGER" property="tagQuantity" />
+    <result column="tag_low" jdbcType="INTEGER" property="tagLow" />
+    <result column="tag_use" jdbcType="INTEGER" property="tagUse" />
+    <result column="dic_tea_attr" jdbcType="VARCHAR" property="dicTeaAttr" />
+    <result column="dic_tea_type" jdbcType="VARCHAR" property="dicTeaType" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="principal" jdbcType="VARCHAR" property="principal" />
+    <result column="create_id" jdbcType="VARCHAR" property="createId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_id" jdbcType="VARCHAR" property="modifyId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, tag_name, tag_number, tag_quantity, tag_low, tag_use, dic_tea_attr, dic_tea_type, 
+    img_url, description, status, principal, create_id, create_time, modify_id, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from c_tags
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from c_tags
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.panda.model.commodity.Tags">
+    insert into c_tags (id, tag_name, tag_number, 
+      tag_quantity, tag_low, tag_use, 
+      dic_tea_attr, dic_tea_type, img_url, 
+      description, status, principal, 
+      create_id, create_time, modify_id, 
+      modify_time)
+    values (#{id,jdbcType=VARCHAR}, #{tagName,jdbcType=VARCHAR}, #{tagNumber,jdbcType=VARCHAR}, 
+      #{tagQuantity,jdbcType=INTEGER}, #{tagLow,jdbcType=INTEGER}, #{tagUse,jdbcType=INTEGER}, 
+      #{dicTeaAttr,jdbcType=VARCHAR}, #{dicTeaType,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{principal,jdbcType=VARCHAR}, 
+      #{createId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyId,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.panda.model.commodity.Tags">
+    insert into c_tags
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tagName != null">
+        tag_name,
+      </if>
+      <if test="tagNumber != null">
+        tag_number,
+      </if>
+      <if test="tagQuantity != null">
+        tag_quantity,
+      </if>
+      <if test="tagLow != null">
+        tag_low,
+      </if>
+      <if test="tagUse != null">
+        tag_use,
+      </if>
+      <if test="dicTeaAttr != null">
+        dic_tea_attr,
+      </if>
+      <if test="dicTeaType != null">
+        dic_tea_type,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="principal != null">
+        principal,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyId != null">
+        modify_id,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="tagName != null">
+        #{tagName,jdbcType=VARCHAR},
+      </if>
+      <if test="tagNumber != null">
+        #{tagNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="tagQuantity != null">
+        #{tagQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="tagLow != null">
+        #{tagLow,jdbcType=INTEGER},
+      </if>
+      <if test="tagUse != null">
+        #{tagUse,jdbcType=INTEGER},
+      </if>
+      <if test="dicTeaAttr != null">
+        #{dicTeaAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTeaType != null">
+        #{dicTeaType,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="principal != null">
+        #{principal,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null">
+        #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.panda.model.commodity.Tags">
+    update c_tags
+    <set>
+      <if test="tagName != null">
+        tag_name = #{tagName,jdbcType=VARCHAR},
+      </if>
+      <if test="tagNumber != null">
+        tag_number = #{tagNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="tagQuantity != null">
+        tag_quantity = #{tagQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="tagLow != null">
+        tag_low = #{tagLow,jdbcType=INTEGER},
+      </if>
+      <if test="tagUse != null">
+        tag_use = #{tagUse,jdbcType=INTEGER},
+      </if>
+      <if test="dicTeaAttr != null">
+        dic_tea_attr = #{dicTeaAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTeaType != null">
+        dic_tea_type = #{dicTeaType,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="principal != null">
+        principal = #{principal,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null">
+        modify_id = #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.panda.model.commodity.Tags">
+    update c_tags
+    set tag_name = #{tagName,jdbcType=VARCHAR},
+      tag_number = #{tagNumber,jdbcType=VARCHAR},
+      tag_quantity = #{tagQuantity,jdbcType=INTEGER},
+      tag_low = #{tagLow,jdbcType=INTEGER},
+      tag_use = #{tagUse,jdbcType=INTEGER},
+      dic_tea_attr = #{dicTeaAttr,jdbcType=VARCHAR},
+      dic_tea_type = #{dicTeaType,jdbcType=VARCHAR},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      principal = #{principal,jdbcType=VARCHAR},
+      create_id = #{createId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_id = #{modifyId,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectTagsList" parameterType="map" resultType="map">
+    SELECT
+    t.id,
+    t.tag_name tagName,
+    t.tag_quantity tagQuantity,
+    t.tag_low tagLow,
+    t.tag_use tagUse,
+    t.img_url imgUrl,
+    t.tag_number tagNumber,
+    t.dic_tea_attr dicTeaAttr,
+    t.dic_tea_type dicTeaType,
+    t.description,
+    t.status status,
+    t.principal,
+    t.create_id createId,
+    t.create_time createTime,
+    d.name attrName,
+    d1.name typeName,
+    u.chinese_name createUser
+    FROM
+    c_tags t
+    LEFT JOIN s_dictionary d ON t.dic_tea_attr = d.id
+    LEFT JOIN s_dictionary d1 ON t.dic_tea_type = d1.id
+    LEFT JOIN s_users u ON t.create_id = u.id
+    WHERE
+    1 = 1
+    <if test="dicTeaAttr != null and dicTeaAttr != ''">
+      AND t.dic_tea_attr = #{dicTeaAttr}
+    </if>
+    <if test="dicTeaType != null and dicTeaType != ''">
+      AND t.dic_tea_type = #{dicTeaType}
+    </if>
+    <if test="status != null and status != ''">
+      AND t.status = #{status}
+    </if>
+    ORDER BY t.create_time DESC
+  </select>
+
+  <select id="selectTagsItem" parameterType="java.lang.String" resultType="map">
+    SELECT
+    t.id,
+    t.tag_name tagName,
+    t.tag_quantity tagQuantity,
+    t.tag_low tagLow,
+    t.tag_number tagNumber,
+    t.tag_use tagUse,
+    t.img_url imgUrl,
+    t.dic_tea_attr dicTeaAttr,
+    t.dic_tea_type dicTeaType,
+    t.description,
+    t.status status,
+    t.principal,
+    t.create_id createId,
+    t.create_time createTime,
+    d.name attrName,
+    d1.name typeName,
+    u.chinese_name createUser
+    FROM
+    c_tags t
+    LEFT JOIN s_dictionary d ON t.dic_tea_attr = d.id
+    LEFT JOIN s_dictionary d1 ON t.dic_tea_type = d1.id
+    LEFT JOIN s_users u ON t.create_id = u.id
+    WHERE
+    t.id = #{id}
+  </select>
+</mapper>

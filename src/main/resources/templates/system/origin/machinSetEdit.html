@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑权限信息</title>
+</head>
+<body>
+<!--begin::Modal-->
+<div class="modal fade machinSetEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true" th:fragment="machinSetEdit">
+    <div class="modal-dialog modal-xbg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">新增</h5>
+                <button type="button" class="close close-parent" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                </button>
+            </div>
+            <form class="m-form m-form--state m-form--fit m-form--label-align-right" id="machin_set_edit_form" novalidate="novalidate">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input type="hidden" name="id" value="">
+                            <input type="hidden" name="save" value="edit">
+                            <div class="form-group m-form__group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    加工类型 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <select class="form-control" name="dicMacType" id="dicMacType" >
+                                        <option value=""> 选择 </option>
+                                        <option th:each="item:${machinType}" th:value="${item.id}" th:text="${item.name}"></option>
+                                    </select>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    加工茶系  <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <select class="form-control" name="dicTeaAttr" id="dicTeaAttr" >
+                                        <option value=""> 选择 </option>
+                                        <option th:each="item:${teaArrt}" th:value="${item.id}" th:text="${item.name}"></option>
+                                    </select>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    加工工序  <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <select class="form-control dicMacPro" name="dicMacPro" id="dicMacPro" >
+                                        <option value=""> 选择 </option>
+                                        <option th:each="item:${machinProcess}" th:value="${item.id}" th:text="${item.name}"></option>
+                                    </select>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div id="dicRollType" class="form-group m-form__group row m--hide">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    揉捻类型  <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <select class="form-control .dicRollType" name="dicRollType">
+                                        <option value=""> 选择 </option>
+                                        <option th:each="item:${rollingType}" th:value="${item.id}" th:text="${item.name}"></option>
+                                    </select>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    时长类型  <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="m-radio-inline">
+                                        <label class="m-radio m-radio--state-success">
+                                            <input type="radio" name="durationType" value="1">
+                                            分
+                                            <span></span>
+                                        </label>
+                                        <label class="m-radio m-radio--state-success">
+                                            <input type="radio" name="durationType" value="2">
+                                            时
+                                            <span></span>
+                                        </label>
+                                        <label class="m-radio m-radio--state-success">
+                                            <input type="radio" name="durationType" value="3">
+                                            天
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    所需时长  <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group m-input-group">
+                                    <span class="input-group-btn">
+                                        <input type="text" class="form-control" name="beginDuration" style="width: 110px" placeholder="范围起始">
+                                    </span>
+                                        <span class="input-group-addon">
+                                        至
+                                    </span>
+                                        <span class="input-group-btn">
+                                        <input type="text" class="form-control" name="endDuration" style="width: 110px" placeholder="范围结束">
+                                    </span>
+                                    </div>
+                                    <span class="m-form__help">(固定时间仅填写范围结束)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group m-form__group row temperature">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    温度 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group m-input-group ">
+                                        <input type="text" class="form-control m-input" name="temperature" placeholder="所需温度" >
+                                        <span class="input-group-addon" >
+                                            &#8451;
+                                        </span>
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row temperature">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    湿度 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group m-input-group ">
+                                        <input type="text" class="form-control m-input" name="humidity" placeholder="湿度比例" >
+                                        <span class="input-group-addon">
+                                            %RH
+                                        </span>
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row quality m--hide">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    取样基数 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group m-input-group ">
+                                        <input type="text" class="form-control m-input" disabled name="temperature" placeholder="取样基数" >
+                                        <span class="input-group-addon" >
+                                            /g
+                                        </span>
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row quality m--hide">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    取样份数 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group m-input-group ">
+                                        <input type="text" class="form-control m-input" disabled name="humidity" placeholder="取样份数" >
+                                        <span class="input-group-addon">
+                                            /份
+                                        </span>
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    工序顺序 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group m-input-group ">
+                                        <span class="input-group-addon">
+                                            第
+                                        </span>
+                                        <input type="text" class="form-control m-input" name="rollStatus" placeholder="一">
+                                        <span class="input-group-addon">
+                                            道工序
+                                        </span>
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row status_switch_parent">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    状态  <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <input data-switch="true" type="checkbox" class="status_switch" data-on-color="success" data-off-color="warning">
+                                    <br>
+                                    <span class="m-form__help"></span>
+                                </div>
+                                <input type="hidden" name="status" value="2">
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    备注
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <textarea class="form-control m-input" name="description" placeholder="介绍用途等" style="resize: none;height: 92px"></textarea>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-parent" data-dismiss="modal">
+                        关闭
+                    </button>
+                    <button type="submit" shiro:hasPermission="machinSet:submit" class="btn btn-accent">
+                        确定
+                    </button>
+                    <button type="reset" class="btn btn-warning reset-btn">
+                        重置
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--end::Modal-->
+</body>
+</html>

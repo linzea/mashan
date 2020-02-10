@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<!-- begin: head -->
+<div th:replace="system/public/head :: head"></div>
+<!-- end: head -->
+<body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
+<!-- begin:: Page -->
+<div class="m-grid m-grid--hor m-grid--root m-page" style="color: #0e0e0e">
+    <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver m-container m-container--responsive m-container--xxl m-page__container"
+         style="padding-top:5px !important;">
+        <div class="m-grid__item m-grid__item--fluid m-wrapper">
+            <div class="m-content">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="m-portlet">
+                            <div class="m-portlet__head">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+                                        <h2 class="m-portlet__head-text" style="font-size: 2rem;">
+                                            质检报告打印
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-portlet__body" style=" color: #0e0e0e;">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item" th:each="item,index:${proMap}">
+                                        <a class="nav-link " data-toggle="tab" th:href="${'#'+item.id}"
+                                           th:classappend="${index.first} ? 'active'" aria-expanded="true"
+                                           th:text="${item.qualityName}">
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content finishedExportQuality" id="finishedExportQuality">
+                                    <div class="tab-pane" th:each="item,index:${proMap}" th:id="${item.id}"
+                                         th:classappend="${index.first} ? 'active'" role="tabpanel"
+                                         aria-expanded="true">
+                                        <div th:classappend="${item.id}">
+                                            <section>
+                                                <article>
+                                                    <div class="m-portlet">
+                                                        <div class="m-portlet__head" style="padding: 1.5rem;">
+                                                            <div class="m-portlet__head-caption">
+                                                                <div class="m-portlet__head-title">
+                                                                    <h3 class="m-portlet__head-text">
+                                                                        <img src="/index/base/img/logo/logo.png">
+                                                                    </h3>
+                                                                </div>
+                                                            </div>
+                                                            <div class="m-portlet__head-caption">
+                                                                <div class="m-portlet__head-title">
+                                                                    <h3 class="m-portlet__head-text"
+                                                                        style="font-size: 2rem;">
+                                                                        广东龙岗马山茶业产品出库检验单
+                                                                    </h3>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="m-portlet__body">
+                                                            <table class="table table-bordered m-table">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th colspan="6" style="border-bottom:none;"
+                                                                        th:text="${'编号 : '+item.pick_batch_no}"></th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                <tr>
+                                                                    <td scope="row"> 品名</td>
+                                                                    <td th:text="${item.finished_name}"> 马山红</td>
+                                                                    <td scope="row"> 等级</td>
+                                                                    <td th:text="${item.teaGradeName}"> MS-2017.04.21
+                                                                    </td>
+                                                                    <td scope="row"> 生产许可</td>
+                                                                    <td th:text="${item.licence_id}"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td scope="row"> 规格</td>
+                                                                    <td th:text="${item.speOneP+'/g *'+item.speTwoP+'罐/包 *'+item.speThere+'/盒 *'+item.speFourP+'/件'}">
+                                                                        300/g*2罐/包*1/盒*1/件
+                                                                    </td>
+                                                                    <td scope="row"> 生产日期</td>
+                                                                    <td th:text="${#dates.format(item.create_time,'yyyy-MM-dd')}">
+                                                                        2017-12-01
+                                                                    </td>
+                                                                    <td scope="row"> 生产标准</td>
+                                                                    <td th:text="${item.standard_id}"></td>
+                                                                </tr>
+                                                                </tbody>
+                                                                <thead>
+                                                                <tr>
+                                                                    <th colspan="2" style="border-bottom:none;">
+                                                                        检验内容
+                                                                    </th>
+                                                                    <th style="border-bottom:none;">
+                                                                        检验单位
+                                                                    </th>
+                                                                    <th style="border-bottom:none;">
+                                                                        检验标准
+                                                                    </th>
+                                                                    <th style="border-bottom:none;">
+                                                                        检验结果
+                                                                    </th>
+                                                                    <th style="border-bottom:none;">
+                                                                        评级 (满分 10)
+                                                                    </th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody style="text-align: center">
+                                                                <tr>
+                                                                    <td scope="row">1</td>
+                                                                    <td> 嫩度</td>
+                                                                    <td scope="row"
+                                                                        th:text="${item.sampling_base+'/g *'+ item.sample_number+ '/份'}"></td>
+                                                                    <td th:text="${item.set_tendernessN}"></td>
+                                                                    <td scope="row">
+                                                                        <label class="m-checkbox m-checkbox--state-success"
+                                                                               style="margin-bottom:0px;">
+                                                                            <input type="checkbox" checked> 合格
+                                                                            <span></span>
+                                                                        </label>
+                                                                    </td>
+                                                                    <td th:text="${item.set_tendernessV +'分'}"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td scope="row">2</td>
+                                                                    <td> 汤色</td>
+                                                                    <td scope="row"
+                                                                        th:text="${item.sampling_base+'/g *'+ item.sample_number+ '/份'}"></td>
+                                                                    <td th:text="${item.set_tea_soupN}"></td>
+                                                                    <td scope="row">
+                                                                        <label class="m-checkbox m-checkbox--state-success"
+                                                                               style="margin-bottom:0px;">
+                                                                            <input type="checkbox" checked> 合格
+                                                                            <span></span>
+                                                                        </label>
+                                                                    </td>
+                                                                    <td th:text="${item.set_tea_soupV+'分'}"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td scope="row">3</td>
+                                                                    <td> 平衡度</td>
+                                                                    <td scope="row"
+                                                                        th:text="${item.sampling_base+'/g *'+ item.sample_number+ '/份'}"></td>
+                                                                    <td th:text="${item.setBalanceDegreeN}"></td>
+                                                                    <td scope="row">
+                                                                        <label class="m-checkbox m-checkbox--state-success"
+                                                                               style="margin-bottom:0px;">
+                                                                            <input type="checkbox" checked> 合格
+                                                                            <span></span>
+                                                                        </label>
+                                                                    </td>
+                                                                    <td th:text="${item.setBalanceDegreeV+'分'}"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td scope="row">4</td>
+                                                                    <td> 浓度</td>
+                                                                    <td scope="row"
+                                                                        th:text="${item.sampling_base+'/g *'+ item.sample_number+ '/份'}"></td>
+                                                                    <td th:text="${item.set_concentrationN}"></td>
+                                                                    <td scope="row">
+                                                                        <label class="m-checkbox m-checkbox--state-success"
+                                                                               style="margin-bottom:0px;">
+                                                                            <input type="checkbox" checked> 合格
+                                                                            <span></span>
+                                                                        </label>
+                                                                    </td>
+                                                                    <td th:text="${item.set_concentrationV+'分'}"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td scope="row">5</td>
+                                                                    <td> 深度</td>
+                                                                    <td scope="row"
+                                                                        th:text="${item.sampling_base+'/g *'+ item.sample_number+ '/份'}"></td>
+                                                                    <td th:text="${item.set_depthN}"></td>
+                                                                    <td scope="row">
+                                                                        <label class="m-checkbox m-checkbox--state-success"
+                                                                               style="margin-bottom:0px;">
+                                                                            <input type="checkbox" checked> 合格
+                                                                            <span></span>
+                                                                        </label>
+                                                                    </td>
+                                                                    <td th:text="${item.set_depthV+'分'}"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td scope="row">6</td>
+                                                                    <td> 甜度</td>
+                                                                    <td scope="row"
+                                                                        th:text="${item.sampling_base+'/g *'+ item.sample_number+ '/份'}"></td>
+                                                                    <td th:text="${item.set_sweetnessN}"></td>
+                                                                    <td scope="row">
+                                                                        <label class="m-checkbox m-checkbox--state-success"
+                                                                               style="margin-bottom:0px;">
+                                                                            <input type="checkbox" checked> 合格
+                                                                            <span></span>
+                                                                        </label>
+                                                                    </td>
+                                                                    <td th:text="${item.set_sweetnessV+'分'}"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td scope="row">7</td>
+                                                                    <td> 香度</td>
+                                                                    <td scope="row"
+                                                                        th:text="${item.sampling_base+'/g *'+ item.sample_number+ '/份'}"></td>
+                                                                    <td th:text="${item.set_incenseN}"></td>
+                                                                    <td scope="row">
+                                                                        <label class="m-checkbox m-checkbox--state-success"
+                                                                               style="margin-bottom:0px;">
+                                                                            <input type="checkbox" checked> 合格
+                                                                            <span></span>
+                                                                        </label>
+                                                                    </td>
+                                                                    <td th:text="${item.set_incenseV+'分'}"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td scope="row">8</td>
+                                                                    <td> 纯净度</td>
+                                                                    <td scope="row"
+                                                                        th:text="${item.sampling_base+'/g *'+ item.sample_number+ '/份'}"></td>
+                                                                    <td th:text="${item.set_purityN}"></td>
+                                                                    <td scope="row">
+                                                                        <label class="m-checkbox m-checkbox--state-success"
+                                                                               style="margin-bottom:0px;">
+                                                                            <input type="checkbox" checked> 合格
+                                                                            <span></span>
+                                                                        </label>
+                                                                    </td>
+                                                                    <td th:text="${item.set_purityV+'分'}"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td scope="row">9</td>
+                                                                    <td> 鲜度</td>
+                                                                    <td scope="row"
+                                                                        th:text="${item.sampling_base+'/g *'+ item.sample_number+ '/份'}"></td>
+                                                                    <td th:text="${item.set_the_freshN}"></td>
+                                                                    <td scope="row">
+                                                                        <label class="m-checkbox m-checkbox--state-success"
+                                                                               style="margin-bottom:0px;">
+                                                                            <input type="checkbox" checked> 合格
+                                                                            <span></span>
+                                                                        </label>
+                                                                    </td>
+                                                                    <td th:text="${item.set_the_freshV+'分'}"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td scope="row">10</td>
+                                                                    <td> 净含量</td>
+                                                                    <td scope="row"
+                                                                        th:text="${item.sampling_base+'/g *'+ item.sample_number+ '/份'}"></td>
+                                                                    <td> &plusmn; 9%</td>
+                                                                    <td scope="row"
+                                                                        th:text="${item.net_content+'/g'}"></td>
+                                                                    <td scope="row">
+                                                                        <label class="m-checkbox m-checkbox--state-success"
+                                                                               style="margin-bottom:0px;">
+                                                                            <input type="checkbox" checked> 合格
+                                                                            <span></span>
+                                                                        </label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td scope="row">11</td>
+                                                                    <td> 含水率</td>
+                                                                    <td scope="row"
+                                                                        th:text="${item.sampling_base+'/g *'+ item.sample_number+ '/份'}"></td>
+                                                                    <td> &plusmn; 7%</td>
+                                                                    <td scope="row"
+                                                                        th:text="${'&plusmn; '+item.water_content+'%'}"></td>
+                                                                    <td scope="row">
+                                                                        <label class="m-checkbox m-checkbox--state-success"
+                                                                               style="margin-bottom:0px;">
+                                                                            <input type="checkbox" checked> 合格
+                                                                            <span></span>
+                                                                        </label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td scope="row">12</td>
+                                                                    <td> 碎末率</td>
+                                                                    <td scope="row"
+                                                                        th:text="${item.sampling_base+'/g *'+ item.sample_number+ '/份'}"></td>
+                                                                    <td> &plusmn; 2%</td>
+                                                                    <td scope="row"
+                                                                        th:text="${'&plusmn; '+item.tea_crumble+'%'}"></td>
+                                                                    <td scope="row">
+                                                                        <label class="m-checkbox m-checkbox--state-success"
+                                                                               style="margin-bottom:0px;">
+                                                                            <input type="checkbox" checked> 合格
+                                                                            <span></span>
+                                                                        </label>
+                                                                    </td>
+                                                                </tr>
+                                                                </tbody>
+                                                                <thead>
+                                                                <tr>
+                                                                    <th colspan="2" style="border-bottom:none;">
+                                                                        检验结论
+                                                                    </th>
+                                                                    <th colspan="4" style="border-bottom:none;">
+                                                                        <div class="m-radio-inline">
+                                                                            经检验该产品
+                                                                            <label class="m-radio m-radio--state-success">
+                                                                                <input type="radio" data-skin="dark"
+                                                                                       checked
+                                                                                       data-toggle="m-tooltip"
+                                                                                       data-placement="top" title=""
+                                                                                       data-original-title="(质检合格)">
+                                                                                符合
+                                                                                <span></span>
+                                                                            </label>
+                                                                            <label class="m-radio m-radio--state-danger">
+                                                                                <input type="radio" data-skin="dark"
+                                                                                       data-toggle="m-tooltip"
+                                                                                       data-placement="top" title=""
+                                                                                       data-original-title="(质检不合格)">
+                                                                                不符合
+                                                                                <span></span>
+                                                                            </label>
+                                                                            产品生产标准
+                                                                        </div>
+                                                                    </th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border-bottom:none;"> 检验人</th>
+                                                                    <th style="border-bottom:none;"
+                                                                        th:text="${item.quality_user}"></th>
+                                                                    <th style="border-bottom:none;"> 检验时间</th>
+                                                                    <th style="border-bottom:none;"
+                                                                        th:text="${item.quality_time}"></th>
+                                                                    <th style="border-bottom:none;"> 检验结果</th>
+                                                                    <th style="border-bottom:none;">
+                                                                        <div class="m-radio-inline">
+                                                                            <label class="m-radio m-radio--state-success">
+                                                                                <input type="radio"
+                                                                                       th:attrappend="checked=${item.quality_status == 1} ? 'checked'">
+                                                                                合格
+                                                                                <span></span>
+                                                                            </label>
+                                                                            <label class="m-radio m-radio--state-danger">
+                                                                                <input type="radio"
+                                                                                       th:attrappend="checked=${item.quality_status == 2} ? 'checked'">
+                                                                                不合格
+                                                                                <span></span>
+                                                                            </label>
+                                                                        </div>
+                                                                    </th>
+                                                                </tr>
+                                                                <!--<tr>-->
+                                                                <!--<th style="border-bottom:none;"> 复检人 </th>-->
+                                                                <!--<th style="border-bottom:none;" th:text="${item.verify_user}"> </th>-->
+                                                                <!--<th style="border-bottom:none;"> 复检时间 </th>-->
+                                                                <!--<th style="border-bottom:none;" th:text="${item.verify_time}"> </th>-->
+                                                                <!--<th style="border-bottom:none;"> 复检结果 </th>-->
+                                                                <!--<th style="border-bottom:none;" th:text="${item.verify_quality}"> </th>-->
+                                                                <!--</tr>-->
+                                                                </thead>
+                                                            </table>
+                                                            <div class="m-separator m-separator--dashed"></div>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-accent downloadQuality">
+                                        打印文件
+                                    </button>
+                                    <!--<button type="button" class="btn btn-accent downloadPDF">-->
+                                    <!--下载PDF文件-->
+                                    <!--</button>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="m-grid__item	m-footer" style="width: 1340px; margin-right: auto; margin-left: auto;">
+        <div class="m-container m-container--fluid m-container--full-height m-page__container">
+            <div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
+                <div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
+                    <span class="m-footer__copyright">
+                        2017 © 马山茶溯源管理系统
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500"
+     data-scroll-speed="300">
+    <i class="la la-arrow-up"></i>
+</div>
+<script th:src="@{/assets/js/jquery/jquery.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/base/vendors.bundle.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/base/scripts.bundle.js}" type="text/javascript"></script>
+
+<script th:src="@{/assets/js/base/dashboard.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/base/jsTree.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/base/layout-builder.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/base/moment.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/base/wysiwyg-editor.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/base/raphael-v2.2.js}" type="text/javascript"></script>
+
+<script th:src="@{/assets/js/base/jQuery.print.js}" type="text/javascript"></script>
+
+<script th:src="@{/assets/js/jsPDF/dist/jspdf.debug.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/base/jsPDFExport.js}" type="text/javascript"></script>
+</body>
+</html>

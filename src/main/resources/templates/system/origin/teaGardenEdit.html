@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑权限信息</title>
+</head>
+<body>
+<!--begin::Modal-->
+<div class="modal fade teaGardenEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true" th:fragment="teaGardenEdit">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="close close-parent" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                </button>
+            </div>
+            <form class="m-form m-form--state m-form--fit m-form--label-align-right" id="tea_garden_edit_form"
+                  novalidate="novalidate">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input type="hidden" name="id" value="">
+                            <input type="hidden" name="save" value="edit">
+                            <input type="hidden" name="parentId" value="">
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    区域名称  <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control m-input" name="nameArea" placeholder="区域名称集合/B3马山9东南">
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    地块编号  <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <input type="text" class="form-control m-input" name="areaCode" placeholder="茶园编号">
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    栽培品种 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <select class="form-control" name="dicCultivarId">
+                                        <option value=""> 栽培品种</option>
+                                        <option th:each="item:${treeType}" th:value="${item.id}"
+                                                th:text="${item.name}"></option>
+                                    </select>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    种植年份  <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class='input-group date datetimepicker_select'>
+                                        <input type='text' class="form-control m-input" name="plantYear" readonly value="" placeholder="2009" id="plantYearInTo"/>
+                                        <span class="input-group-addon">
+                                            <i class="la la-calendar glyphicon-th"></i>
+                                        </span>
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    地块面积  <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control m-input" name="acreage" placeholder="面积">
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    树龄 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control m-input" readonly name="ageLimit" placeholder="树龄" id="ageLimit">
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    负责人 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control m-input" name="principal"
+                                               placeholder="负责人">
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    纬度  <span style="color: red"></span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control m-input" name="latitude" placeholder="(坐标)纬度">
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    经度  <span style="color: red"></span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control m-input" name="longitude" placeholder="(坐标)经度">
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    光照  <span style="color: red"></span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control m-input" name="illumination" placeholder="光照信息">
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    方位
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <select class="form-control" name="orientation">
+                                        <option th:each="item:${orientationType}" th:value="${item.id}" th:text="${item.name}"></option>
+                                    </select>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    风向
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <select class="form-control" name="direction">
+                                        <option th:each="item:${orientationType}" th:value="${item.id}" th:text="${item.name}"></option>
+                                    </select>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    备注
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <textarea class="form-control m-input" name="description" style="height: 90px; resize: none" placeholder="备注"></textarea>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- http://www.jq22.com/yanshi5915 -->
+                <!--<div class="m-form__seperator m-form__seperator&#45;&#45;dashed m-form__seperator&#45;&#45;space"></div>-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-parent" data-dismiss="modal">
+                        关闭
+                    </button>
+                    <button type="submit" class="btn btn-accent" shiro:hasPermission="origin:submit">
+                        确定
+                    </button>
+                    <button type="reset" class="btn btn-warning reset-btn">
+                        重置
+                    </button>
+                </div>
+        </div>
+        </form>
+    </div>
+</div>
+</div>
+<!--end::Modal-->
+</body>
+</html>

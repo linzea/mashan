@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.panda.mapper.system.PageRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.panda.model.system.PageRole" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="menu_id" property="menuId" jdbcType="VARCHAR" />
+    <result column="role_id" property="roleId" jdbcType="VARCHAR" />
+    <result column="dict_id" property="dictId" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_id" property="createId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_id" property="modifyId" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, menu_id, role_id, dict_id, status, create_id, create_time, modify_id, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from s_page_role
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from s_page_role
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.panda.model.system.PageRole" >
+    insert into s_page_role (id, menu_id, role_id,
+    dict_id, status, create_id,
+    create_time, modify_id, modify_time
+    )
+    values (#{id,jdbcType=VARCHAR}, #{menuId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR},
+    #{dictId,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createId,jdbcType=VARCHAR},
+    #{createTime,jdbcType=TIMESTAMP}, #{modifyId,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}
+    ) ON DUPLICATE KEY UPDATE id=UUID()
+  </insert>
+  <insert id="insertSelective" parameterType="com.panda.model.system.PageRole" >
+    insert into s_page_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="menuId != null" >
+        menu_id,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="dictId != null" >
+        dict_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyId != null" >
+        modify_id,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="menuId != null" >
+        #{menuId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="dictId != null" >
+        #{dictId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null" >
+        #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    ON DUPLICATE KEY UPDATE id=UUID()
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.panda.model.system.PageRole" >
+    update s_page_role
+    <set >
+      <if test="menuId != null" >
+        menu_id = #{menuId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="dictId != null" >
+        dict_id = #{dictId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null" >
+        modify_id = #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.panda.model.system.PageRole" >
+    update s_page_role
+    set menu_id = #{menuId,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=VARCHAR},
+      dict_id = #{dictId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_id = #{createId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_id = #{modifyId,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <!-- 获取角色对应的菜单 操作权限 -->
+  <select id="selectPageRoleListByDictionary" resultType="map" parameterType="map">
+    SELECT
+        pr.status AS pageRoleStatus,pr.id AS pageRoleId,pr.dict_id AS pageRoleDictId
+    FROM
+        s_page_role pr,s_dictionary d
+    WHERE
+        1 = 1
+    <if test="menuId != null and menuId != ''">
+      AND pr.menu_id = #{menuId}
+    </if>
+    <if test="roleId != null and roleId != ''">
+      AND pr.role_id = #{roleId}
+    </if>
+    <if test="dictId != null and dictId != ''">
+      AND pr.dict_id = #{dictId}
+    </if>
+    <!--<if test="status != null and status != ''">-->
+      <!--AND pr.status = #{status}-->
+    <!--</if>-->
+      AND pr.dict_id = d.id
+      AND  d.status = 1
+    LIMIT 1
+  </select>
+  <!-- 获取角色对应的菜单 操作权限 -->
+
+  <select id="selectUserMenuRolePermission" parameterType="map" resultType="map">
+    SELECT
+        d.value,d.sort_id
+    FROM
+        s_page_role p,s_dictionary d
+    WHERE
+        1 = 1
+    <if test="menuId != null and menuId != ''">
+      AND p.menu_id = #{menuId}
+    </if>
+    <if test="roleId != null and roleId != ''">
+      AND p.role_id = #{roleId}
+    </if>
+    <if test="status != null and status != ''">
+      AND p.status = #{status}
+    </if>
+    AND p.dict_id = d.id
+    ORDER BY d.sort_id ASC
+  </select>
+</mapper>

@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.panda.mapper.origin.QualityMapper">
+  <resultMap id="BaseResultMap" type="com.panda.model.origin.Quality">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="harvest_batch_id" jdbcType="VARCHAR" property="harvestBatchId" />
+    <result column="quality_stage" jdbcType="VARCHAR" property="qualityStage" />
+    <result column="sampling_base" jdbcType="DOUBLE" property="samplingBase" />
+    <result column="sample_number" jdbcType="INTEGER" property="sampleNumber" />
+    <result column="sample_tea" jdbcType="VARCHAR" property="sampleTea" />
+    <result column="dic_tea_attr" jdbcType="VARCHAR" property="dicTeaAttr" />
+    <result column="dic_tea_type" jdbcType="VARCHAR" property="dicTeaType" />
+    <result column="dic_quality_type" jdbcType="VARCHAR" property="dicQualityType" />
+    <result column="verify_quality" jdbcType="INTEGER" property="verifyQuality" />
+    <result column="verify_user" jdbcType="VARCHAR" property="verifyUser" />
+    <result column="verify_time" jdbcType="TIMESTAMP" property="verifyTime" />
+    <result column="quality_status" jdbcType="INTEGER" property="qualityStatus" />
+    <result column="quality_user" jdbcType="VARCHAR" property="qualityUser" />
+    <result column="quality_time" jdbcType="TIMESTAMP" property="qualityTime" />
+    <result column="create_id" jdbcType="VARCHAR" property="createId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_id" jdbcType="VARCHAR" property="modifyId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, harvest_batch_id, quality_stage, sampling_base, sample_number, sample_tea, dic_tea_attr, 
+    dic_tea_type, dic_quality_type, verify_quality, verify_user, verify_time, quality_status, 
+    quality_user, quality_time, create_id, create_time, modify_id, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from e_quality
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from e_quality
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.panda.model.origin.Quality">
+    insert into e_quality (id, harvest_batch_id, quality_stage, 
+      sampling_base, sample_number, sample_tea, 
+      dic_tea_attr, dic_tea_type, dic_quality_type, 
+      verify_quality, verify_user, verify_time, 
+      quality_status, quality_user, quality_time, 
+      create_id, create_time, modify_id, 
+      modify_time)
+    values (#{id,jdbcType=VARCHAR}, #{harvestBatchId,jdbcType=VARCHAR}, #{qualityStage,jdbcType=VARCHAR}, 
+      #{samplingBase,jdbcType=DOUBLE}, #{sampleNumber,jdbcType=INTEGER}, #{sampleTea,jdbcType=VARCHAR}, 
+      #{dicTeaAttr,jdbcType=VARCHAR}, #{dicTeaType,jdbcType=VARCHAR}, #{dicQualityType,jdbcType=VARCHAR}, 
+      #{verifyQuality,jdbcType=INTEGER}, #{verifyUser,jdbcType=VARCHAR}, #{verifyTime,jdbcType=TIMESTAMP}, 
+      #{qualityStatus,jdbcType=INTEGER}, #{qualityUser,jdbcType=VARCHAR}, #{qualityTime,jdbcType=TIMESTAMP}, 
+      #{createId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyId,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.panda.model.origin.Quality">
+    insert into e_quality
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="harvestBatchId != null">
+        harvest_batch_id,
+      </if>
+      <if test="qualityStage != null">
+        quality_stage,
+      </if>
+      <if test="samplingBase != null">
+        sampling_base,
+      </if>
+      <if test="sampleNumber != null">
+        sample_number,
+      </if>
+      <if test="sampleTea != null">
+        sample_tea,
+      </if>
+      <if test="dicTeaAttr != null">
+        dic_tea_attr,
+      </if>
+      <if test="dicTeaType != null">
+        dic_tea_type,
+      </if>
+      <if test="dicQualityType != null">
+        dic_quality_type,
+      </if>
+      <if test="verifyQuality != null">
+        verify_quality,
+      </if>
+      <if test="verifyUser != null">
+        verify_user,
+      </if>
+      <if test="verifyTime != null">
+        verify_time,
+      </if>
+      <if test="qualityStatus != null">
+        quality_status,
+      </if>
+      <if test="qualityUser != null">
+        quality_user,
+      </if>
+      <if test="qualityTime != null">
+        quality_time,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyId != null">
+        modify_id,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="harvestBatchId != null">
+        #{harvestBatchId,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityStage != null">
+        #{qualityStage,jdbcType=VARCHAR},
+      </if>
+      <if test="samplingBase != null">
+        #{samplingBase,jdbcType=DOUBLE},
+      </if>
+      <if test="sampleNumber != null">
+        #{sampleNumber,jdbcType=INTEGER},
+      </if>
+      <if test="sampleTea != null">
+        #{sampleTea,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTeaAttr != null">
+        #{dicTeaAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTeaType != null">
+        #{dicTeaType,jdbcType=VARCHAR},
+      </if>
+      <if test="dicQualityType != null">
+        #{dicQualityType,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyQuality != null">
+        #{verifyQuality,jdbcType=INTEGER},
+      </if>
+      <if test="verifyUser != null">
+        #{verifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyTime != null">
+        #{verifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qualityStatus != null">
+        #{qualityStatus,jdbcType=INTEGER},
+      </if>
+      <if test="qualityUser != null">
+        #{qualityUser,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityTime != null">
+        #{qualityTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null">
+        #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.panda.model.origin.Quality">
+    update e_quality
+    <set>
+      <if test="harvestBatchId != null">
+        harvest_batch_id = #{harvestBatchId,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityStage != null">
+        quality_stage = #{qualityStage,jdbcType=VARCHAR},
+      </if>
+      <if test="samplingBase != null">
+        sampling_base = #{samplingBase,jdbcType=DOUBLE},
+      </if>
+      <if test="sampleNumber != null">
+        sample_number = #{sampleNumber,jdbcType=INTEGER},
+      </if>
+      <if test="sampleTea != null">
+        sample_tea = #{sampleTea,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTeaAttr != null">
+        dic_tea_attr = #{dicTeaAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTeaType != null">
+        dic_tea_type = #{dicTeaType,jdbcType=VARCHAR},
+      </if>
+      <if test="dicQualityType != null">
+        dic_quality_type = #{dicQualityType,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyQuality != null">
+        verify_quality = #{verifyQuality,jdbcType=INTEGER},
+      </if>
+      <if test="verifyUser != null">
+        verify_user = #{verifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyTime != null">
+        verify_time = #{verifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qualityStatus != null">
+        quality_status = #{qualityStatus,jdbcType=INTEGER},
+      </if>
+      <if test="qualityUser != null">
+        quality_user = #{qualityUser,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityTime != null">
+        quality_time = #{qualityTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null">
+        modify_id = #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.panda.model.origin.Quality">
+    update e_quality
+    set harvest_batch_id = #{harvestBatchId,jdbcType=VARCHAR},
+      quality_stage = #{qualityStage,jdbcType=VARCHAR},
+      sampling_base = #{samplingBase,jdbcType=DOUBLE},
+      sample_number = #{sampleNumber,jdbcType=INTEGER},
+      sample_tea = #{sampleTea,jdbcType=VARCHAR},
+      dic_tea_attr = #{dicTeaAttr,jdbcType=VARCHAR},
+      dic_tea_type = #{dicTeaType,jdbcType=VARCHAR},
+      dic_quality_type = #{dicQualityType,jdbcType=VARCHAR},
+      verify_quality = #{verifyQuality,jdbcType=INTEGER},
+      verify_user = #{verifyUser,jdbcType=VARCHAR},
+      verify_time = #{verifyTime,jdbcType=TIMESTAMP},
+      quality_status = #{qualityStatus,jdbcType=INTEGER},
+      quality_user = #{qualityUser,jdbcType=VARCHAR},
+      quality_time = #{qualityTime,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_id = #{modifyId,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+
+  <!-- 查询所有的设置记录返回 List列表 无入参 -->
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from e_quality
+    where 1 = 1
+  </select>
+  <!-- 查询所有的设置记录返回 List列表 无入参 -->
+
+  <!-- 查询质检记录 -->
+  <select id="selectQualityDataList" parameterType="map" resultType="map">
+    SELECT
+        a.*,(SELECT @rownum:='productQuality') dataTypeName,d2.name teaAttrName,d3.name teaTypeName,
+        u.chinese_name createUser,
+        d.name machinName,
+        d1.name qualityType,
+        ms.dic_mac_pro msMacPro,
+        ms.roll_status rollStatus
+    FROM
+        (
+        SELECT
+            q.id,
+            q.harvest_batch_id harvestBatchId,
+            q.sampling_base samplingBase,
+            q.sample_number sampleNumber,
+            q.sample_tea sampleTea,
+            q.dic_tea_attr dicTeaAttr,
+            q.dic_tea_type dicTeaType,
+            q.dic_quality_type dicQualityType,
+            q.quality_status qualityStatus,
+            q.quality_user qualityUser,
+            q.quality_time qualityTime,
+            q.quality_stage qualityStage,
+            q.create_id,
+            hr.pick_batch_no pickBatchNo
+        FROM
+            e_quality q,
+            e_harvest_records hr
+        WHERE
+            1 = 1
+        AND q.harvest_batch_id = hr.id
+        <if test="harvestBatchId != null and harvestBatchId != ''">
+          AND q.harvest_batch_id = #{harvestBatchId}
+        </if>
+        <if test="dicQualityType != null and dicQualityType != ''">
+          AND q.dic_quality_type = #{dicQualityType}
+        </if>
+        <if test="verifyQuality != null and verifyQuality != ''">
+          AND q.verify_quality = #{verifyQuality}
+        </if>
+    ) a
+    LEFT JOIN s_users u ON a.create_id = u.id
+    LEFT JOIN s_dictionary d1 ON a.dicQualityType = d1.id
+    LEFT JOIN e_machin_set ms ON a.qualityStage = ms.id
+    LEFT JOIN s_dictionary d ON ms.dic_mac_pro = d.id
+    LEFT JOIN s_dictionary d2 ON a.dicTeaAttr = d2.id
+    LEFT JOIN s_dictionary d3 ON a.dicTeaType = d3.id
+  </select>
+  <!-- 查询质检记录 -->
+  <!-- 查询单条质检记录 -->
+  <select id="selectQualityDataMap" parameterType="java.lang.String" resultType="map">
+    SELECT
+        a.*,
+        u.chinese_name createUser,
+        d.name machinName,
+        d1.name qualityType,
+        qi.id qiId,
+        qi.net_content netContent,
+        qi.tea_crumble teaCrumble,
+        qi.water_content waterContent,
+        qi.set_tea_soup setTeaSoup,
+        qi.set_tenderness setTenderness,
+        qi.set_balance_degree setBalanceDegree,
+        qi.set_incense setIncense,
+        qi.set_sweetness setSweetness,
+        qi.set_concentration setConcentration,
+        qi.set_depth setDepth,
+        qi.set_purity setPurity,
+        qi.set_the_fresh setTheFresh,
+        qi.img_url imgUrl,
+        qi.description description,
+        ms.dic_mac_pro msMacPro,
+        ms.roll_status rollStatus
+    FROM
+        (
+            SELECT
+                q.id,
+                q.harvest_batch_id harvestBatchId,
+                q.sampling_base samplingBase,
+                q.sample_number sampleNumber,
+                q.sample_tea sampleTea,
+                q.dic_tea_attr dicTeaAttr,
+                q.dic_tea_type dicTeaType,
+                q.dic_quality_type dicQualityType,
+                q.quality_status qualityStatus,
+                q.quality_user qualityUser,
+                q.quality_time qualityTime,
+                q.quality_stage qualityStage,
+                q.create_id,
+                hr.pick_batch_no pickBatchNo
+            FROM
+                e_quality q,
+                e_harvest_records hr
+            WHERE
+                1 = 1
+            AND q.harvest_batch_id = hr.id
+            AND q.id = #{id}
+        ) a
+    LEFT JOIN s_users u ON a.create_id = u.id
+    LEFT JOIN e_machin_set ms ON a.qualityStage = ms.id
+    LEFT JOIN s_dictionary d ON ms.dic_mac_pro = d.id
+    LEFT JOIN s_dictionary d1 ON a.dicQualityType = d1.id
+    LEFT JOIN e_quality_info qi ON a.id = qi.quality_id
+  </select>
+  <!-- 查询单条质检记录 -->
+    <select id="selectMachinOverQualityNotBindOrigin" parameterType="java.lang.String" resultType="map">
+    SELECT
+        q.id qualityId,
+        d.name macProName,
+        d1.name qualityTypeName
+    FROM
+        e_quality q
+        LEFT JOIN e_machin_set m ON q.quality_stage = m.id
+		LEFT JOIN s_dictionary d ON m.dic_mac_pro = d.id
+        LEFT JOIN s_dictionary d1 ON q.dic_quality_type = d1.id
+    WHERE
+        1 = 1
+    AND q.quality_status = 1
+    AND q.harvest_batch_id = #{harvestBatchId}
+    AND NOT EXISTS (SELECT o.quality_id FROM e_origin_batch o WHERE o.quality_id = q.id AND o.harvest_batch_id = q.harvest_batch_id)
+    </select>
+</mapper>

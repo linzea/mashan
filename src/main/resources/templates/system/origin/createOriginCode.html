@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑权限信息</title>
+</head>
+<body>
+<!--begin::Modal-->
+<div class="modal fade createOriginCodeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true" th:fragment="createOriginCode">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">生成溯源码</h5>
+                <button type="button" class="close close-parent" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                </button>
+            </div>
+            <form class="m-form m-form--state m-form--fit m-form--label-align-right" id="createCodeForm"
+                  novalidate="novalidate">
+                <div class="modal-body">
+                    <input type="hidden" name="originBatchId" value="">
+                    <div class="form-group m-form__group row">
+                        <label class="col-form-label col-lg-3 col-sm-12">
+                            编码前缀 <span style="color: red">*</span>
+                        </label>
+                        <div class="col-lg-8 col-md-9 col-sm-12">
+                            <input type="text" class="form-control m-input col-lg-10" name="prefixVal" id="prefixVal" placeholder="编码前缀">
+                            <span class="m-form__help"></span>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <label class="col-form-label col-lg-3 col-sm-12">
+                            生成数量
+                        </label>
+                        <div class="col-lg-8 col-md-9 col-sm-12">
+                            <input type="text" class="form-control m-input col-lg-10" name="createNum" id="createNum" placeholder="生成数量">
+                            <span class="m-form__help"></span>
+                        </div>
+                    </div>
+                    <!--<div class="m-form__seperator m-form__seperator&#45;&#45;dashed m-form__seperator&#45;&#45;space"></div>-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-skin="dark" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="批量生成溯源码最大数为999个,仅生成一次.">
+                            帮助
+                        </button>
+                        <button type="button" class="btn btn-secondary close-parent" data-dismiss="modal">
+                            关闭
+                        </button>
+                        <button type="submit" shiro:hasPermission="originBatch:submit" class="btn btn-accent dictionary_child_form_save">
+                            确定
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--end::Modal-->
+</body>
+</html>

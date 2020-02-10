@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<div th:replace="home/public/head :: head"></div>
+<body class="m-page--wide m-header--fixed m-header--fixed-mobile m-footer--push m-aside--offcanvas-default"  >
+<div class="m-grid m-grid--hor m-grid--root m-page">
+    <div th:replace="~{home/public/header_nav :: header_nav}"></div>
+    <div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor-desktop m-grid--desktop m-body">
+        <div class="m-grid__item m-grid__item--fluid  m-grid m-grid--ver	m-container m-container--responsive m-container--xxl m-page__container">
+            <div class="m-grid__item m-grid__item--fluid m-wrapper">
+                <div class="m-content">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="m-portlet m-portlet--mobile">
+                                <div class="m-portlet__head">
+                                    <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+                                            <h3 class="m-portlet__head-text">
+                                                马山茶 产品溯源档案
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                   <!-- 内容 -->
+                                    <div class="row m-row--no-padding m-row--col-separator-xl">
+                                        <div class="col-xl-4">
+                                            <div class="m-widget14">
+                                                <img alt="" th:src="${products.imgUrl}" width="100%"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <div class="m-widget1">
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <h3 class="m-widget1__title" th:text="${products.productName}">
+                                                                马山嘉禧红茶
+                                                            </h3>
+                                                            <span class="m-widget1__desc" th:text="${products.speOneP +'克 *'+products.speTwoP +'罐/包 *'+products.speThereP +'盒 *'+products.speFourP +'件'}">
+                                                            </span>
+                                                        </div>
+                                                        <div class="col m--align-right" style="border-left: 0.07rem dashed #ebedf2;">
+                                                            <span class="m-widget1__desc" > 茶系</span>
+                                                            <h3 class="m-widget1__title" th:text="${products.attrName}"></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc" >品种</span>
+                                                            <h3 class="m-widget1__title" th:text="${products.typeName}"> </h3>
+                                                        </div>
+                                                        <div class="col m--align-right" style="border-left: 0.07rem dashed #ebedf2;">
+                                                            <span class="m-widget1__desc" >生产日期</span>
+                                                            <h3 class="m-widget1__title" th:text="${#dates.format(finished.createTime,'yyyy-MM-dd')}"> </h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">
+                                                                生产许可
+                                                            </span>
+                                                            <h3 class="m-widget1__title" th:text="${products.licenceId}"> </h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">
+                                                                产品标准
+                                                            </span>
+                                                            <h3 class="m-widget1__title" th:text="${products.standardId}"> </h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">
+                                                                生产批次
+                                                            </span>
+                                                            <h3 class="m-widget1__title" th:text="${finished.pickBatchNo}">
+                                                                TRMS 2017 4414 0148
+                                                            </h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">
+                                                                生产企业
+                                                            </span>
+                                                            <h3 class="m-widget1__title">
+                                                                广东龙岗马山茶业股份有限公司
+                                                            </h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <div class="m-widget1">
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">
+                                                                生产基地
+                                                            </span>
+                                                            <h3 class="m-widget1__title">
+                                                                梅州市丰顺县龙岗镇马图村
+                                                            </h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">
+                                                                种植基地
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item" style="padding: 0px">
+                                                    <div id="container" style="height: 250px;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="m-portlet m-portlet--full-height">
+                                <div class="m-portlet__head">
+                                    <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+                                            <h2 class="m-portlet__head-text">
+                                                茶园档案
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-portlet__body">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            <div class="m-widget1">
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">种植基地</span>
+                                                            <h3 class="m-widget1__title" th:text="${teaGarden.name_area +'种植基地'}"> </h3>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc" > 地块编号</span>
+                                                            <h3 class="m-widget1__title" th:text="${teaGarden.area_code}"></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc" >栽培品种</span>
+                                                            <h3 class="m-widget1__title" th:text="${teaGarden.treeName}"> </h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc" >种植年份</span>
+                                                            <h3 class="m-widget1__title" th:text="${teaGarden.plantYear+ '年'}"> </h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">
+                                                                地块面积
+                                                            </span>
+                                                            <h3 class="m-widget1__title" th:text="${teaGarden.acreage+ '亩'}"> </h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">
+                                                                树龄
+                                                            </span>
+                                                            <h3 class="m-widget1__title" th:text="${teaGarden.treeYear+ '年'}"> </h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="m-portlet m-portlet--full-height">
+                                <div class="m-portlet__head">
+                                    <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+                                            <h2 class="m-portlet__head-text">
+                                                质检档案
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-portlet__body">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            <div class="m-widget1">
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">检验编号</span>
+                                                            <h3 class="m-widget1__title" th:text="${quality.sampleTea}"> </h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc" > 检验数量</span>
+                                                            <h3 class="m-widget1__title" th:text="${quality.samplingBase+ '克'}"></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc" >检验类型</span>
+                                                            <h3 class="m-widget1__title" th:text="${quality.qualityType}"> </h3>
+                                                        </div>
+                                                        <div class="col m--align-right" style="border-left: 0.07rem dashed #ebedf2;">
+                                                            <span class="m-widget1__desc" >质检结果</span>
+                                                            <h3 class="m-widget1__title" th:text="${quality.qualityStatus == 1 ? '合格' : '--'}"> </h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">
+                                                                质检净重
+                                                            </span>
+                                                            <h3 class="m-widget1__title" th:text="${quality.netContent+'克'}"> </h3>
+                                                        </div>
+                                                        <div class="col m--align-right" style="border-left: 0.07rem dashed #ebedf2;">
+                                                            <span class="m-widget1__desc">
+                                                                质检含水率
+                                                            </span>
+                                                            <h3 class="m-widget1__title" th:text="${'≤'+quality.waterContent+'%'}"></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">
+                                                                质检碎末率
+                                                            </span>
+                                                            <h3 class="m-widget1__title" th:text="${'≤'+quality.teaCrumble+'%'}"> ≤ 3% 合格 </h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" th:each="item:${InfoList}">
+                        <div class="col-xl-12">
+                            <div class="m-portlet m-portlet--full-height">
+                                <div class="m-portlet__head">
+                                    <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+                                            <h2 class="m-portlet__head-text" th:text="${item.title}"> </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <!-- 内容 -->
+                                    <div class="row m-row--no-padding m-row--col-separator-xl">
+                                        <div class="col-xl-3">
+                                            <div class="m-widget14">
+                                                <img alt="" th:src="@{/index/base/img/ms-tea-r.jpg}" width="100%"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-9" >
+                                            <div class="m-widget1" style="padding-bottom: 0px;">
+                                                <span class="col-xl-4 " th:text="${item.name}"></span>
+                                                <span class="col-xl-4 "  th:text="${item.description}"></span>
+                                                <span class="col-xl-4 " th:text="${item.create_time}"></span>
+                                            </div>
+
+                                            <div style="text-indent:2em;" class="m-widget1" th:text="${item.content}"></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="~{home/public/footer :: footer}"></div>
+</div>
+<div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500" data-scroll-speed="300">
+    <i class="la la-arrow-up"></i>
+</div>
+<script th:src="@{/index/base/js/jquery.min.js}" type="text/javascript"></script>
+<script th:src="@{/index/base/js/base.js}" type="text/javascript"></script>
+<script th:src="@{/index/base/js/scripts.bundle.js}" type="text/javascript"></script>
+<script th:src="@{/index/base/js/jquery.slimscroll.js}" type="text/javascript"></script>
+<link rel="stylesheet" href="//at.alicdn.com/t/font_kz78vaufji6n7b9.css">
+<script src="http://cache.amap.com/lbs/static/es5.min.js"></script>
+<script src="http://webapi.amap.com/maps?v=1.4.2&key=0661d4b49a27ed049636406238462020"></script>
+<script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+<script>
+    var map = new AMap.Map('container', {
+        resizeEnable: true,
+        zoom:14,
+        center: [116.211878,24.084308],
+        //zoomEnable:false,
+        //dragEnable: false,
+        //mapStyle: 'amap://styles/236b7be779481fc7a46eb54a04c5f75e'//样式URL
+    });
+    var marker = new AMap.Marker({
+        position: map.getCenter(),
+        draggable: true,
+        raiseOnDrag: true
+    });
+    marker.setMap(map);
+</script>
+</body>
+</html>

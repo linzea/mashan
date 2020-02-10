@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.panda.mapper.commodity.SemiFinishedMapper">
+  <resultMap id="BaseResultMap" type="com.panda.model.commodity.SemiFinished">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="harvest_batch_id" jdbcType="VARCHAR" property="harvestBatchId" />
+    <result column="machin_tea_id" jdbcType="VARCHAR" property="machinTeaId" />
+    <result column="dic_tea_attr" jdbcType="VARCHAR" property="dicTeaAttr" />
+    <result column="dic_tea_type" jdbcType="VARCHAR" property="dicTeaType" />
+    <result column="rec_quantity" jdbcType="DOUBLE" property="recQuantity" />
+    <result column="tea_grade_one" jdbcType="DOUBLE" property="teaGradeOne" />
+    <result column="tea_grade_two" jdbcType="DOUBLE" property="teaGradeTwo" />
+    <result column="tea_grade_three" jdbcType="DOUBLE" property="teaGradeThree" />
+    <result column="semi_one_out" jdbcType="DOUBLE" property="semiOneOut" />
+    <result column="semi_two_out" jdbcType="DOUBLE" property="semiTwoOut" />
+    <result column="semi_three_out" jdbcType="DOUBLE" property="semiThreeOut" />
+    <result column="principal" jdbcType="VARCHAR" property="principal" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_id" jdbcType="VARCHAR" property="createId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_id" jdbcType="VARCHAR" property="modifyId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, harvest_batch_id, machin_tea_id, dic_tea_attr, dic_tea_type, rec_quantity, tea_grade_one, 
+    tea_grade_two, tea_grade_three, semi_one_out, semi_two_out, semi_three_out, principal, 
+    status, create_id, create_time, modify_id, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from c_semi_finished
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from c_semi_finished
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.panda.model.commodity.SemiFinished">
+    insert into c_semi_finished (id, harvest_batch_id, machin_tea_id, 
+      dic_tea_attr, dic_tea_type, rec_quantity, 
+      tea_grade_one, tea_grade_two, tea_grade_three, 
+      semi_one_out, semi_two_out, semi_three_out, 
+      principal, status, create_id, 
+      create_time, modify_id, modify_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{harvestBatchId,jdbcType=VARCHAR}, #{machinTeaId,jdbcType=VARCHAR}, 
+      #{dicTeaAttr,jdbcType=VARCHAR}, #{dicTeaType,jdbcType=VARCHAR}, #{recQuantity,jdbcType=DOUBLE}, 
+      #{teaGradeOne,jdbcType=DOUBLE}, #{teaGradeTwo,jdbcType=DOUBLE}, #{teaGradeThree,jdbcType=DOUBLE}, 
+      #{semiOneOut,jdbcType=DOUBLE}, #{semiTwoOut,jdbcType=DOUBLE}, #{semiThreeOut,jdbcType=DOUBLE}, 
+      #{principal,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyId,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.panda.model.commodity.SemiFinished">
+    insert into c_semi_finished
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="harvestBatchId != null">
+        harvest_batch_id,
+      </if>
+      <if test="machinTeaId != null">
+        machin_tea_id,
+      </if>
+      <if test="dicTeaAttr != null">
+        dic_tea_attr,
+      </if>
+      <if test="dicTeaType != null">
+        dic_tea_type,
+      </if>
+      <if test="recQuantity != null">
+        rec_quantity,
+      </if>
+      <if test="teaGradeOne != null">
+        tea_grade_one,
+      </if>
+      <if test="teaGradeTwo != null">
+        tea_grade_two,
+      </if>
+      <if test="teaGradeThree != null">
+        tea_grade_three,
+      </if>
+      <if test="semiOneOut != null">
+        semi_one_out,
+      </if>
+      <if test="semiTwoOut != null">
+        semi_two_out,
+      </if>
+      <if test="semiThreeOut != null">
+        semi_three_out,
+      </if>
+      <if test="principal != null">
+        principal,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyId != null">
+        modify_id,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="harvestBatchId != null">
+        #{harvestBatchId,jdbcType=VARCHAR},
+      </if>
+      <if test="machinTeaId != null">
+        #{machinTeaId,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTeaAttr != null">
+        #{dicTeaAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTeaType != null">
+        #{dicTeaType,jdbcType=VARCHAR},
+      </if>
+      <if test="recQuantity != null">
+        #{recQuantity,jdbcType=DOUBLE},
+      </if>
+      <if test="teaGradeOne != null">
+        #{teaGradeOne,jdbcType=DOUBLE},
+      </if>
+      <if test="teaGradeTwo != null">
+        #{teaGradeTwo,jdbcType=DOUBLE},
+      </if>
+      <if test="teaGradeThree != null">
+        #{teaGradeThree,jdbcType=DOUBLE},
+      </if>
+      <if test="semiOneOut != null">
+        #{semiOneOut,jdbcType=DOUBLE},
+      </if>
+      <if test="semiTwoOut != null">
+        #{semiTwoOut,jdbcType=DOUBLE},
+      </if>
+      <if test="semiThreeOut != null">
+        #{semiThreeOut,jdbcType=DOUBLE},
+      </if>
+      <if test="principal != null">
+        #{principal,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null">
+        #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.panda.model.commodity.SemiFinished">
+    update c_semi_finished
+    <set>
+      <if test="harvestBatchId != null">
+        harvest_batch_id = #{harvestBatchId,jdbcType=VARCHAR},
+      </if>
+      <if test="machinTeaId != null">
+        machin_tea_id = #{machinTeaId,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTeaAttr != null">
+        dic_tea_attr = #{dicTeaAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTeaType != null">
+        dic_tea_type = #{dicTeaType,jdbcType=VARCHAR},
+      </if>
+      <if test="recQuantity != null">
+        rec_quantity = #{recQuantity,jdbcType=DOUBLE},
+      </if>
+      <if test="teaGradeOne != null">
+        tea_grade_one = #{teaGradeOne,jdbcType=DOUBLE},
+      </if>
+      <if test="teaGradeTwo != null">
+        tea_grade_two = #{teaGradeTwo,jdbcType=DOUBLE},
+      </if>
+      <if test="teaGradeThree != null">
+        tea_grade_three = #{teaGradeThree,jdbcType=DOUBLE},
+      </if>
+      <if test="semiOneOut != null">
+        semi_one_out = #{semiOneOut,jdbcType=DOUBLE},
+      </if>
+      <if test="semiTwoOut != null">
+        semi_two_out = #{semiTwoOut,jdbcType=DOUBLE},
+      </if>
+      <if test="semiThreeOut != null">
+        semi_three_out = #{semiThreeOut,jdbcType=DOUBLE},
+      </if>
+      <if test="principal != null">
+        principal = #{principal,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null">
+        modify_id = #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.panda.model.commodity.SemiFinished">
+    update c_semi_finished
+    set harvest_batch_id = #{harvestBatchId,jdbcType=VARCHAR},
+      machin_tea_id = #{machinTeaId,jdbcType=VARCHAR},
+      dic_tea_attr = #{dicTeaAttr,jdbcType=VARCHAR},
+      dic_tea_type = #{dicTeaType,jdbcType=VARCHAR},
+      rec_quantity = #{recQuantity,jdbcType=DOUBLE},
+      tea_grade_one = #{teaGradeOne,jdbcType=DOUBLE},
+      tea_grade_two = #{teaGradeTwo,jdbcType=DOUBLE},
+      tea_grade_three = #{teaGradeThree,jdbcType=DOUBLE},
+      semi_one_out = #{semiOneOut,jdbcType=DOUBLE},
+      semi_two_out = #{semiTwoOut,jdbcType=DOUBLE},
+      semi_three_out = #{semiThreeOut,jdbcType=DOUBLE},
+      principal = #{principal,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_id = #{createId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_id = #{modifyId,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectSemiFinishedDataList" parameterType="map" resultType="map">
+    SELECT
+    s.id,(SELECT @rownum:='semiFinished') dataTypeName,
+    s.harvest_batch_id harvestBatchId,
+    s.dic_tea_attr dicTeaAttr,
+    s.dic_tea_type dicTeaType,
+    s.tea_grade_one teaGradeOne,
+    s.tea_grade_two teaGradeTwo,
+    s.tea_grade_three teaGradeThree,
+    s.semi_one_out semiOneOut,
+    s.semi_two_out semiTwoOut,
+    s.semi_three_out semiThreeOut,
+    s.principal principal,
+    d.name teaAttrName,d1.name teaTypeName,
+    hr.pick_batch_no pickBatchNo,
+    hr.rec_quantity recQuantity,
+    u.chinese_name createUser
+    FROM c_semi_finished s
+    LEFT JOIN s_dictionary d ON s.dic_tea_attr = d.id
+    LEFT JOIN s_dictionary d1 ON s.dic_tea_type = d1.id
+    LEFT JOIN e_harvest_records hr ON s.harvest_batch_id = hr.id
+    LEFT JOIN s_users u ON s.create_id = u.id
+    WHERE 1 = 1
+    <if test="harvestBatchId != null and harvestBatchId != ''">
+      AND s.harvest_batch_id = #{harvestBatchId,jdbcType=VARCHAR}
+    </if>
+    <if test="dicTeaAttr != null and dicTeaAttr != ''">
+      AND s.dic_tea_attr = #{dicTeaAttr,jdbcType=VARCHAR}
+    </if>
+    <if test="dicTeaType != null and dicTeaType != ''">
+      AND s.dic_tea_type = #{dicTeaType,jdbcType=VARCHAR}
+    </if>
+    ORDER BY s.create_time DESC
+  </select>
+
+  <select id="selectSemiFinishedDataItem" parameterType="java.lang.String" resultType="map">
+    SELECT
+    s.*,d.name teaAttrName,d1.name teaTypeName, hr.pick_batch_no
+    FROM c_semi_finished s
+    LEFT JOIN s_dictionary d ON s.dic_tea_attr = d.id
+    LEFT JOIN s_dictionary d1 ON s.dic_tea_type = d1.id
+    LEFT JOIN e_harvest_records hr ON s.harvest_batch_id = hr.id
+    WHERE 1 = 1
+     AND s.id = #{id,jdbcType=VARCHAR}
+    ORDER BY s.create_time DESC LIMIT 1
+  </select>
+</mapper>

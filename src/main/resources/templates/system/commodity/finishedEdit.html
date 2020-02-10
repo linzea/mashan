@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑权限信息</title>
+</head>
+<body>
+<!--begin::Modal-->
+<div class="modal fade finishedEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" th:fragment="finishedEdit">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    成品出库
+                </h5>
+                <button type="button" class="close close-parent" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                </button>
+            </div>
+            <form class="m-form m-form--state m-form--fit m-form--label-align-right" id="finished_set_edit_form" novalidate="novalidate">
+                <div class="modal-body">
+                    <div class="row">
+                    <div class="col-lg-6">
+                        <input type="hidden" name="id" value="">
+                        <input type="hidden" name="save" value="edit">
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                产品名称  <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <div class="input-group">
+                                    <input type="text" class="form-control m-input" name="finishedName" placeholder="包材名称">
+                                </div>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                茶系  <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <select class="form-control" name="dicTeaAttr">
+                                    <option value=""> 茶系</option>
+                                    <option th:each="item:${teaArrt}" th:value="${item.id}" th:text="${item.name}"></option>
+                                </select>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                品种 <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <select class="form-control" name="dicTeaType">
+                                    <option value=""> 品种</option>
+                                    <option th:each="item:${treeType}" th:value="${item.id}" th:text="${item.name}"></option>
+                                </select>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                规格一  <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <div class='input-group '>
+                                    <div class="input-group m-input-group">
+                                        <span class="input-group-btn">
+                                            <input type="text" class="form-control" name="speOne" placeholder="320.00">
+                                        </span>
+                                        <span class="input-group-addon">
+                                            /g
+                                        </span>
+                                        <span class="input-group-btn">
+                                            <input type="text" class="form-control" name="speTwo" placeholder="1">
+                                        </span>
+                                        <span class="input-group-addon">
+                                            罐/包
+                                        </span>
+                                    </div>
+                                </div>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                规格二  <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <div class='input-group '>
+                                    <div class="input-group m-input-group">
+                                        <span class="input-group-btn">
+                                            <input type="text" class="form-control" name="speThere" value="1" placeholder="2">
+                                        </span>
+                                        <span class="input-group-addon">
+                                            盒
+                                        </span>
+                                        <span class="input-group-btn">
+                                            <input type="text" class="form-control" name="speFour" value="1" placeholder="1">
+                                        </span>
+                                        <span class="input-group-addon">
+                                            件/组
+                                        </span>
+                                    </div>
+                                </div>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                库存数量 <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <div class="input-group">
+                                    <input type="text" class="form-control m-input" name="finishedQuantity" placeholder="库存">
+                                    <span class="input-group-addon">
+                                    件
+                                    </span>
+                                </div>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                负责人 <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <div class="input-group">
+                                    <input type="text" class="form-control m-input" name="principalF" placeholder="负责人">
+                                </div>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                记录人 <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <div class="input-group">
+                                    <input type="text" class="form-control m-input" placeholder="记录人" th:value="${user.chineseName}" disabled id="createUser">
+                                </div>
+                                <span class="m--hide createUser">[[${user.chineseName}]]</span>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                取货门店  <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <select class="form-control outUser" name="outUser">
+                                    <option value=""> 门店</option>
+                                    <option th:each="item:${storeList}" th:value="${item.id}" th:attrappend="storeManager=${item.storeManager},userId=${item.userId}" th:text="${item.storeName}"></option>
+                                </select>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                门店店长  <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <select class="form-control" id="storePrincipal" name="principal">
+                                    <option value=""> 店长</option>
+                                </select>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                取货数量 <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <div class="input-group">
+                                    <input type="text" class="form-control m-input" max="10" name="outQuantity" placeholder="库存">
+                                    <span class="input-group-addon">
+                                    件
+                                    </span>
+                                </div>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                取货清单 <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <div class="input-group">
+                                    <div class="m-radio-inline">
+                                        <label class="m-radio m-radio--state-success">
+                                            <input type="radio" name="qualityReport" value="1" data-skin="dark" data-toggle="m-tooltip" data-placement="top" title=""  data-original-title="取货清单请前往出库记录打印">
+                                            是
+                                            <span></span>
+                                        </label>
+                                        <label class="m-radio m-radio--state-warning">
+                                            <input type="radio" name="qualityReport" value="2">
+                                            否
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                备注
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <textarea class="form-control m-input" name="description" style="height: 90px; resize: none" placeholder="备注"></textarea>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-parent" data-dismiss="modal">
+                        关闭
+                    </button>
+                    <button type="submit" shiro:hasPermission="finishedIn:submit" class="btn btn-accent">
+                        确定
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--end::Modal-->
+</body>
+</html>

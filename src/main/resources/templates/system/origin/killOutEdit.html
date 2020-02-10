@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑权限信息</title>
+</head>
+<body>
+<!--begin::Modal-->
+<div class="modal fade killOutEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true" th:fragment="killOutEdit">
+    <div class="modal-dialog modal-xbg" role="document" id="modalBloukUi">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">新增杀青</h5>
+                <button type="button" class="close close-parent" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                </button>
+            </div>
+            <form class="m-form m-form--state m-form--fit m-form--label-align-right" id="killOut_edit_form" novalidate="novalidate">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input type="hidden" name="id" value="">
+                            <input type="hidden" name="save" value="edit">
+                            <input type="hidden" name="rollStatus" value="">
+                            <input type="hidden" name="dicMacValue" value="">
+                            <input type="hidden" id="dic_mac_pro" th:value="${dicMacPro}">
+                            <div class="form-group m-form__group row processBatchId">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    鲜叶批次  <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <select class="form-control harvestBatchId" name="harvestBatchId" id="harvestBatchId">
+                                        <option value=""> 选择 </option>
+                                        <option th:each="item:${harvestList}" th:value="${item.id}" th:text="${item.pick_batch_no}"></option>
+                                    </select>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <!--<div class="form-group m-form__group row">-->
+                                <!--<label class="col-form-label col-lg-3 col-sm-12">-->
+                                    <!--鲜叶品种  <span style="color: red">*</span>-->
+                                <!--</label>-->
+                                <!--<div class="col-lg-8 col-md-9 col-sm-12">-->
+                                    <!--<select class="form-control dicTeaType" name="dicTeaType" id="dicTeaType">-->
+                                        <!--<option value=""> 选择 </option>-->
+                                    <!--</select>-->
+                                    <!--<span class="m-form__help"></span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <div class="form-group m-form__group row dicMacType">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    加工类型 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <select class="form-control getMachinSetData" name="dicMacType" id="dicMacType">
+                                        <option value=""> 选择 </option>
+                                        <option th:each="item:${machinType}" th:if="${item.id == '5382c8cc-27ad-4b2e-8842-b1d194403753'}" th:value="${item.id}" th:text="${item.name}"></option>
+                                    </select>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    加工茶系  <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <select class="form-control dicTeaAttr" name="dicTeaAttr" id="dicTeaAttr" >
+                                        <option value=""> 选择 </option>
+                                        <option th:each="item:${teaArrt}" th:value="${item.id}" th:text="${item.name}"></option>
+                                    </select>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    加工步骤  <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <select class="form-control machinSetId" id="machinSetId" name="machinSetId">
+                                        <option value=""> 选择 </option>
+
+                                    </select>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    生产线  <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <select class="form-control assemblySetId" name="assemblySetId" id="assemblySetId" >
+                                        <option th:each="item:${assemblyList}" th:value="${item.id}" th:text="${item.name}"></option>
+                                    </select>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    加工状态  <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="m-radio-inline">
+                                        <label class="m-radio m-radio--state-success">
+                                            <input type="radio" name="machinStatus" value="1" checked>
+                                            开始
+                                            <span></span>
+                                        </label>
+                                        <label class="m-radio m-radio--state-success">
+                                            <input type="radio" name="machinStatus" value="2">
+                                            完成
+                                            <span></span>
+                                        </label>
+                                        <label class="m-radio m-radio--state-danger">
+                                            <input type="radio" name="machinStatus" value="3" data-skin="dark" data-toggle="m-tooltip" data-placement="top" title=""  data-original-title="(终止当前工序)">
+                                            终止
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <div class="col-lg-11 col-md-9 col-sm-12">
+                                    <div class="input-group m-input-group">
+                                    <span class="input-group-btn">
+                                        <input type="text" class="form-control beginTime" name="beginTime" placeholder="开始时间">
+                                    </span>
+                                        <span class="input-group-addon">
+                                        至
+                                    </span>
+                                        <span class="input-group-btn">
+                                        <input type="text" class="form-control endTime" name="endTime" placeholder="结束时间">
+                                    </span>
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group m-form__group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    温度
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group m-input-group ">
+                                        <input type="text" class="form-control m-input" name="temperature" placeholder="所需温度" >
+                                        <span class="input-group-addon" >
+                                            &#8451;
+                                        </span>
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    湿度
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group m-input-group ">
+                                        <input type="text" class="form-control m-input" name="humidity" placeholder="湿度比例" >
+                                        <span class="input-group-addon">
+                                            %RH
+                                        </span>
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    负责人 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control m-input" id="principal" name="principal">
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    记录人 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control m-input" id="createUser" disabled th:value="${user.chineseName}">
+                                        <span id="chineseName" class="m--hide" th:text="${user.chineseName}"></span>
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <!--<div class="form-group m-form__group row">-->
+                                <!--<label class="col-form-label col-lg-3 col-sm-12">-->
+                                    <!--损耗-->
+                                <!--</label>-->
+                                <!--<div class="col-lg-8 col-md-9 col-sm-12">-->
+                                    <!--<div class="input-group m-input-group ">-->
+                                        <!--<input type="text" class="form-control m-input" name="macLoss" placeholder="损耗比例">-->
+                                        <!--<span class="input-group-addon">-->
+                                            <!--%∑-->
+                                        <!--</span>-->
+                                    <!--</div>-->
+                                    <!--<span class="m-form__help"></span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="form-group m-form__group row status_switch_parent">-->
+                                <!--<label class="col-form-label col-lg-3 col-sm-12">-->
+                                    <!--完成  <span style="color: red"></span>-->
+                                <!--</label>-->
+                                <!--<div class="col-lg-8 col-md-9 col-sm-12">-->
+                                    <!--<input data-switch="true" type="checkbox" class="status_switch" data-on-color="success" data-off-color="warning">-->
+                                    <!--<br>-->
+                                    <!--<span class="m-form__help"></span>-->
+                                <!--</div>-->
+                                <!--<input type="hidden" name="status" value="2">-->
+                            <!--</div>-->
+                            <div class="form-group m-form__group row">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    备注
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <textarea class="form-control m-input" name="description" placeholder="介绍用途等" style="resize: none;height: 92px"></textarea>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-skin="dark" data-toggle="m-tooltip" data-placement="top" title="" data-original-title="选择 批次,类型,茶系 获取 加工设置数据.">
+                        帮助
+                    </button>
+                    <button type="button" class="btn btn-metal close-parent" data-dismiss="modal">
+                        关闭
+                    </button>
+                    <button type="submit" shiro:hasPermission="killOut:submit" class="btn btn-accent">
+                        确定
+                    </button>
+                    <button type="reset" class="btn btn-warning reset-btn">
+                        重置
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--end::Modal-->
+</body>
+</html>

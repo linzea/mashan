@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑管理记录</title>
+</head>
+<body>
+<!--begin::Modal-->
+<div class="modal fade teaGardenLogEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true" th:fragment="teaGardenLogEdit">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    新增管理记录
+                </h5>
+                <button type="button" class="close close-parent" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                </button>
+            </div>
+            <form class="m-form m-form--state m-form--fit m-form--label-align-right" id="tea_garden_log_form"
+                  novalidate="novalidate">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input type="hidden" name="id" value="">
+                            <input type="hidden" name="save" value="edit">
+                            <div th:if="${type != '43512930-9822-48b4-b577-e900c4a12504'}">
+                                <div class="form-group m-form__group row r-pm">
+                                    <label class="col-form-label col-lg-3 col-sm-12">
+                                        茶园 <span style="color: red">*</span>
+                                    </label>
+                                    <div class="col-lg-8 col-md-9 col-sm-12">
+                                        <select class="form-control teaGardenId " name="teaGardenId" id="teaGardenId">
+                                            <option value=""> 全部</option>
+                                            <option th:each="item:${gardenType}" th:attrappend="acreage=${item.acreage}" th:value="${item.id}"
+                                                    th:text="${item.name_area + '( '+ item.acreage+' 亩)'}"></option>
+                                        </select>
+                                        <span class="m-form__help"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row r-pm" >
+                                    <label class="col-form-label col-lg-3 col-sm-12">
+                                        管理批次 <span style="color: red">*</span>
+                                    </label>
+                                    <div class="col-lg-8 col-md-9 col-sm-12">
+                                        <select class="form-control " name="batchNum" id="batchNum">
+                                            <option value=""> 全部</option>
+                                        </select>
+                                        <span class="m-form__help"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    农事 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <select class="form-control farmTypeId " name="farmTypeId">
+                                        <option value=""> 全部</option>
+                                        <option th:each="item:${farmType}" th:attrappend="type=${item.value}" th:if="${item.id == type}" th:value="${item.id}" th:text="${item.name}"></option>
+                                    </select>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div th:if="${type != '43512930-9822-48b4-b577-e900c4a12504'}">
+                                <div class="form-group m-form__group row r-pm">
+                                    <label class="col-form-label col-lg-3 col-sm-12">
+                                        地块编号 <span style="color: red"></span>
+                                    </label>
+                                    <div class="col-lg-8 col-md-9 col-sm-12">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control m-input" id="area_code" disabled placeholder="地块编号">
+                                        </div>
+                                        <span class="m-form__help"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row r-pm">
+                                    <label class="col-form-label col-lg-3 col-sm-12">
+                                        地块面积 <span style="color: red"></span>
+                                    </label>
+                                    <div class="col-lg-8 col-md-9 col-sm-12">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control m-input begin_time" id="acreage" disabled placeholder="地块面积">
+                                        </div>
+                                        <span class="m-form__help"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div th:if="${type == '43512930-9822-48b4-b577-e900c4a12504'}">
+                                <div class="form-group m-form__group row r-pm">
+                                    <label class="col-form-label col-lg-3 col-sm-12">
+                                        开垦编号 <span style="color: red"></span>
+                                    </label>
+                                    <div class="col-lg-8 col-md-9 col-sm-12">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control m-input" name="fertVariety" placeholder="开垦编号">
+                                        </div>
+                                        <span class="m-form__help"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row r-pm">
+                                    <label class="col-form-label col-lg-3 col-sm-12">
+                                        开垦面积 <span style="color: red"></span>
+                                    </label>
+                                    <div class="col-lg-8 col-md-9 col-sm-12">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control m-input begin_time" name="farmQuantity" placeholder="开垦面积">
+                                            <span class="input-group-addon">
+                                                亩
+                                            </span>
+                                        </div>
+                                        <span class="m-form__help"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    负责人 <span style="color: red"></span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control m-input begin_time" name="principal" placeholder="负责人">
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div tile="耕地" th:if="${type == '4b2946d6-ec92-403f-ae59-6a2d6311e6cd'}">
+                                <div class="form-group m-form__group row r-pm">
+                                    <label class="col-form-label col-lg-3 col-sm-12">
+                                        耕地沟宽 <span style="color: red">*</span>
+                                    </label>
+                                    <div class="col-lg-8 col-md-9 col-sm-12">
+                                        <div class="input-group m-input-group ">
+                                            <input type="text" class="form-control m-input fertVariety" value="0" name="fertVariety" placeholder="耕地沟宽">
+                                            <span class="input-group-addon">
+                                                米
+                                            </span>
+                                        </div>
+                                        <span class="m-form__help"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row r-pm">
+                                    <label class="col-form-label col-lg-3 col-sm-12">
+                                        耕地面积 <span style="color: red">*</span>
+                                    </label>
+                                    <div class="col-lg-8 col-md-9 col-sm-12">
+                                        <div class="input-group m-input-group ">
+                                            <input type="text" class="form-control m-input farmQuantity" value="0" name="farmQuantity" placeholder="用量">
+                                            <span class="input-group-addon">
+                                                亩
+                                            </span>
+                                        </div>
+                                        <span class="m-form__help"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div tile="种植" th:if="${type == '1689fac5-4b03-4d4b-94c1-d1bbbe8d06ee'}">
+                                <div class="form-group m-form__group row r-pm">
+                                    <label class="col-form-label col-lg-3 col-sm-12">
+                                        种植品种 <span style="color: red">*</span>
+                                    </label>
+                                    <div class="col-lg-8 col-md-9 col-sm-12">
+                                        <select class="form-control cultivarId " name="cultivarId">
+                                            <option value=""> 全部</option>
+                                            <option th:each="item:${treeType}" th:value="${item.id}" th:text="${item.name}"></option>
+                                        </select>
+                                        <span class="m-form__help"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row r-pm">
+                                    <label class="col-form-label col-lg-3 col-sm-12">
+                                        种子来源 <span style="color: red">*</span>
+                                    </label>
+                                    <div class="col-lg-8 col-md-9 col-sm-12">
+                                        <select class="form-control fertVariety " name="fertVariety">
+                                            <option value=""> 全部</option>
+                                            <option th:each="item:${seedOrigin}" th:value="${item.id}" th:text="${item.name}"></option>
+                                        </select>
+                                        <span class="m-form__help"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row r-pm">
+                                    <label class="col-form-label col-lg-3 col-sm-12">
+                                        种植数量 <span style="color: red">*</span>
+                                    </label>
+                                    <div class="col-lg-8 col-md-9 col-sm-12">
+                                        <div class="input-group m-input-group ">
+                                            <input  type="text" class="form-control m-input farmQuantity" value="0" name="farmQuantity" placeholder="种植数量">
+                                            <span class="input-group-addon">
+                                                棵(株)
+                                            </span>
+                                        </div>
+                                        <span class="m-form__help"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div tile="施肥" th:if="${type == 'd687763c-2a2e-41a7-b57d-71e9caebf579'}">
+                                <div class="form-group m-form__group row r-pm">
+                                    <label class="col-form-label col-lg-3 col-sm-12">
+                                        肥料品种 <span style="color: red">*</span>
+                                    </label>
+                                    <div class="col-lg-8 col-md-9 col-sm-12">
+                                        <select class="form-control fertVariety " name="fertVariety">
+                                            <option value=""> 全部</option>
+                                            <option th:each="item:${manureType}" th:value="${item.id}" th:text="${item.name}"></option>
+                                        </select>
+                                        <span class="m-form__help"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row r-pm">
+                                    <label class="col-form-label col-lg-3 col-sm-12">
+                                        施肥方式 <span style="color: red">*</span>
+                                    </label>
+                                    <div class="col-lg-8 col-md-9 col-sm-12">
+                                        <select class="form-control farmPattern " name="farmPattern">
+                                            <option value=""> 全部</option>
+                                            <option th:each="item:${patternType}" th:value="${item.id}" th:text="${item.name}"></option>
+                                        </select>
+                                        <span class="m-form__help"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row r-pm">
+                                    <label class="col-form-label col-lg-3 col-sm-12">
+                                        肥料用量 <span style="color: red">*</span>
+                                    </label>
+                                    <div class="col-lg-8 col-md-9 col-sm-12">
+                                        <div class="input-group m-input-group ">
+                                            <input type="text" class="form-control m-input farmQuantity" value="0" name="farmQuantity" placeholder="肥料用量">
+                                            <span class="input-group-addon">
+                                                斤
+                                            </span>
+                                        </div>
+                                        <span class="m-form__help"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div tile="除草" th:if="${type == 'd5bbd9b5-91c4-48c2-b5f8-0c7328f8902f'}">
+                                <div class="form-group m-form__group row r-pm">
+                                    <label class="col-form-label col-lg-3 col-sm-12">
+                                        除草方式 <span style="color: red">*</span>
+                                    </label>
+                                    <div class="col-lg-8 col-md-9 col-sm-12">
+                                        <select class="form-control farmPattern " name="farmPattern">
+                                            <option value=""> 全部</option>
+                                            <option th:each="item:${methods}" th:value="${item.id}" th:text="${item.name}"></option>
+                                        </select>
+                                        <span class="m-form__help"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row r-pm">
+                                    <label class="col-form-label col-lg-3 col-sm-12">
+                                        除草药剂 <span style="color: red">*</span>
+                                    </label>
+                                    <div class="col-lg-8 col-md-9 col-sm-12">
+                                        <div class="input-group m-input-group ">
+                                            <input type="text" class="form-control m-input farmQuantity" value="0" name="farmQuantity" placeholder="除草剂,物理除草时输入0">
+                                            <span class="input-group-addon">
+                                                毫升
+                                            </span>
+                                        </div>
+                                        <span class="m-form__help"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div tile="治虫" th:if="${type == 'e1f3e464-31c2-46b5-8e20-20d7ea12fb3f'}">
+                                <div class="form-group m-form__group row r-pm">
+                                    <label class="col-form-label col-lg-3 col-sm-12">
+                                        治虫方式 <span style="color: red">*</span>
+                                    </label>
+                                    <div class="col-lg-8 col-md-9 col-sm-12">
+                                        <select class="form-control farmPattern " name="farmPattern">
+                                            <option value=""> 全部</option>
+                                            <option th:each="item:${methods}" th:value="${item.id}" th:text="${item.name}"></option>
+                                        </select>
+                                        <span class="m-form__help"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row r-pm">
+                                    <label class="col-form-label col-lg-3 col-sm-12">
+                                        防治对象 <span style="color: red">*</span>
+                                    </label>
+                                    <div class="col-lg-8 col-md-9 col-sm-12">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control m-input fertVariety" name="fertVariety" placeholder="防治对象">
+                                        </div>
+                                        <span class="m-form__help"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row r-pm">
+                                    <label class="col-form-label col-lg-3 col-sm-12">
+                                        药剂用量 <span style="color: red">*</span>
+                                    </label>
+                                    <div class="col-lg-8 col-md-9 col-sm-12">
+                                        <div class="input-group m-input-group ">
+                                            <input type="text" class="form-control m-input farmQuantity" value="0" name="farmQuantity" placeholder="用量">
+                                            <span class="input-group-addon">
+                                                毫升
+                                            </span>
+                                        </div>
+                                        <span class="m-form__help"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div tile="灌溉" th:if="${type == '5fe37095-7d9a-4235-914f-cf0c6f1e592a'}">
+                                <div class="form-group m-form__group row r-pm">
+                                    <label class="col-form-label col-lg-3 col-sm-12">
+                                        灌溉方式 <span style="color: red">*</span>
+                                    </label>
+                                    <div class="col-lg-8 col-md-9 col-sm-12">
+                                        <select class="form-control farmPattern " name="farmPattern">
+                                            <option value=""> 全部</option>
+                                            <option th:each="item:${irrigationRegime}" th:value="${item.id}" th:text="${item.name}"></option>
+                                        </select>
+                                        <span class="m-form__help"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row r-pm">
+                                    <label class="col-form-label col-lg-3 col-sm-12">
+                                        取水用量 <span style="color: red">*</span>
+                                    </label>
+                                    <div class="col-lg-8 col-md-9 col-sm-12">
+                                        <div class="input-group m-input-group ">
+                                            <input type="text" class="form-control m-input farmQuantity" value="0" name="farmQuantity" placeholder="用量">
+                                            <span class="input-group-addon">
+                                                方
+                                            </span>
+                                        </div>
+                                        <span class="m-form__help"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    操作人 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control m-input" name="operatorId"
+                                               placeholder="实施人">
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    操作时间 <span style="color: red">*</span>
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class='input-group date'>
+                                        <input type="text" class="form-control m-input farm_time" name="farmTime" readonly placeholder="开始时间">
+                                        <span class="input-group-addon">
+                                            <i class="la la-calendar glyphicon-th"></i>
+                                        </span>
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    状态
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <div class="m-radio-inline">
+                                        <label class="m-radio m-radio--state-warning">
+                                            <input type="radio" name="status" value="1" data-skin="dark" data-toggle="m-tooltip" data-placement="top" title=""  data-original-title="(农事进行中)">
+                                            进行中
+                                            <span></span>
+                                        </label>
+                                        <label class="m-radio m-radio--state-success">
+                                            <input type="radio" name="status" value="2" data-skin="dark" data-toggle="m-tooltip" data-placement="top" title=""  data-original-title="(完成农事)">
+                                            完成
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row r-pm">
+                                <label class="col-form-label col-lg-3 col-sm-12">
+                                    备注
+                                </label>
+                                <div class="col-lg-8 col-md-9 col-sm-12">
+                                    <textarea class="form-control m-input" name="description"
+                                              placeholder="备注"></textarea>
+                                    <span class="m-form__help"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="m-form__seperator m-form__seperator&#45;&#45;dashed m-form__seperator&#45;&#45;space"></div>-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary close-parent" data-dismiss="modal">
+                            关闭
+                        </button>
+                        <button type="submit" shiro:hasPermission="teaLog:submit" class="btn btn-accent">
+                            确定
+                        </button>
+                        <button type="reset" class="btn btn-warning reset-btn">
+                            重置
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--end::Modal-->
+</body>
+</html>

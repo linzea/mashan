@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.panda.mapper.commodity.PackageMapper">
+  <resultMap id="BaseResultMap" type="com.panda.model.commodity.Package">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="package_name" jdbcType="VARCHAR" property="packageName" />
+    <result column="package_quantity" jdbcType="INTEGER" property="packageQuantity" />
+    <result column="package_low" jdbcType="INTEGER" property="packageLow" />
+    <result column="package_use" jdbcType="INTEGER" property="packageUse" />
+    <result column="dic_tea_attr" jdbcType="VARCHAR" property="dicTeaAttr" />
+    <result column="dic_tea_type" jdbcType="VARCHAR" property="dicTeaType" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="spe_one" jdbcType="INTEGER" property="speOne" />
+    <result column="spe_two" jdbcType="INTEGER" property="speTwo" />
+    <result column="spe_there" jdbcType="INTEGER" property="speThere" />
+    <result column="spe_four" jdbcType="INTEGER" property="speFour" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="principal" jdbcType="VARCHAR" property="principal" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="create_id" jdbcType="VARCHAR" property="createId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_id" jdbcType="VARCHAR" property="modifyId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, package_name, package_quantity, package_low, package_use, dic_tea_attr, dic_tea_type, 
+    img_url, spe_one, spe_two, spe_there, spe_four, status, principal, description, create_id, 
+    create_time, modify_id, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from c_package
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from c_package
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.panda.model.commodity.Package">
+    insert into c_package (id, package_name, package_quantity, 
+      package_low, package_use, dic_tea_attr, 
+      dic_tea_type, img_url, spe_one, 
+      spe_two, spe_there, spe_four, 
+      status, principal, description, 
+      create_id, create_time, modify_id, 
+      modify_time)
+    values (#{id,jdbcType=VARCHAR}, #{packageName,jdbcType=VARCHAR}, #{packageQuantity,jdbcType=INTEGER}, 
+      #{packageLow,jdbcType=INTEGER}, #{packageUse,jdbcType=INTEGER}, #{dicTeaAttr,jdbcType=VARCHAR}, 
+      #{dicTeaType,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, #{speOne,jdbcType=INTEGER}, 
+      #{speTwo,jdbcType=INTEGER}, #{speThere,jdbcType=INTEGER}, #{speFour,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{principal,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{createId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyId,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.panda.model.commodity.Package">
+    insert into c_package
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="packageName != null">
+        package_name,
+      </if>
+      <if test="packageQuantity != null">
+        package_quantity,
+      </if>
+      <if test="packageLow != null">
+        package_low,
+      </if>
+      <if test="packageUse != null">
+        package_use,
+      </if>
+      <if test="dicTeaAttr != null">
+        dic_tea_attr,
+      </if>
+      <if test="dicTeaType != null">
+        dic_tea_type,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="speOne != null">
+        spe_one,
+      </if>
+      <if test="speTwo != null">
+        spe_two,
+      </if>
+      <if test="speThere != null">
+        spe_there,
+      </if>
+      <if test="speFour != null">
+        spe_four,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="principal != null">
+        principal,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyId != null">
+        modify_id,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="packageName != null">
+        #{packageName,jdbcType=VARCHAR},
+      </if>
+      <if test="packageQuantity != null">
+        #{packageQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="packageLow != null">
+        #{packageLow,jdbcType=INTEGER},
+      </if>
+      <if test="packageUse != null">
+        #{packageUse,jdbcType=INTEGER},
+      </if>
+      <if test="dicTeaAttr != null">
+        #{dicTeaAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTeaType != null">
+        #{dicTeaType,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="speOne != null">
+        #{speOne,jdbcType=INTEGER},
+      </if>
+      <if test="speTwo != null">
+        #{speTwo,jdbcType=INTEGER},
+      </if>
+      <if test="speThere != null">
+        #{speThere,jdbcType=INTEGER},
+      </if>
+      <if test="speFour != null">
+        #{speFour,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="principal != null">
+        #{principal,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null">
+        #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.panda.model.commodity.Package">
+    update c_package
+    <set>
+      <if test="packageName != null">
+        package_name = #{packageName,jdbcType=VARCHAR},
+      </if>
+      <if test="packageQuantity != null">
+        package_quantity = #{packageQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="packageLow != null">
+        package_low = #{packageLow,jdbcType=INTEGER},
+      </if>
+      <if test="packageUse != null">
+        package_use = #{packageUse,jdbcType=INTEGER},
+      </if>
+      <if test="dicTeaAttr != null">
+        dic_tea_attr = #{dicTeaAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTeaType != null">
+        dic_tea_type = #{dicTeaType,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="speOne != null">
+        spe_one = #{speOne,jdbcType=INTEGER},
+      </if>
+      <if test="speTwo != null">
+        spe_two = #{speTwo,jdbcType=INTEGER},
+      </if>
+      <if test="speThere != null">
+        spe_there = #{speThere,jdbcType=INTEGER},
+      </if>
+      <if test="speFour != null">
+        spe_four = #{speFour,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="principal != null">
+        principal = #{principal,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null">
+        modify_id = #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.panda.model.commodity.Package">
+    update c_package
+    set package_name = #{packageName,jdbcType=VARCHAR},
+      package_quantity = #{packageQuantity,jdbcType=INTEGER},
+      package_low = #{packageLow,jdbcType=INTEGER},
+      package_use = #{packageUse,jdbcType=INTEGER},
+      dic_tea_attr = #{dicTeaAttr,jdbcType=VARCHAR},
+      dic_tea_type = #{dicTeaType,jdbcType=VARCHAR},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      spe_one = #{speOne,jdbcType=INTEGER},
+      spe_two = #{speTwo,jdbcType=INTEGER},
+      spe_there = #{speThere,jdbcType=INTEGER},
+      spe_four = #{speFour,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      principal = #{principal,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      create_id = #{createId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_id = #{modifyId,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectPackageList" parameterType="map" resultType="map">
+    SELECT
+        p.id,
+        p.package_name packageName,
+        p.package_quantity packageQuantity,
+        p.package_low packageLow,
+        p.package_use packageUse,
+        p.dic_tea_attr dicTeaAttr,
+        p.dic_tea_type dicTeaType,
+        p.description,
+        p.principal,
+        p.spe_one speOne,
+        p.spe_two speTwo,
+        p.spe_there speThere,
+        p.spe_four speFour,
+        p.status status,
+        p.create_id createId,
+        p.create_time createTime,
+        d.name attrName,
+        d1.name typeName,
+        u.chinese_name createUser
+    FROM
+        c_package p
+        LEFT JOIN s_dictionary d ON p.dic_tea_attr = d.id
+        LEFT JOIN s_dictionary d1 ON p.dic_tea_type = d1.id
+        LEFT JOIN s_users u ON p.create_id = u.id
+    WHERE
+        1 = 1
+        <if test="dicTeaAttr != null and dicTeaAttr != ''">
+          AND p.dic_tea_attr = #{dicTeaAttr}
+        </if>
+        <if test="dicTeaType != null and dicTeaType != ''">
+          AND p.dic_tea_attr = #{dicTeaType}
+        </if>
+        <if test="status != null and status != ''">
+          AND p.status = #{status}
+        </if>
+      ORDER BY p.create_time DESC
+  </select>
+
+  <select id="selectPackageItem" parameterType="java.lang.String" resultType="map">
+    SELECT
+      p.id,
+      p.package_name packageName,
+      p.package_quantity packageQuantity,
+      p.package_low packageLow,
+      p.package_use packageUse,
+      p.dic_tea_attr dicTeaAttr,
+      p.dic_tea_type dicTeaType,
+      p.description,
+      p.principal,
+      p.img_url imgUrl,
+      p.spe_one speOne,
+      p.spe_two speTwo,
+      p.spe_there speThere,
+      p.spe_four speFour,
+      p.status status,
+      p.create_id createId,
+      p.create_time createTime,
+      d.name attrName,
+      d1.name typeName,
+      u.chinese_name createUser
+    FROM
+      c_package p
+      LEFT JOIN s_dictionary d ON p.dic_tea_attr = d.id
+      LEFT JOIN s_dictionary d1 ON p.dic_tea_type = d.id
+      LEFT JOIN s_users u ON p.create_id = u.id
+    WHERE
+      p.id = #{id}
+  </select>
+</mapper>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑权限信息</title>
+</head>
+<body>
+<!--begin::Modal-->
+<div class="modal fade finishedOutEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true" th:fragment="finishedOutEdit">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    新增成品
+                </h5>
+                <button type="button" class="close close-parent" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                </button>
+            </div>
+            <form class="m-form m-form--state m-form--fit m-form--label-align-right" novalidate="novalidate">
+                <div class="modal-body" id="finished_out">
+                    <div class="row">
+                        <div class="tab-pane " aria-expanded="true" style="width: 100%;padding: 20px;">
+                            <div class="m-portlet">
+                                <div class="m-portlet__head" style="padding: 1.5rem;">
+                                    <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+                                            <h3 class="m-portlet__head-text">
+                                                <img src="/index/base/img/logo/logo.png">
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+                                            <h3 class="m-portlet__head-text" style="font-size: 2rem;">
+                                                广东龙岗马山茶业产品出库检验单
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-portlet__body">
+                                    <table class="table table-bordered m-table">
+                                        <thead>
+                                        <tr>
+                                            <th colspan="4" style="border-bottom:none;">门店: <span id="storeName"></span></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody style="text-align: center">
+                                        <tr>
+                                            <td scope="row"> 产品名称:</td>
+                                            <td id="finishedName"></td>
+                                            <td scope="row"> 产品等级:</td>
+                                            <td id="gradeName"></td>
+                                        </tr>
+                                        <tr>
+                                            <td scope="row"> 产品规格:</td>
+                                            <td id="speThereP"></td>
+                                            <td scope="row"> 生产日期:</td>
+                                            <td id="finishedInTime"></td>
+                                        </tr>
+                                        <tr>
+                                            <td scope="row"> 生产标准:</td>
+                                            <td id="standardId"></td>
+                                            <td scope="row"> 生产许可:</td>
+                                            <td id="licenceId"></td>
+                                        </tr>
+                                        <tr>
+                                            <td scope="row">门店店长:</td>
+                                            <td id="storeManager"> </td>
+                                            <td scope="row">取货数量:</td>
+                                            <td id="out_quantity"></td>
+                                        </tr>
+                                        <tr>
+                                            <td scope="row">取货时间:</td>
+                                            <td id="create_time"> </td>
+                                            <td scope="row">取货人:</td>
+                                            <td id="storeManagerT"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="table " style="border: none;">
+                                        <tbody >
+                                        <tr>
+                                            <td style="border:none; width:20%"></td>
+                                            <td style="border:none;width:20%"></td>
+                                            <td style="border:none;width:20%"></td>
+                                            <td style="border:none;text-align: center;width:10%">日期:</td>
+                                            <td style="border:none;width:20%" id="createTime"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border:none;width:20%"></td>
+                                            <td style="border:none;width:20%"></td>
+                                            <td style="border:none;width:20%"></td>
+                                            <td style="border:none;text-align: center;width:10%">签名:</td>
+                                            <td style="border:none;width:20%" id="createUser"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-parent" data-dismiss="modal">
+                        关闭
+                    </button>
+                    <button type="button" shiro:hasPermission="finishedOut:export" class="btn btn-accent downloadQuality">
+                        打印
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--end::Modal-->
+</body>
+</html>

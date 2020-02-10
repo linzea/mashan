@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.panda.mapper.origin.OriginCodeMapper">
+  <resultMap id="BaseResultMap" type="com.panda.model.origin.OriginCode">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="origin_batch_id" jdbcType="VARCHAR" property="originBatchId" />
+    <result column="prefix_val" jdbcType="VARCHAR" property="prefixVal" />
+    <result column="origin_code" jdbcType="VARCHAR" property="originCode" />
+    <result column="create_status" jdbcType="INTEGER" property="createStatus" />
+    <result column="create_id" jdbcType="VARCHAR" property="createId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_id" jdbcType="VARCHAR" property="modifyId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, origin_batch_id, prefix_val, origin_code, create_status, create_id, create_time, 
+    modify_id, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from e_origin_code
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from e_origin_code
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.panda.model.origin.OriginCode">
+    insert into e_origin_code (id, origin_batch_id, prefix_val, 
+      origin_code, create_status, create_id, 
+      create_time, modify_id, modify_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{originBatchId,jdbcType=VARCHAR}, #{prefixVal,jdbcType=VARCHAR}, 
+      #{originCode,jdbcType=VARCHAR}, #{createStatus,jdbcType=INTEGER}, #{createId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyId,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.panda.model.origin.OriginCode">
+    insert into e_origin_code
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="originBatchId != null">
+        origin_batch_id,
+      </if>
+      <if test="prefixVal != null">
+        prefix_val,
+      </if>
+      <if test="originCode != null">
+        origin_code,
+      </if>
+      <if test="createStatus != null">
+        create_status,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyId != null">
+        modify_id,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="originBatchId != null">
+        #{originBatchId,jdbcType=VARCHAR},
+      </if>
+      <if test="prefixVal != null">
+        #{prefixVal,jdbcType=VARCHAR},
+      </if>
+      <if test="originCode != null">
+        #{originCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createStatus != null">
+        #{createStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null">
+        #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.panda.model.origin.OriginCode">
+    update e_origin_code
+    <set>
+      <if test="originBatchId != null">
+        origin_batch_id = #{originBatchId,jdbcType=VARCHAR},
+      </if>
+      <if test="prefixVal != null">
+        prefix_val = #{prefixVal,jdbcType=VARCHAR},
+      </if>
+      <if test="originCode != null">
+        origin_code = #{originCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createStatus != null">
+        create_status = #{createStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null">
+        modify_id = #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.panda.model.origin.OriginCode">
+    update e_origin_code
+    set origin_batch_id = #{originBatchId,jdbcType=VARCHAR},
+      prefix_val = #{prefixVal,jdbcType=VARCHAR},
+      origin_code = #{originCode,jdbcType=VARCHAR},
+      create_status = #{createStatus,jdbcType=INTEGER},
+      create_id = #{createId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_id = #{modifyId,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectOriginCodeDataList" parameterType="map" resultType="map">
+    SELECT
+        oc.id,oc.prefix_val prefixVal,oc.origin_code originCode,oc.create_status createStatus,
+        oc.create_time createTime,ob.batch_num batchNum,oc.origin_batch_id originBatchId
+    FROM
+        e_origin_code oc, e_origin_batch ob
+    WHERE
+        1 = 1
+        AND oc.origin_batch_id = ob.id
+        AND ob.status = 1
+        <if test="originBatchId != null and originBatchId != ''">
+          AND oc.origin_batch_id = #{originBatchId}
+        </if>
+    ORDER BY oc.create_time DESC
+  </select>
+
+  <select id="checkOriginCode" resultType="java.lang.String" parameterType="java.lang.String">
+    SELECT
+        ob.id as id
+    FROM
+        e_origin_code oc,e_origin_batch ob
+    WHERE
+        1 = 1
+        AND oc.origin_code = #{originCode}
+      AND oc.origin_batch_id = ob.id
+  </select>
+
+  <select id="selectOriginCodeByInfoList" parameterType="java.lang.String" resultType="map">
+   SELECT oi.title,oi.content,oi.img_url,oi.create_time,oi.description FROM (
+    SELECT
+        ob.id as id
+    FROM
+        e_origin_code oc,e_origin_batch ob
+    WHERE
+        1 = 1
+        AND oc.origin_code = #{originCode}
+      AND oc.origin_batch_id = ob.id
+    )a
+  LEFT JOIN e_origin_info as oi ON a.id = oi.origin_batch and oi.status = 1
+  </select>
+</mapper>

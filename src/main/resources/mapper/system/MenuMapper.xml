@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.panda.mapper.system.MenuMapper" >
+    <resultMap id="BaseResultMap" type="com.panda.model.system.Menu" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="sort_id" property="sortId" jdbcType="INTEGER" />
+        <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="url" property="url" jdbcType="VARCHAR" />
+        <result column="type" property="type" jdbcType="INTEGER" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="icon_class" property="iconClass" jdbcType="VARCHAR" />
+        <result column="create_id" property="createId" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="modify_id" property="modifyId" jdbcType="VARCHAR" />
+        <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, sort_id, parent_id, name, url, type, status, icon_class, create_id, create_time,
+        modify_id, modify_time, description
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from s_menu
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+        delete from s_menu
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.panda.model.system.Menu" >
+        insert into s_menu (id, sort_id, parent_id,
+        name, url, type, status,
+        icon_class, create_id, create_time,
+        modify_id, modify_time, description
+        )
+        values (#{id,jdbcType=VARCHAR}, #{sortId,jdbcType=INTEGER}, #{parentId,jdbcType=VARCHAR},
+        #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{status,jdbcType=INTEGER},
+        #{iconClass,jdbcType=VARCHAR}, #{createId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+        #{modifyId,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.panda.model.system.Menu" >
+        insert into s_menu
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="sortId != null" >
+                sort_id,
+            </if>
+            <if test="parentId != null" >
+                parent_id,
+            </if>
+            <if test="name != null" >
+                name,
+            </if>
+            <if test="url != null" >
+                url,
+            </if>
+            <if test="type != null" >
+                type,
+            </if>
+            <if test="status != null" >
+                status,
+            </if>
+            <if test="iconClass != null" >
+                icon_class,
+            </if>
+            <if test="createId != null" >
+                create_id,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="modifyId != null" >
+                modify_id,
+            </if>
+            <if test="modifyTime != null" >
+                modify_time,
+            </if>
+            <if test="description != null" >
+                description,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="sortId != null" >
+                #{sortId,jdbcType=INTEGER},
+            </if>
+            <if test="parentId != null" >
+                #{parentId,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null" >
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null" >
+                #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null" >
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="status != null" >
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="iconClass != null" >
+                #{iconClass,jdbcType=VARCHAR},
+            </if>
+            <if test="createId != null" >
+                #{createId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyId != null" >
+                #{modifyId,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null" >
+                #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="description != null" >
+                #{description,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.panda.model.system.Menu" >
+        update s_menu
+        <set >
+            <if test="sortId != null" >
+                sort_id = #{sortId,jdbcType=INTEGER},
+            </if>
+            <if test="parentId != null" >
+                parent_id = #{parentId,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null" >
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null" >
+                url = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null" >
+                type = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="status != null" >
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="iconClass != null" >
+                icon_class = #{iconClass,jdbcType=VARCHAR},
+            </if>
+            <if test="createId != null" >
+                create_id = #{createId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyId != null" >
+                modify_id = #{modifyId,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null" >
+                modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="description != null" >
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.panda.model.system.Menu" >
+        update s_menu
+        set sort_id = #{sortId,jdbcType=INTEGER},
+        parent_id = #{parentId,jdbcType=VARCHAR},
+        name = #{name,jdbcType=VARCHAR},
+        url = #{url,jdbcType=VARCHAR},
+        type = #{type,jdbcType=INTEGER},
+        status = #{status,jdbcType=INTEGER},
+        icon_class = #{iconClass,jdbcType=VARCHAR},
+        create_id = #{createId,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        modify_id = #{modifyId,jdbcType=VARCHAR},
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+        description = #{description,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 获取所有菜单 shiro 鉴权使用 -->
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from s_menu
+        where 1 = 1;
+    </select>
+    <!-- 获取所有菜单 shiro 鉴权使用 -->
+
+    <!-- 获取当前管理员所拥有的菜单列表  数组  供 left_aside 模板使用 -->
+    <select id="selectManagerRoleMenuList" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM (
+        SELECT
+        m.*
+        FROM
+        s_role_menu rm, s_menu m
+        WHERE
+        1 = 1
+        <if test="roleId != null and roleId != ''">
+            AND rm.role_id = #{roleId}
+        </if>
+        AND rm.menu_id = m.id
+        <if test="parentId != null and parentId != ''">
+            AND m.parent_id = #{parentId}
+        </if>
+        <if test="status != null and status != ''">
+            AND rm.status = #{status}
+        </if>
+        AND m.status = 1
+        GROUP BY rm.menu_id
+        )a
+        ORDER BY a.sort_id
+    </select>
+    <!-- 获取当前管理员所拥有的菜单列表 三维数组- 供 left_aside 模板使用 -->
+
+    <!-- 获取当前角色授权菜单 一维数组-供下拉列表使用 -->
+    <select id="selectManagerAuthMenu" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT
+          m.*
+        FROM
+          s_role_menu rm, s_menu m
+        WHERE
+          1 = 1
+          <if test="roleId != null and roleId != ''">
+              AND rm.role_id = #{roleId}
+          </if>
+        <if test="status != null and status != ''">
+            AND rm.status = #{status}
+        </if>
+        AND rm.menu_id = m.id
+    </select>
+    <!-- 获取当前角色授权菜单 一维数组-供下拉列表使用 -->
+
+    <!-- 获取当前菜单和子集菜单 shiro config system -->
+    <select id="selectMenuAndChildMenu" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT m.* FROM s_menu m, (
+            SELECT A.id as A, B.id as B, C.id as C, D.id as D
+            FROM s_menu A
+            LEFT JOIN s_menu B ON B.parent_id = A.id
+            LEFT JOIN s_menu C ON C.parent_id = B.id
+            LEFT JOIN s_menu D ON D.parent_id = C.id
+            WHERE A.id = #{menuId}
+        ) ID
+        WHERE m.id IN(ID.A,ID.B,ID.C,ID.D)
+        GROUP BY m.id
+        ORDER BY m.create_time,m.sort_id ASC
+    </select>
+    <!-- 获取当前菜单和子集菜单 -->
+
+    <delete id="delMenuParentAndChildRole" parameterType="java.lang.String">
+        DELETE
+            s_menu,s_role_menu,s_page_role
+        FROM
+            s_menu,s_role_menu,s_page_role
+        WHERE
+            s_menu.id IN (
+                SELECT
+                    id
+                FROM
+                    (
+                        SELECT id FROM s_menu WHERE id = #{id}
+                        UNION
+                        SELECT id FROM s_menu WHERE parent_id = #{id}
+                    ) a
+                WHERE
+                    1 = 1
+            )
+        AND s_role_menu.menu_id = s_menu.id
+        AND s_page_role.menu_id = s_menu.id
+    </delete>
+
+    <delete id="delMenuParentAndChild" parameterType="java.lang.String">
+        DELETE
+        s_menu
+        FROM
+        s_menu
+        WHERE
+        s_menu.id IN (
+        SELECT
+        id
+        FROM
+        (
+        SELECT id FROM s_menu WHERE id = #{id}
+        UNION
+        SELECT id FROM s_menu WHERE parent_id = #{id}
+        ) a
+        WHERE
+        1 = 1
+        )
+    </delete>
+</mapper>

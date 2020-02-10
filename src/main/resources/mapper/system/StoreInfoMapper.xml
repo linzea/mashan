@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.panda.mapper.system.StoreInfoMapper">
+  <resultMap id="BaseResultMap" type="com.panda.model.system.StoreInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="signature" jdbcType="VARCHAR" property="signature" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="country" jdbcType="VARCHAR" property="country" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="location_x" jdbcType="CHAR" property="locationX" />
+    <result column="location_y" jdbcType="CHAR" property="locationY" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="store_scale" jdbcType="INTEGER" property="storeScale" />
+    <result column="floor_space" jdbcType="DOUBLE" property="floorSpace" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_id" jdbcType="VARCHAR" property="createId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_id" jdbcType="VARCHAR" property="modifyId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, signature, city, province, country, address, location_x, location_y, img_url,
+    store_scale, floor_space, status, create_id, create_time, modify_id, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from s_store_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from s_store_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.panda.model.system.StoreInfo">
+    insert into s_store_info (id, name, signature, 
+      city, province, country, 
+      address, location_x, location_y, 
+      img_url, store_scale, floor_space,
+      status, create_id, create_time, 
+      modify_id, modify_time)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{signature,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{locationX,jdbcType=CHAR}, #{locationY,jdbcType=CHAR}, 
+      #{imgUrl,jdbcType=VARCHAR}, #{storeScale,jdbcType=INTEGER}, #{floorSpace,jdbcType=DOUBLE},
+      #{status,jdbcType=INTEGER}, #{createId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyId,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.panda.model.system.StoreInfo">
+    insert into s_store_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="signature != null">
+        signature,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="country != null">
+        country,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="locationX != null">
+        location_x,
+      </if>
+      <if test="locationY != null">
+        location_y,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="storeScale != null">
+        store_scale,
+      </if>
+      <if test="floorSpace != null">
+        floor_space,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyId != null">
+        modify_id,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null">
+        #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="locationX != null">
+        #{locationX,jdbcType=CHAR},
+      </if>
+      <if test="locationY != null">
+        #{locationY,jdbcType=CHAR},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="storeScale != null">
+        #{storeScale,jdbcType=INTEGER},
+      </if>
+      <if test="floorSpace != null">
+        #{floorSpace,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null">
+        #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.panda.model.system.StoreInfo">
+    update s_store_info
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null">
+        signature = #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="locationX != null">
+        location_x = #{locationX,jdbcType=CHAR},
+      </if>
+      <if test="locationY != null">
+        location_y = #{locationY,jdbcType=CHAR},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="storeScale != null">
+        store_scale = #{storeScale,jdbcType=INTEGER},
+      </if>
+      <if test="floorSpace != null">
+        floor_space = #{floorSpace,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null">
+        modify_id = #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.panda.model.system.StoreInfo">
+    update s_store_info
+    set name = #{name,jdbcType=VARCHAR},
+      signature = #{signature,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      location_x = #{locationX,jdbcType=CHAR},
+      location_y = #{locationY,jdbcType=CHAR},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      store_scale = #{storeScale,jdbcType=INTEGER},
+      floor_space = #{floorSpace,jdbcType=DOUBLE},
+      status = #{status,jdbcType=INTEGER},
+      create_id = #{createId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_id = #{modifyId,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectStoreInfoList" parameterType="map" resultType="map">
+    SELECT
+    si.id,
+    si.name storeName,
+    si.signature signature,
+    si.city city,
+    si.province province,
+    si.country country,
+    si.address address,
+    si.location_x locationX,
+    si.location_y locationY,
+    si.img_url imgUrl,
+    si.store_scale storeScale,
+    si.floor_space floorSpace,
+    si.status status,
+    si.create_id createId,
+    si.create_time,
+    u.id userId,
+    u.chinese_name storeManager,
+    cu.chinese_name createUser
+    FROM
+    s_users u,
+    s_store_info si
+    LEFT JOIN s_users cu ON si.create_id = cu.id
+    WHERE
+    1 = 1
+    AND si.id = u.store_id
+    <if test="status != null and status != ''">
+      AND si.status  = #{status}
+    </if>
+    ORDER BY si.create_time ASC
+  </select>
+
+  <select id="selectStoreItemByPrimaryKey" parameterType="java.lang.String" resultType="map">
+    SELECT
+        si.id,
+        si.name storeName,
+        si.signature signature,
+        si.city city,
+        si.province province,
+        si.country country,
+        si.address address,
+        si.location_x locationX,
+        si.location_y locationY,
+        si.img_url imgUrl,
+        si.store_scale storeScale,
+        si.floor_space floorSpace,
+        si.status status,
+        si.create_id createId,
+        si.create_time,
+        u.id userId,
+        u.chinese_name bindUser,
+        cu.chinese_name createUser
+    FROM
+        s_users u,
+        s_store_info si
+        LEFT JOIN s_users cu ON si.create_id = cu.id
+    WHERE
+        si.id = u.store_id
+        AND si.id = #{id}
+    ORDER BY si.create_time DESC
+  </select>
+</mapper>

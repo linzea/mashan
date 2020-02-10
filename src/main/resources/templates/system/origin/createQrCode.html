@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑权限信息</title>
+</head>
+<body>
+<!--begin::Modal-->
+<div class="modal fade createQrCodeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true" th:fragment="createQrCode">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="close close-parent" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                </button>
+            </div>
+            <form class="m-form m-form--state m-form--fit m-form--label-align-right" id="dictionary_child_form"
+                  novalidate="novalidate">
+                <div class="modal-body" id="finished_out">
+                    <div class="form-group m-form__group row" id="assemblySelect">
+                        <label class="col-form-label col-lg-3 col-sm-12">
+                            生产线 <span style="color: red">*</span>
+                        </label>
+                        <div class="col-lg-8 col-md-9 col-sm-12">
+                            <select class="form-control" id="assembly">
+                                <option value=""> 选择</option>
+                            </select>
+                            <span class="m-form__help"></span>
+                        </div>
+                    </div>
+                    <input type="hidden" id="unitUsage" name="unitUsage" value="">
+                    <input type="hidden" id="machinSetId" name="machinSetId" value="">
+                    <input type="hidden" id="dicTeaAttrr" name="dicTeaAttr" value="">
+                    <div id="createQrCode" class="row m--hide">
+                        <div class="tab-pane " aria-expanded="true" style="width: 100%;padding: 20px;">
+                            <div class="m-portlet">
+                                <div class="m-portlet__head" style="padding: 1.5rem;">
+                                    <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+                                            <h3 class="m-portlet__head-text">
+                                                <img src="/index/base/img/logo/logo.png" height="55">
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+                                            <h3 class="m-portlet__head-text" style="font-size: 2rem;">
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-portlet__body">
+                                        <div class="col-lg-12">
+                                            <table class="table table-bordered m-table">
+                                                <tbody style="text-align: center">
+                                                <tr>
+                                                    <td scope="row"> 设备名称:</td>
+                                                    <td id="finishedName"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td scope="row"> 设备型号:</td>
+                                                    <td id="speThereP"></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td scope="row"> 设备用途:</td>
+                                                    <td id="gradeName"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td scope="row"> 资产编号:</td>
+                                                    <td id="finishedInTime"></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <table class="table " style="border: none;">
+                                                <tbody>
+                                                <tr>
+                                                    <td rowspan="6" colspan="2" style="border:none;">
+                                                        <div id="qrcode"></div>
+                                                    </td>
+                                                    <td style="border:none;text-align: center;"></td>
+                                                    <td style="border:none;"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="border:none;text-align: center;"></td>
+                                                    <td style="border:none;"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="border:none;text-align: center;"></td>
+                                                    <td style="border:none;"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="border:none;text-align: center;"></td>
+                                                    <td style="border:none;"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="border:none;text-align: center;">日期:</td>
+                                                    <td style="border:none;" id="createTime"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="border:none;text-align: center;">登记:</td>
+                                                    <td style="border:none;" id="createUser"></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body" id="originBatch">
+                    <div class="tab-pane " aria-expanded="true" style="width: 100%;padding: 20px;">
+                        <div class="m-portlet">
+                            <div class="m-portlet__head" style="padding: 1.5rem;">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+                                        <h3 class="m-portlet__head-text">
+                                            <img src="/index/base/img/logo/logo.png" height="55">
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+                                        <h3 class="m-portlet__head-text" style="font-size: 2rem;">
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-portlet__body">
+                                <div class="col-lg-12">
+                                    <table class="table table-bordered m-table">
+                                        <tbody style="text-align: center">
+                                            <tr>
+                                                <td style="border:none;">
+                                                    <div id="qrcodeT" style="margin-left: 22%;"></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border:none;">
+                                                    <div>马山茶产品溯源二维码</div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-parent" data-dismiss="modal">
+                        关闭
+                    </button>
+                    <button type="button" shiro:hasPermission="machinSet:submit" class="btn btn-accent qrCodePrintOrigin">
+                        打印
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--end::Modal-->
+</body>
+</html>

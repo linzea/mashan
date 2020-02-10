@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<div th:replace="home/public/head :: head"></div>
+<body class="m-page--wide m-header--fixed m-header--fixed-mobile m-footer--push m-aside--offcanvas-default"  >
+<div class="m-grid m-grid--hor m-grid--root m-page">
+    <div th:replace="~{home/public/header_nav :: header_nav}"></div>
+    <div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor-desktop m-grid--desktop m-body"  >
+        <div class="m-grid__item m-grid__item--fluid  m-grid m-grid--ver	m-container m-container--responsive m-container--xxl m-page__container">
+            <div class="m-grid__item m-grid__item--fluid m-wrapper" >
+                <div  class="m-content" >
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="m-portlet m-portlet--mobile">
+                                <div class="m-portlet__head">
+                                    <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+                                            <h3 class="m-portlet__head-text">
+                                                设备信息
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <!-- 内容 -->
+                                    <div class="row m-row--no-padding m-row--col-separator-xl">
+                                        <div class="col-xl-6">
+                                            <div class="m-widget14">
+                                                <img alt="" th:src="${equipment.img_url}" width="100%"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="m-widget1">
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">
+                                                                生产线:
+                                                            </span>
+                                                            <h3 class="m-widget1__title" th:text="${equipment.name}"></h3>
+                                                        </div>
+                                                        <div class="col m--align-right" style="border-left: 0.07rem dashed #ebedf2;">
+                                                            <span class="m-widget1__desc">
+                                                                设备名称:
+                                                            </span>
+                                                            <h3 class="m-widget1__title" th:text="${equipment.unit_name}"></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">
+                                                                设备型号:
+                                                            </span>
+                                                            <h3 class="m-widget1__title" th:text="${equipment.unit_type}"></h3>
+                                                        </div>
+                                                        <div class="col m--align-right" style="border-left: 0.07rem dashed #ebedf2;">
+                                                            <span class="m-widget1__desc">
+                                                                资产编号:
+                                                            </span>
+                                                            <h3 class="m-widget1__title" th:text="${equipment.unit_no}"></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">
+                                                                设备用途:
+                                                            </span>
+                                                            <h3 class="m-widget1__title" th:text="${equipment.unitDicName}"></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">
+                                                                上次维护:
+                                                            </span>
+                                                            <h3 class="m-widget1__title" th:text="${equipment.create_time}"></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">
+                                                                维护内容:
+                                                            </span>
+                                                            <h3 class="m-widget1__title" th:text="${equipment.mainName}"></h3>
+                                                        </div>
+                                                        <div class="col m--align-right" style="border-left: 0.07rem dashed #ebedf2;">
+                                                            <span class="m-widget1__desc">
+                                                                设备状态:
+                                                            </span>
+                                                            <h3 class="m-widget1__title" th:text="${equipment.unitStatus == 1 ? '正常':'维修'}"></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="m-portlet m-portlet--mobile">
+                                <div class="m-portlet__head">
+                                    <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+                                            <h3 class="m-portlet__head-text">
+                                                加工信息
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <!-- 内容 -->
+                                    <div class="row m-row--no-padding m-row--col-separator-xl">
+                                        <div class="col-xl-6">
+                                            <div class="m-widget1">
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">
+                                                                茶系:
+                                                            </span>
+                                                            <h3 class="m-widget1__title" th:text="${mapList.teaAttrName}"></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">
+                                                                品种:
+                                                            </span>
+                                                            <h3 class="m-widget1__title" th:text="${mapList.teaTypeName}"></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">
+                                                                工序:
+                                                            </span>
+                                                            <h3 class="m-widget1__title" th:text="${mapList.proName}"></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">
+                                                                加工类型:
+                                                            </span>
+                                                            <h3 class="m-widget1__title" th:text="${mapList.macTypeName}"></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">
+                                                                时长:
+                                                            </span>
+                                                            <h3 class="m-widget1__title" th:text="${mapList.lostTime}"></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="m-widget1">
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">
+                                                                开始时间:
+                                                            </span>
+                                                            <h3 class="m-widget1__title" th:text="${mapList.begin_time}"></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">
+                                                                结束时间:
+                                                            </span>
+                                                            <h3 class="m-widget1__title" th:text="${mapList.end_time}"></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">
+                                                                状态:
+                                                            </span>
+                                                            <h3 class="m-widget1__title" th:text="${mapList.machinStatus == 1 ? '加工中':'暂停'}"></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget1__item">
+                                                    <div class="row m-row--no-padding align-items-center">
+                                                        <div class="col">
+                                                            <span class="m-widget1__desc">
+                                                                负责人:
+                                                            </span>
+                                                            <h3 class="m-widget1__title" th:text="${mapList.principal}"></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="~{home/public/footer :: footer}"></div>
+</div>
+<div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500" data-scroll-speed="300">
+    <i class="la la-arrow-up"></i>
+</div>
+<script th:src="@{/index/base/js/jquery.min.js}" type="text/javascript"></script>
+<script th:src="@{/index/base/js/base.js}" type="text/javascript"></script>
+<script th:src="@{/index/base/js/scripts.bundle.js}" type="text/javascript"></script>
+<script th:src="@{/index/base/js/jquery.slimscroll.js}" type="text/javascript"></script>
+<script th:src="@{/index/base/js/jquery-validation.js}" type="text/javascript"></script>
+<script th:src="@{/index/base/js/main.js}" type="text/javascript"></script>
+<script th:src="@{/index/base/js/traceQuery.js}" type="text/javascript"></script>
+</body>
+</html>

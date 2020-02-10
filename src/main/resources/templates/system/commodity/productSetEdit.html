@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑权限信息</title>
+</head>
+<body>
+<!--begin::Modal-->
+<div class="modal fade productSetEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" th:fragment="productSetEdit">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    新增产品
+                </h5>
+                <button type="button" class="close close-parent" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                </button>
+            </div>
+            <form class="m-form m-form--state m-form--fit m-form--label-align-right" id="product_set_edit_form" novalidate="novalidate">
+                <div class="modal-body">
+                    <div class="row">
+                    <div class="col-lg-6">
+                        <input type="hidden" name="id" value="">
+                        <input type="hidden" name="save" value="edit">
+                        <input type="hidden" name="parentId" value="">
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                产品名称  <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <div class="input-group">
+                                    <input type="text" class="form-control m-input" name="productName" placeholder="产品名称">
+                                </div>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                产品类型 <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <select class="form-control" name="productType">
+                                    <option value=""> 类型</option>
+                                    <option th:each="item:${productType}" th:value="${item.id}" th:text="${item.name}"></option>
+                                </select>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                茶系  <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <select class="form-control" name="dicTeaAttr">
+                                    <option value=""> 茶系</option>
+                                    <option th:each="item:${teaArrt}" th:value="${item.id}" th:text="${item.name}"></option>
+                                </select>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                品种 <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <select class="form-control" name="dicTeaType">
+                                    <option value=""> 品种</option>
+                                    <option th:each="item:${treeType}" th:value="${item.id}" th:text="${item.name}"></option>
+                                </select>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                等级 <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <select class="form-control" name="teaGrade">
+                                    <option value=""> 等级</option>
+                                    <option th:each="item:${teaGrade}" th:value="${item.id}" th:text="${item.name}"></option>
+                                </select>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                包材 <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <select class="form-control" name="packageId">
+                                    <option value=""> 包材</option>
+                                    <option th:each="item:${packList}" th:value="${item.id}" th:text="${item.packageName}"></option>
+                                </select>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <!--<div class="form-group m-form__group row r-pm m&#45;&#45;hide">-->
+                            <!--<label class="col-form-label col-lg-3 col-sm-12">-->
+                                <!--标签 <span style="color: red">*</span>-->
+                            <!--</label>-->
+                            <!--<div class="col-lg-8 col-md-9 col-sm-12">-->
+                                <!--<select class="form-control" name="tagsId" disabled>-->
+                                    <!--<option value=""> 标签</option>-->
+                                    <!--<option th:each="item:${treeType}" th:value="${item.id}" th:text="${item.name}"></option>-->
+                                <!--</select>-->
+                                <!--<span class="m-form__help"></span>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                许可证号  <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <div class='input-group '>
+                                    <input type='text' class="form-control m-input" name="licenceId" placeholder="许可证号"/>
+                                    <span class="input-group-addon">
+                                        <i class="la la-calendar-check-o glyphicon-th"></i>
+                                    </span>
+                                </div>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                产品标准  <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <div class='input-group '>
+                                    <input type='text' class="form-control m-input" name="standardId" placeholder="产品标准"/>
+                                    <span class="input-group-addon">
+                                        <i class="la la-calendar glyphicon-th"></i>
+                                    </span>
+                                </div>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                负责人 <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <div class="input-group">
+                                    <input type="text" class="form-control m-input" name="principal" placeholder="负责人">
+                                </div>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                记录人 <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <div class="input-group">
+                                    <input type="text" class="form-control m-input" placeholder="记录人" id="createUser">
+                                </div>
+                                <span class="m--hide createUser">[[${user.chineseName}]]</span>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row status_switch_parent">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                状态  <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <input data-switch="true" type="checkbox" class="status_switch" data-on-color="success" data-off-color="warning">
+                                <br>
+                                <span class="m-form__help"></span>
+                            </div>
+                            <input type="hidden" name="status" value="2">
+                        </div>
+                        <div class="form-group m-form__group row r-pm">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                备注
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12">
+                                <textarea class="form-control m-input" name="descriptin" style="height: 90px; resize: none" placeholder="备注"></textarea>
+                                <span class="m-form__help"></span>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row r-pm" id="uploadDropzone" shiro:hasPermission="productSet:upload">
+                            <label class="col-form-label col-lg-3 col-sm-12">
+                                产品图片 <span style="color: red">*</span>
+                            </label>
+                            <div class="col-lg-8 col-md-9 col-sm-12" style="height: 141px">
+                                <div class="m-dropzone dropzone" action="/system/image/ajaxImageUpload" id="mDropzoneOne">
+                                    <div class="m-dropzone__msg dz-message needsclick">
+                                        <span class="m-dropzone__msg-desc">
+                                             <img th:src="@{/assets/img/bg/upload.png}"/>
+                                        </span>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="imgUrl">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-parent" data-dismiss="modal">
+                        关闭
+                    </button>
+                    <button type="submit" shiro:hasPermission="productSet:submit" class="btn btn-accent">
+                        确定
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--end::Modal-->
+</body>
+</html>

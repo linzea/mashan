@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑权限信息</title>
+</head>
+<body>
+<!--begin::Modal-->
+<div class="modal fade teaProcessShowModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true" th:fragment="teaProcessShow">
+    <div class="modal-dialog modal-xbg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    加工预览
+                </h5>
+                <button type="button" class="close close-parent" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                </button>
+            </div>
+            <div class="modal-body" id="teaProcessShow">
+                <div class="m-portlet__body dictionary_data_list">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item teaGardenManagerlist">
+                            <a class="nav-link active" data-toggle="tab" href="#teaGardenManagerlist"
+                               aria-expanded="true">
+                                茶园信息
+                            </a>
+                        </li>
+                        <li class="nav-item teaGardenLoglist ">
+                            <a class="nav-link" data-toggle="tab" href="#teaGardenLoglist" aria-expanded="false">
+                                茶园日志
+                            </a>
+                        </li>
+                        <li class="nav-item teaMachinTeaList ">
+                            <a class="nav-link" data-toggle="tab" href="#teaMachinTeaList" aria-expanded="false">
+                                茶叶加工
+                            </a>
+                        </li>
+                        <li class="nav-item productQuality m--hide">
+                            <a class="nav-link" data-toggle="tab" href="#productQuality" aria-expanded="false">
+                                产品质检
+                            </a>
+                        </li>
+                        <li class="nav-item semiFinished m--hide">
+                            <a class="nav-link" data-toggle="tab" href="#semiFinished" aria-expanded="false">
+                                半成品库存
+                            </a>
+                        </li>
+                        <li class="nav-item finishedInOrOut m--hide">
+                            <a class="nav-link" data-toggle="tab" href="#finishedInOrOut" aria-expanded="false">
+                                成品库存
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane teaGardenManagerlist active" id="teaGardenManagerlist" role="tabpanel"
+                             aria-expanded="true">
+                            <div class="tab-pane " aria-expanded="true">
+                                <div class="m-portlet">
+                                    <div class="m-portlet__body" style="padding: 1.2rem;">
+                                        <table class="table table-bordered m-table">
+                                            <thead>
+                                            <tr>
+                                                <th colspan="4" style="border-bottom:none;">茶园信息</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody style="text-align: center">
+                                            <tr>
+                                                <td scope="row"> 区域名称:</td>
+                                                <td id="teaGnameArea" class="tableText">--</td>
+                                                <td scope="row"> 栽培品种:</td>
+                                                <td id="dicCultivarName" class="tableText">--</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row"> 地块编号 :</td>
+                                                <td id="teaGareaCode" class="tableText">--</td>
+                                                <td scope="row"> 种植年份:</td>
+                                                <td id="teaGplantYear" class="tableText">--</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row"> 地块面积:</td>
+                                                <td id="teaGacreage" class="tableText">--</td>
+                                                <td scope="row"> 树龄:</td>
+                                                <td id="teaGageLimit" class="tableText">--</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">负责人:</td>
+                                                <td id="teaGprincipal" class="tableText">--</td>
+                                                <td scope="row">--</td>
+                                                <td id="oquantity">--</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="table table-bordered m-table">
+                                            <thead>
+                                            <tr>
+                                                <th colspan="4" style="border-bottom:none;">管理批次</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody style="text-align: center">
+                                            <tr>
+                                                <td scope="row"> 批次编号:</td>
+                                                <td id="mBarchNumber" class="tableText">--</td>
+                                                <td scope="row"> 管理年份:</td>
+                                                <td id="mCreateYear" class="tableText">--</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row" > 记录人 :</td>
+                                                <td id="mCreateUser" class="tableText">--</td>
+                                                <td scope="row"> 记录时间:</td>
+                                                <td id="mBarchCreateTime" class="tableText">--</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane teaGardenLoglist" id="teaGardenLoglist" role="tabpanel" aria-expanded="false">
+                            <div class="m-portlet__body">
+                                <table class="table table-bordered m-table m--hide" id="reclaim" >
+                                    <thead>
+                                    <tr>
+                                        <th colspan="8" style="border-bottom:none;">垦荒</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="reclaimTbody" style="text-align: center;border:none;">
+
+                                    </tbody>
+                                </table>
+                                <table class="table table-bordered m-table m--hide" id="plough">
+                                    <thead>
+                                    <tr>
+                                        <th colspan="6" style="border-bottom:none;">耕地</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="ploughTbody" style="text-align: center;border:none;">
+
+                                    </tbody>
+                                </table>
+                                <table class="table table-bordered m-table m--hide" id="seed">
+                                    <thead>
+                                    <tr>
+                                        <th colspan="8" style="border-bottom:none;">种植</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="seedTbody" style="text-align: center;border:none;">
+
+                                    </tbody>
+                                </table>
+                                <table class="table table-bordered m-table m--hide" id="fertilizer">
+                                    <thead>
+                                    <tr>
+                                        <th colspan="8" style="border-bottom:none;">施肥</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="fertilizerTbody" style="text-align: center;border:none;">
+
+                                    </tbody>
+                                </table>
+                                <table class="table table-bordered m-table m--hide" id="weeding">
+                                    <thead>
+                                    <tr>
+                                        <th colspan="6" style="border-bottom:none;">除草</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="weedingTbody" style="text-align: center;border:none;">
+
+                                    </tbody>
+                                </table>
+                                <table class="table table-bordered m-table m--hide" id="insecticide">
+                                    <thead>
+                                    <tr>
+                                        <th colspan="6" style="border-bottom:none;">治虫</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="insecticideTbody" style="text-align: center;border:none;">
+
+                                    </tbody>
+                                </table>
+                                <table class="table table-bordered m-table m--hide" id="irrigate">
+                                    <thead>
+                                    <tr>
+                                        <th colspan="6" style="border-bottom:none;">灌溉</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="irrigateTbody" style="text-align: center;border:none;">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane teaMachinTeaList" id="teaMachinTeaList" role="tabpanel"
+                             aria-expanded="false">
+                            <div class="m-portlet__body" style="padding: 1.2rem;">
+                                <table class="table table-bordered m-table">
+                                    <thead>
+                                    <tr>
+                                        <th colspan="9" style="border-bottom:none;">鲜叶</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody style="text-align: center">
+                                        <tr class="teaGardenManagerlist">
+                                            <td scope="row"> 批次:</td>
+                                            <td id="hrPickBatchNo" class="tableText"></td>
+                                            <td scope="row"> 品种</td>
+                                            <td id="dicCultivarName" class="tableText"></td>
+                                            <td scope="row"> 数量:</td>
+                                            <td id="hrRecQuantity" class="tableText"></td>
+                                            <td scope="row"> 负责人:</td>
+                                            <td id="hrPrincipal" class="tableText"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="table table-bordered m-table m--hide" id="teaMachinTeaListTable">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="9" style="border-bottom:none;">半成品</th>
+                                        </tr>
+                                        <tr>
+                                            <th style="border-bottom:none;text-align: center">工序</th>
+                                            <th style="border-bottom:none;text-align: center">批次</th>
+                                            <th style="border-bottom:none;text-align: center">类型</th>
+                                            <th style="border-bottom:none;text-align: center">品种</th>
+                                            <th style="border-bottom:none;text-align: center">茶系</th>
+                                            <th style="border-bottom:none;text-align: center">时长</th>
+                                            <th style="border-bottom:none;text-align: center">温度</th>
+                                            <th style="border-bottom:none;text-align: center">负责人</th>
+                                            <th style="border-bottom:none;text-align: center">状态</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="teaMachinTeaListTemp" style="text-align: center">
+
+                                    </tbody>
+                                </table>
+                                <table class="table table-bordered m-table m--hide" id="teaMachinTeaFinishedTable">
+                                    <thead>
+                                    <tr>
+                                        <th colspan="12" style="border-bottom:none;">成品</th>
+                                    </tr>
+                                    <tr>
+                                        <th style="border-bottom:none;text-align: center">工序</th>
+                                        <th style="border-bottom:none;text-align: center">批次</th>
+                                        <th style="border-bottom:none;text-align: center">类型</th>
+                                        <th style="border-bottom:none;text-align: center">品种</th>
+                                        <th style="border-bottom:none;text-align: center">茶系</th>
+                                        <th style="border-bottom:none;text-align: center">成茶</th>
+                                        <th style="border-bottom:none;text-align: center">副茶</th>
+                                        <!--<th style="border-bottom:none;text-align: center">茶末</th>-->
+                                        <th style="border-bottom:none;text-align: center">时长</th>
+                                        <th style="border-bottom:none;text-align: center">温度</th>
+                                        <th style="border-bottom:none;text-align: center">负责人</th>
+                                        <th style="border-bottom:none;text-align: center">状态</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="teaMachinTeaFinishedTemp" style="text-align: center">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane productQuality m--hide" id="productQuality" role="tabpanel"
+                             aria-expanded="false">
+                            <div class="m-portlet__body" style="padding: 1.2rem;">
+                                <table class="table table-bordered m-table">
+                                    <thead>
+                                    <tr>
+                                        <th colspan="8" style="border-bottom:none;">质检</th>
+                                    </tr>
+                                    <tr>
+                                        <th style="border-bottom:none;text-align: center">类型</th>
+                                        <th style="border-bottom:none;text-align: center">批次</th>
+                                        <th style="border-bottom:none;text-align: center">阶段</th>
+                                        <th style="border-bottom:none;text-align: center">品种</th>
+                                        <th style="border-bottom:none;text-align: center">茶系</th>
+                                        <th style="border-bottom:none;text-align: center">负责人</th>
+                                        <th style="border-bottom:none;text-align: center">状态</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="productQualityTmpl" style="text-align: center">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane semiFinished m--hide" id="semiFinished" role="tabpanel"
+                             aria-expanded="false">
+                            <div class="m-portlet__body" style="padding: 1.2rem;">
+                                <table class="table table-bordered m-table">
+                                    <thead>
+                                    <tr>
+                                        <th colspan="9" style="border-bottom:none;">半成品库存</th>
+                                    </tr>
+                                    <tr>
+                                        <th style="border-bottom:none;text-align: center">批次</th>
+                                        <th style="border-bottom:none;text-align: center">茶系</th>
+                                        <th style="border-bottom:none;text-align: center">品种</th>
+                                        <th style="border-bottom:none;text-align: center">茶青</th>
+                                        <th style="border-bottom:none;text-align: center">成茶</th>
+                                        <th style="border-bottom:none;text-align: center">成茶剩余</th>
+                                        <th style="border-bottom:none;text-align: center">副茶</th>
+                                        <th style="border-bottom:none;text-align: center">副茶剩余</th>
+                                        <th style="border-bottom:none;text-align: center">负责人</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="semiFinishedTmpl" style="text-align: center">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane finishedInOrOut m--hide" id="finishedInOrOut" role="tabpanel"
+                             aria-expanded="false">
+                            <div class="m-portlet__body" style="padding: 1.2rem;">
+                                <table class="table table-bordered m-table">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="9" style="border-bottom:none;">成品库存</th>
+                                        </tr>
+                                        <tr>
+                                            <th style="border-bottom:none;text-align: center">批次</th>
+                                            <th style="border-bottom:none;text-align: center">类型</th>
+                                            <th style="border-bottom:none;text-align: center">茶系</th>
+                                            <th style="border-bottom:none;text-align: center">品种</th>
+                                            <th style="border-bottom:none;text-align: center">库存</th>
+                                            <th style="border-bottom:none;text-align: center">出库</th>
+                                            <th style="border-bottom:none;text-align: center">剩余</th>
+                                            <th style="border-bottom:none;text-align: center">负责人</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="finishedTmpl" style="text-align: center">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary close-parent" data-dismiss="modal">
+                    关闭
+                </button>
+                <button type="button" shiro:hasPermission="finishedOut:export" class="btn btn-accent teaProcessPrint">
+                    打印
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end::Modal-->
+</body>
+</html>

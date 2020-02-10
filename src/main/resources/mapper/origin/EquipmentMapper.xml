@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.panda.mapper.origin.EquipmentMapper">
+  <resultMap id="BaseResultMap" type="com.panda.model.origin.Equipment">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="unit_name" jdbcType="VARCHAR" property="unitName" />
+    <result column="unit_no" jdbcType="VARCHAR" property="unitNo" />
+    <result column="unit_usage" jdbcType="VARCHAR" property="unitUsage" />
+    <result column="unit_type" jdbcType="VARCHAR" property="unitType" />
+    <result column="unit_cycle" jdbcType="INTEGER" property="unitCycle" />
+    <result column="unit_status" jdbcType="INTEGER" property="unitStatus" />
+    <result column="unit_clear" jdbcType="INTEGER" property="unitClear" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="dic_tea_attr" jdbcType="VARCHAR" property="dicTeaAttr" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="create_id" jdbcType="VARCHAR" property="createId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_id" jdbcType="VARCHAR" property="modifyId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, unit_name, unit_no, unit_usage, unit_type, unit_cycle, unit_status, unit_clear, 
+    img_url, status, dic_tea_attr, description, create_id, create_time, modify_id, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from e_equipment
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from e_equipment
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.panda.model.origin.Equipment">
+    insert into e_equipment (id, unit_name, unit_no, 
+      unit_usage, unit_type, unit_cycle, 
+      unit_status, unit_clear, img_url, 
+      status, dic_tea_attr, description, 
+      create_id, create_time, modify_id, 
+      modify_time)
+    values (#{id,jdbcType=VARCHAR}, #{unitName,jdbcType=VARCHAR}, #{unitNo,jdbcType=VARCHAR}, 
+      #{unitUsage,jdbcType=VARCHAR}, #{unitType,jdbcType=VARCHAR}, #{unitCycle,jdbcType=INTEGER}, 
+      #{unitStatus,jdbcType=INTEGER}, #{unitClear,jdbcType=INTEGER}, #{imgUrl,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{dicTeaAttr,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{createId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyId,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.panda.model.origin.Equipment">
+    insert into e_equipment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="unitName != null">
+        unit_name,
+      </if>
+      <if test="unitNo != null">
+        unit_no,
+      </if>
+      <if test="unitUsage != null">
+        unit_usage,
+      </if>
+      <if test="unitType != null">
+        unit_type,
+      </if>
+      <if test="unitCycle != null">
+        unit_cycle,
+      </if>
+      <if test="unitStatus != null">
+        unit_status,
+      </if>
+      <if test="unitClear != null">
+        unit_clear,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="dicTeaAttr != null">
+        dic_tea_attr,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyId != null">
+        modify_id,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="unitName != null">
+        #{unitName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitNo != null">
+        #{unitNo,jdbcType=VARCHAR},
+      </if>
+      <if test="unitUsage != null">
+        #{unitUsage,jdbcType=VARCHAR},
+      </if>
+      <if test="unitType != null">
+        #{unitType,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCycle != null">
+        #{unitCycle,jdbcType=INTEGER},
+      </if>
+      <if test="unitStatus != null">
+        #{unitStatus,jdbcType=INTEGER},
+      </if>
+      <if test="unitClear != null">
+        #{unitClear,jdbcType=INTEGER},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="dicTeaAttr != null">
+        #{dicTeaAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null">
+        #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.panda.model.origin.Equipment">
+    update e_equipment
+    <set>
+      <if test="unitName != null">
+        unit_name = #{unitName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitNo != null">
+        unit_no = #{unitNo,jdbcType=VARCHAR},
+      </if>
+      <if test="unitUsage != null">
+        unit_usage = #{unitUsage,jdbcType=VARCHAR},
+      </if>
+      <if test="unitType != null">
+        unit_type = #{unitType,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCycle != null">
+        unit_cycle = #{unitCycle,jdbcType=INTEGER},
+      </if>
+      <if test="unitStatus != null">
+        unit_status = #{unitStatus,jdbcType=INTEGER},
+      </if>
+      <if test="unitClear != null">
+        unit_clear = #{unitClear,jdbcType=INTEGER},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="dicTeaAttr != null">
+        dic_tea_attr = #{dicTeaAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyId != null">
+        modify_id = #{modifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.panda.model.origin.Equipment">
+    update e_equipment
+    set unit_name = #{unitName,jdbcType=VARCHAR},
+      unit_no = #{unitNo,jdbcType=VARCHAR},
+      unit_usage = #{unitUsage,jdbcType=VARCHAR},
+      unit_type = #{unitType,jdbcType=VARCHAR},
+      unit_cycle = #{unitCycle,jdbcType=INTEGER},
+      unit_status = #{unitStatus,jdbcType=INTEGER},
+      unit_clear = #{unitClear,jdbcType=INTEGER},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      dic_tea_attr = #{dicTeaAttr,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      create_id = #{createId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_id = #{modifyId,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectEquipmentDataList" parameterType="map" resultType="Map">
+    select
+    e.id,e.unit_name unitName,e.unit_no unitNo, e.unit_usage unitUsage,u.chinese_name createName,
+    e.unit_type unitType, e.unit_cycle unitCycle,e.status,d.name equName
+    from s_users u,e_equipment e
+    LEFT JOIN s_dictionary d ON e.unit_usage = d.id
+    where
+    1 = 1
+    AND e.create_id = u.id
+    <if test="status != null and status != ''">
+      AND e.status = #{status}
+    </if>
+    <if test="unitStatus != null and unitStatus != ''">
+      AND e.unit_status = #{unitStatus}
+    </if>
+    order by e.create_time desc
+  </select>
+
+  <select id="selectEquipmentItemByPrimaryKey" parameterType="java.lang.String" resultType="map">
+    select
+    e.id,e.unit_name unitName,e.unit_no unitNo, e.unit_usage unitUsage,u.chinese_name createUser,e.dic_tea_attr,
+    e.unit_type unitType, e.unit_cycle unitCycle,e.status,e.img_url imgUrl,e.description,e.unit_clear unitClear
+    from e_equipment e,s_users u
+    where
+    1 = 1
+    AND e.create_id = u.id
+    AND e.id = #{id}
+  </select>
+
+  <select id="selectOriginEquipmentItemData" parameterType="java.lang.String" resultType="map">
+    SELECT a.*,ms.name FROM(
+    SELECT
+    e.id eqId,
+    s.parent_id,e.unit_name,e.unit_no,e.unit_type,e.img_url,e.status unitStatus,d.name unitDicName,em.create_time,d1.name mainName
+    FROM
+    e_assembly_set s, e_equipment e
+    LEFT JOIN s_dictionary d ON e.unit_usage = d.id
+    LEFT JOIN e_equipment_maintain em ON e.id = em.equipment_id AND em.maintain_status = 2
+    LEFT JOIN s_dictionary d1 ON em.maintain_type = d1.id
+    WHERE
+    1 = 1
+    <if test="parentId != null and parentId != ''">
+      AND s.parent_id = #{parentId}
+    </if>
+    AND s.machine_id = e.id
+    <if test="dicTeaAttr != null and dicTeaAttr != ''">
+      AND s.dic_tea_attr = #{dicTeaAttr}
+    </if>
+    <if test="machineId != null and machineId != ''">
+      AND s.machine_id = #{machineId}
+    </if>
+    )a
+    LEFT JOIN e_assembly_set ms ON a.parent_id = ms.id
+    GROUP BY a.eqId ORDER BY a.create_time DESC LIMIT 1
+  </select>
+</mapper>
